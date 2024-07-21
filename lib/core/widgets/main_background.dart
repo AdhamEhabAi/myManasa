@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:svg_flutter/svg_flutter.dart';
 
-class OnBoardingBackGround extends StatelessWidget {
-  const OnBoardingBackGround({
+class MainBackGround extends StatelessWidget {
+  const MainBackGround({
     super.key,
   });
 
@@ -17,7 +17,7 @@ class OnBoardingBackGround extends StatelessWidget {
         children: [
           AnimatedContainer(
             duration: const Duration(seconds: 1),
-            width: MediaQuery.of(context).size.width / 1.5,
+            width: MediaQuery.of(context).size.width / 1.3,
             height: MediaQuery.of(context).size.height / 4,
             child: SvgPicture.asset(
               'assets/images/Group 9.svg',

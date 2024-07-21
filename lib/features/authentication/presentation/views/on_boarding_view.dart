@@ -4,7 +4,7 @@ import 'package:my_manasa/core/utils/styles.dart';
 import 'package:my_manasa/core/widgets/custom_button.dart';
 import 'package:my_manasa/features/authentication/presentation/views/login_view.dart';
 import 'package:my_manasa/features/authentication/presentation/views/register_view.dart';
-import 'package:my_manasa/features/authentication/presentation/views/widgets/on_boarding_background.dart';
+import 'package:my_manasa/core/widgets/main_background.dart';
 
 class OnBoardingView extends StatelessWidget {
   const OnBoardingView({super.key});
@@ -14,7 +14,7 @@ class OnBoardingView extends StatelessWidget {
     return Scaffold(
       body: Stack(
         children: [
-          const OnBoardingBackGround(),
+          const MainBackGround(),
           Column(
             children: [
               const Spacer(flex: 3,),

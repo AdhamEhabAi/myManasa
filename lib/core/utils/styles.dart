@@ -67,6 +67,16 @@ abstract class Styles{
     fontWeight: FontWeight.bold,
     fontSize: 14,
   );
+  static const TextStyle bold10 = TextStyle(
+    fontFamily: 'Cairo',
+    fontWeight: FontWeight.bold,
+    fontSize: 10,
+  );
+  static const TextStyle bold12 = TextStyle(
+    fontFamily: 'Cairo',
+    fontWeight: FontWeight.bold,
+    fontSize: 12,
+  );
   static const TextStyle bold14_8 = TextStyle(
     fontFamily: 'Cairo',
     fontWeight: FontWeight.bold,
@@ -96,6 +106,11 @@ abstract class Styles{
     fontFamily: 'Cairo',
     fontWeight: FontWeight.bold,
     fontSize: 24,
+  );
+  static const TextStyle bold32 = TextStyle(
+    fontFamily: 'Cairo',
+    fontWeight: FontWeight.bold,
+    fontSize: 32,
   );
   static const TextStyle bold20 = TextStyle(
     fontFamily: 'Cairo',
