@@ -56,7 +56,7 @@ class _HomeTeachersWidgetState extends State<HomeTeachersWidget> {
 
           DotsIndicator(
             dotsCount: 3,
-            position: _currentPage.round(),
+            position: _currentPage.ceil(),
             decorator: DotsDecorator(
               size: const Size(15, 15),
               activeSize: const Size(15, 15),

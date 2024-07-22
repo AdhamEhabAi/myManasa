@@ -12,7 +12,7 @@ class CustomTextField extends StatelessWidget {
       this.labelText,
       this.onChanged,
       this.obsecureText = false,
-      this.textInputType, this.color = Colors.white});
+      this.textInputType, this.color = Colors.white, this.onTap,this.enabled = true, this.borderColor = Colors.white});
   final String? labelText;
   final String? hintText;
   final FormFieldValidator<String>? validator;
@@ -22,47 +22,57 @@ class CustomTextField extends StatelessWidget {
   final bool obsecureText;
   final TextEditingController? controller ;
   final TextInputType? textInputType;
-  final Color color;
+  final Color color,borderColor;
+  final VoidCallback? onTap;
+  final bool enabled;
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      decoration: BoxDecoration(
-        borderRadius: BorderRadius.circular(6),
-        color: color,
-        // boxShadow: [
-        //   BoxShadow(
-        //     color: Colors.black.withOpacity(0.1),
-        //     blurRadius: 7,
-        //   ),
-        // ],
-      ),
-      child: TextFormField(
-        validator: validator,
-        onChanged: onChanged,
-        keyboardType: textInputType,
-        controller: controller,
-        obscureText: obsecureText,
-        decoration: InputDecoration(
-          focusedBorder: OutlineInputBorder(
-            borderRadius: BorderRadius.circular(12),
-            borderSide: const BorderSide(color: Colors.white),
-          ),
-          enabledBorder: OutlineInputBorder(
-            borderRadius: BorderRadius.circular(12),
-            borderSide: const BorderSide(color: Colors.white),
-          ),
-          errorBorder: OutlineInputBorder(
-            borderRadius: BorderRadius.circular(12),
-            borderSide: const BorderSide(
-              color: Colors.red,
+    return InkWell(
+      onTap: onTap,
+      child: Container(
+        decoration: BoxDecoration(
+          borderRadius: BorderRadius.circular(6),
+          color: color,
+          // boxShadow: [
+          //   BoxShadow(
+          //     color: Colors.black.withOpacity(0.1),
+          //     blurRadius: 7,
+          //   ),
+          // ],
+        ),
+        child: TextFormField(
+          enabled: enabled,
+          validator: validator,
+          onChanged: onChanged,
+          keyboardType: textInputType,
+          controller: controller,
+          obscureText: obsecureText,
+          decoration: InputDecoration(
+            focusedBorder: OutlineInputBorder(
+              borderRadius: BorderRadius.circular(12),
+              borderSide: BorderSide(color: borderColor),
             ),
+            enabledBorder: OutlineInputBorder(
+              borderRadius: BorderRadius.circular(12),
+              borderSide:  BorderSide(color:borderColor),
+            ),
+            errorBorder: OutlineInputBorder(
+              borderRadius: BorderRadius.circular(12),
+              borderSide: const BorderSide(
+                color: Colors.red,
+              ),
+            ),
+            disabledBorder: OutlineInputBorder(
+              borderRadius: BorderRadius.circular(12),
+              borderSide: BorderSide(color: borderColor),
+            ),
+            labelText: labelText,
+            labelStyle: const TextStyle(color: Colors.grey),
+            prefixIcon: prefix,
+            prefixIconColor: AppColors.primaryColor,
+            suffixIcon: suffix,
           ),
-          labelText: labelText,
-          labelStyle: const TextStyle(color: Colors.grey),
-          prefixIcon: prefix,
-          prefixIconColor: AppColors.primaryColor,
-          suffixIcon: suffix,
         ),
       ),
     );
