@@ -13,18 +13,8 @@ class AllWidget extends StatelessWidget {
     return Row(
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: [
-        Container(
-          decoration: BoxDecoration(
-            color: AppColors.secondaryColor.withOpacity(.5),
-            borderRadius: BorderRadius.circular(10.5),
-          ),
-          child: Padding(
-            padding: const EdgeInsets.all(4.0),
-            child: Center(child: Text(text,style: Styles.semiBold16,)),
-          ),
-        ),
-        const Text('الكل',style: Styles.semiBold16,),
-        const Icon(Icons.arrow_forward_ios_sharp,color: AppColors.primaryColor,size: 30,),
+        Center(child: Text(text,style: Styles.semiBold20,)),
+         Text('الكل',style: Styles.semiBold16.copyWith(decoration: TextDecoration.underline),),
       ],
     );
   }

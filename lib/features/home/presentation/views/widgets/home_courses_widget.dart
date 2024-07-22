@@ -20,7 +20,7 @@ class _HomeCoursesWidgetState extends State<HomeCoursesWidget> {
     super.initState();
     _pageController.addListener(() {
       setState(() {
-        _currentPage = _pageController.page!;
+        _currentPage = _pageController.page ?? 0;
       });
     });
   }
@@ -37,17 +37,21 @@ class _HomeCoursesWidgetState extends State<HomeCoursesWidget> {
       padding: const EdgeInsets.only(bottom: 12),
       child: Column(
         children: [
+          const SizedBox(height: 20,),
           const Padding(
             padding: EdgeInsets.symmetric(horizontal: 40),
             child: AllWidget(
               text: 'مواد الصف',
             ),
           ),
+          const SizedBox(height: 10,),
+
           Padding(
-            padding: const EdgeInsets.symmetric(vertical: AppPadding.padding),
+            padding: const EdgeInsets.only(right: AppPadding.padding,),
             child: SizedBox(
-              height: MediaQuery.of(context).size.height / 3.8,
-              child: PageView.builder(
+              height: MediaQuery.of(context).size.height / 4.3,
+              child: ListView.builder(
+                scrollDirection: Axis.horizontal,
                 physics: const BouncingScrollPhysics(),
                 controller: _pageController,
                 itemCount: 3,
@@ -55,9 +59,11 @@ class _HomeCoursesWidgetState extends State<HomeCoursesWidget> {
               ),
             ),
           ),
+          const SizedBox(height: 20,),
+
           DotsIndicator(
             dotsCount: 3,
-            position: _currentPage.round(),
+            position: _currentPage.ceil(),
             decorator: DotsDecorator(
               size: const Size(15, 15),
               activeSize: const Size(15, 15),
@@ -70,4 +76,3 @@ class _HomeCoursesWidgetState extends State<HomeCoursesWidget> {
     );
   }
 }
-

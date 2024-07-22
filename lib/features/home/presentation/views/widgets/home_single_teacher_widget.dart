@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 import 'package:my_manasa/constants.dart';
 import 'package:my_manasa/core/utils/styles.dart';
 
@@ -8,92 +9,115 @@ class HomeSingleTeacherWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: AppPadding.padding),
+      padding: const EdgeInsets.only(left: AppPadding.padding, top: 10, bottom: 10),
       child: Container(
-        width: MediaQuery.of(context).size.width / 1.5,
-        height: MediaQuery.of(context).size.height / 3.8,
+        width: MediaQuery.of(context).size.width / 1.7,
         decoration: BoxDecoration(
           boxShadow: [
             BoxShadow(
-                color: Colors.black.withOpacity(0.2),
-                offset: const Offset(0, 5),
-                blurRadius: 2,
-                spreadRadius: .1),
+              color: Colors.black.withOpacity(0.3),
+              offset: const Offset(0, 4),
+              blurRadius: 4, // Increased blurRadius
+              spreadRadius: 0, // Increased spreadRadius
+            ),
           ],
-          borderRadius: BorderRadius.circular(31),
+          borderRadius: BorderRadius.circular(17),
         ),
         child: Column(
           children: [
-            Container(
-              width: MediaQuery.of(context).size.width / 1.1,
-              height: MediaQuery.of(context).size.height / (3.2 * 2),
-              decoration: const BoxDecoration(
-                borderRadius: BorderRadius.only(
-                    topRight: Radius.circular(31),
-                    topLeft: Radius.circular(31)),
-                image: DecorationImage(
-                  image: AssetImage('assets/images/Teacher.png'),
-                  fit: BoxFit.fill,
+            Expanded(
+              child: Container(
+                decoration: const BoxDecoration(
+                  borderRadius: BorderRadius.only(
+                    topLeft: Radius.circular(17),
+                    topRight: Radius.circular(17),
+                  ),
+                  image: DecorationImage(
+                    image: AssetImage('assets/images/Teacher (2).png'),
+                    fit: BoxFit.cover,
+                  ),
                 ),
               ),
             ),
-            Container(
-              width: MediaQuery.of(context).size.width / 1.1,
-              height: MediaQuery.of(context).size.height / (4.3 * 2),
-              decoration: const BoxDecoration(
-                color: Colors.white,
-                borderRadius: BorderRadius.only(
-                    bottomLeft: Radius.circular(31),
-                    bottomRight: Radius.circular(31)),
-              ),
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Row(
+            Expanded(
+              child: Container(
+                decoration: BoxDecoration(
+                  boxShadow: [
+                    BoxShadow(
+                      color: Colors.black.withOpacity(0.1),
+                      offset: const Offset(0, 4),
+                      blurRadius: 4, // Increased blurRadius
+                      spreadRadius: 0, // Increased spreadRadius
+                    ),
+                  ],
+                  color: Colors.white,
+                  borderRadius: const BorderRadius.only(
+                    bottomRight: Radius.circular(17),
+                    bottomLeft: Radius.circular(17),
+                  ),
+                ),
+                child: Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
-                      const Padding(
-                        padding: EdgeInsets.only(right: 8.0),
-                        child: Text('مستر/محمد الكافي',style: Styles.bold16,),
-                      ),
-                      Padding(
-                        padding: const EdgeInsets.only(left: 8.0),
-                        child: Container(
-                          decoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(3),
-                            border: Border.all(width: 1,color: AppColors.primaryColor),
-                          ),
-                          child: const Center(
-                            child: Padding(
-                              padding: EdgeInsets.symmetric(horizontal: 3.0),
-                              child: Row(
-                                children: [
-                                  Icon(Icons.star,color: Colors.yellow,size: 20,),
-                                  Text('4',style: Styles.bold12,),
-                                ],
+                      Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          Row(
+                            children: [
+                              Text(
+                                'مستر /',
+                                style: Styles.semiBold14.copyWith(color: AppColors.primaryColor),
                               ),
-                            ),
+                              const Text(
+                                'مجدي بلال',
+                                style: Styles.semiBold14,
+                              ),
+                            ],
                           ),
-                        ),
+                          const SizedBox(height: 5),
+                          Text(
+                            'دكتور في مادة العلوم',
+                            style: Styles.semiBold10.copyWith(color: Colors.grey),
+                          ),
+                        ],
+                      ),
+                      Column(
+                        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                        children: [
+                          Column(
+                            children: [
+                              Text(
+                                'تقييم',
+                                style: Styles.semiBold10.copyWith(color: Colors.grey),
+                              ),
+                              const SizedBox(height: 5),
+                              RatingBar(
+                                initialRating: 4,
+                                minRating: 1,
+                                direction: Axis.horizontal,
+                                allowHalfRating: true,
+                                itemCount: 5,
+                                itemSize: 10,
+                                ratingWidget: RatingWidget(
+                                  full: const Icon(Icons.star, color: Colors.amber),
+                                  half: const Icon(Icons.star_half, color: Colors.amber),
+                                  empty: const Icon(Icons.star_border, color: Colors.amber),
+                                ),
+                                onRatingUpdate: (rating) {
+                                },
+                              ),
+                            ],
+                          ),
+                          Text('مادة العلوم',style: Styles.semiBold10.copyWith(color: AppColors.primaryColor),)
+
+                        ],
                       ),
                     ],
                   ),
-                  Padding(
-                    padding: const EdgeInsets.only(right: 8.0),
-                    child: Text('أستاذ في اللغة العربية',style: Styles.bold10.copyWith(color: Colors.grey),),
-                  ),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.end,
-                    children: [
-                      Padding(
-                        padding: const EdgeInsets.all(8.0),
-                        child: Text('اللغة العربية',style: Styles.bold16.copyWith(color: AppColors.primaryColor),),
-                      ),
-                    ],
-                  ),
-                  
-                ],
+                ),
               ),
             ),
           ],

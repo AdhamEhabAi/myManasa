@@ -30,17 +30,21 @@ class _HomeTeachersWidgetState extends State<HomeTeachersWidget> {
       padding: const EdgeInsets.only(bottom: 12.0),
       child: Column(
         children: [
+
           const Padding(
             padding: EdgeInsets.symmetric(horizontal: 40),
             child: AllWidget(
               text: 'أشهر المدرسين',
             ),
           ),
+          const SizedBox(height: 10,),
+
           Padding(
-            padding: const EdgeInsets.symmetric(vertical: AppPadding.padding),
+            padding: const EdgeInsets.only(right: AppPadding.padding,),
             child: SizedBox(
-              height: MediaQuery.of(context).size.height / 3.6,
-              child: PageView.builder(
+              height: MediaQuery.of(context).size.height / 4.3,
+              child: ListView.builder(
+                scrollDirection: Axis.horizontal,
                 physics: const BouncingScrollPhysics(),
                 controller: _pageController,
                 itemCount: 3,
@@ -48,6 +52,8 @@ class _HomeTeachersWidgetState extends State<HomeTeachersWidget> {
               ),
             ),
           ),
+          const SizedBox(height: 20,),
+
           DotsIndicator(
             dotsCount: 3,
             position: _currentPage.round(),

@@ -10,23 +10,30 @@ class HomeHeader extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: [
-        const SizedBox(height: 15,),
-        Text(
-          'مرحبا, Adham Ehab',
-          style: Styles.regular24.copyWith(color: AppColors.primaryColor),
-        ),
-        const SizedBox(height: 15,),
+    return Container(
+      width: MediaQuery.of(context).size.width,
+      height: MediaQuery.of(context).size.height/4,
+      color: AppColors.primaryColor,
+      child: Padding(
+        padding: const EdgeInsets.all(AppPadding.padding),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+          children: [
+            Text(
+              'مرحبا, Adham Ehab',
+              style: Styles.regular24.copyWith(color: Colors.white),
+            ),
 
-        CustomTextField(
-          labelText: 'بحث',
-          color: Colors.transparent,
-          prefix: const Icon(Icons.search,size: 30,color: AppColors.primaryColor,),
-          suffix: Image.asset('assets/images/search.png',width: 20,),
+            CustomTextField(
+              labelText: 'بحث',
+              color: Colors.transparent,
+              prefix: const Icon(Icons.search,size: 30,color: Colors.white,),
+              suffix: Image.asset('assets/images/search.png',width: 20,color: Colors.white,),
+            ),
+          ],
         ),
-      ],
+      ),
     );
   }
 }
