@@ -7,11 +7,12 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
   const CustomAppBar({
     super.key,
     required this.title,
-    this.backGroundColor = AppColors.primaryColor, this.iconColor = AppColors.primaryColor,
+    this.backGroundColor = AppColors.primaryColor, this.iconColor = AppColors.primaryColor, this.titleColor = Colors.white,
+
   });
 
   final String title;
-  final Color backGroundColor,iconColor;
+  final Color backGroundColor,iconColor,titleColor;
 
 
   @override
@@ -19,7 +20,7 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
     return AppBar(
       title: Text(
         title,
-        style: Styles.bold24.copyWith(color: Colors.white),
+        style: Styles.bold24.copyWith(color: titleColor),
       ),
       centerTitle: true,
       backgroundColor: backGroundColor,

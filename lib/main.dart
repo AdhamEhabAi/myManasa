@@ -1,8 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:get/get.dart';
-import 'package:my_manasa/features/authentication/presentation/views/login_view.dart';
-import 'package:my_manasa/features/authentication/presentation/views/register_view.dart';
+import 'package:my_manasa/features/home/presentation/views/home_view.dart';
 import 'package:my_manasa/generated/l10n.dart';
 
 void main() {
@@ -27,7 +26,7 @@ class MyApp extends StatelessWidget {
         Locale('ar', 'AE'),
       ],
       debugShowCheckedModeBanner: false,
-      home: RegisterView(),
+      home: HomeView(),
     );
   }
 }

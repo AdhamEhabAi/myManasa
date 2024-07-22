@@ -1,6 +1,8 @@
 import 'package:dots_indicator/dots_indicator.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:my_manasa/constants.dart';
+import 'package:my_manasa/features/home/presentation/views/subject_view.dart';
 import 'package:my_manasa/features/home/presentation/views/widgets/all_widget.dart';
 import 'package:my_manasa/features/home/presentation/views/widgets/home_single_course_widget.dart';
 
@@ -55,7 +57,9 @@ class _HomeCoursesWidgetState extends State<HomeCoursesWidget> {
                 physics: const BouncingScrollPhysics(),
                 controller: _pageController,
                 itemCount: 3,
-                itemBuilder: (context, index) => const HomeSingleCourseWidget(),
+                itemBuilder: (context, index) =>  HomeSingleCourseWidget(onTap: () {
+                    Get.to(const SubjectView(),transition: Transition.fade);
+                },),
               ),
             ),
           ),
