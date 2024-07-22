@@ -7,11 +7,12 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
   const CustomAppBar({
     super.key,
     required this.title,
-    this.backGroundColor = AppColors.primaryColor,
+    this.backGroundColor = AppColors.primaryColor, this.iconColor = AppColors.primaryColor,
   });
 
   final String title;
-  final Color backGroundColor;
+  final Color backGroundColor,iconColor;
+
 
   @override
   Widget build(BuildContext context) {
@@ -28,12 +29,12 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
             Get.back();
 
           },
-          icon: const ImageIcon(
-            AssetImage(
+          icon: ImageIcon(
+            const AssetImage(
               'assets/images/back.png',
             ),
             size: 34,
-            color: AppColors.primaryColor,
+            color: iconColor,
           )),
     );
   }
