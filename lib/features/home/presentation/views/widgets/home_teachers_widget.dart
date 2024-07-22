@@ -31,9 +31,10 @@ class _HomeTeachersWidgetState extends State<HomeTeachersWidget> {
       child: Column(
         children: [
 
-          const Padding(
-            padding: EdgeInsets.symmetric(horizontal: 40),
+          Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 40),
             child: AllWidget(
+              onTap: (){},
               text: 'أشهر المدرسين',
             ),
           ),

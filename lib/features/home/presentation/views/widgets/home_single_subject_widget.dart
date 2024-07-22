@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:my_manasa/constants.dart';
 import 'package:my_manasa/core/utils/styles.dart';
 
-class HomeSingleCourseWidget extends StatelessWidget {
-  const HomeSingleCourseWidget({
+class HomeSingleSubjectWidget extends StatelessWidget {
+  const HomeSingleSubjectWidget({
     super.key, required this.onTap,
   });
   final VoidCallback onTap;

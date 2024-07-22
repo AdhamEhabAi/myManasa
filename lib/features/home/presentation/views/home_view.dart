@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:my_manasa/core/widgets/main_background.dart';
 import 'package:my_manasa/features/home/presentation/views/widgets/home_teachers_widget.dart';
-import 'package:my_manasa/features/home/presentation/views/widgets/home_courses_widget.dart';
+import 'package:my_manasa/features/home/presentation/views/widgets/home_subjects_widget.dart';
 import 'package:my_manasa/features/home/presentation/views/widgets/home_header.dart';
 
 class HomeView extends StatelessWidget {
@@ -20,7 +20,7 @@ class HomeView extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   HomeHeader(),
-                  HomeCoursesWidget(),
+                  HomeSubjectsWidget(),
                   HomeTeachersWidget(),
 
                 ],
