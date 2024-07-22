@@ -7,6 +7,11 @@ abstract class Styles{
     fontSize: 18,
     fontWeight: FontWeight.w400,
   );
+  static const TextStyle regular20 = TextStyle(
+    fontFamily: 'Cairo',
+    fontSize: 20,
+    fontWeight: FontWeight.w400,
+  );
   static const TextStyle regular24 = TextStyle(
     fontFamily: 'Cairo',
     fontSize: 24,
@@ -46,6 +51,11 @@ abstract class Styles{
     fontFamily: 'Cairo',
     fontWeight: FontWeight.w600,
     fontSize: 28,
+  );
+  static const TextStyle semiBold36 = TextStyle(
+    fontFamily: 'Cairo',
+    fontWeight: FontWeight.w600,
+    fontSize: 36,
   );
   static const TextStyle semiBold12_95 = TextStyle(
     fontFamily: 'Cairo',
