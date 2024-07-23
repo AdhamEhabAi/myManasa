@@ -4,7 +4,8 @@ import 'package:my_manasa/core/utils/styles.dart';
 
 class HomeSingleSubjectWidget extends StatelessWidget {
   const HomeSingleSubjectWidget({
-    super.key, required this.onTap,
+    super.key,
+    required this.onTap,
   });
   final VoidCallback onTap;
 
@@ -13,7 +14,8 @@ class HomeSingleSubjectWidget extends StatelessWidget {
     return InkWell(
       onTap: onTap,
       child: Padding(
-        padding: const EdgeInsets.only(left: AppPadding.padding, top: 10, bottom: 10),
+        padding: const EdgeInsets.only(
+            left: AppPadding.padding, top: 10, bottom: 10),
         child: Container(
           width: MediaQuery.of(context).size.width / 1.7,
           decoration: BoxDecoration(
@@ -29,20 +31,21 @@ class HomeSingleSubjectWidget extends StatelessWidget {
             color: Colors.grey,
           ),
           child: Column(
-            children: [Expanded(
-              child: Container(
-                decoration: const BoxDecoration(
-                  borderRadius: BorderRadius.only(
-                    topLeft: Radius.circular(17),
-                    topRight: Radius.circular(17),
-                  ),
-                  image: DecorationImage(
-                    image: AssetImage('assets/images/courseImage.png'),
-                    fit: BoxFit.cover,
+            children: [
+              Expanded(
+                child: Container(
+                  decoration: const BoxDecoration(
+                    borderRadius: BorderRadius.only(
+                      topLeft: Radius.circular(17),
+                      topRight: Radius.circular(17),
+                    ),
+                    image: DecorationImage(
+                      image: AssetImage('assets/images/courseImage.png'),
+                      fit: BoxFit.cover,
+                    ),
                   ),
                 ),
               ),
-            ),
               Expanded(
                 child: Stack(
                   children: [
@@ -74,7 +77,6 @@ class HomeSingleSubjectWidget extends StatelessWidget {
                   ],
                 ),
               ),
-
             ],
           ),
         ),
