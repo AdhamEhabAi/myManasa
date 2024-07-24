@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:my_manasa/core/utils/styles.dart';
 import 'package:my_manasa/core/widgets/custom_button_clipped.dart';
-import 'package:my_manasa/core/widgets/leftClipper.dart';
+import 'package:my_manasa/core/widgets/left_clipper.dart';
 import 'package:my_manasa/core/widgets/right_clipper.dart';
 import 'package:my_manasa/core/widgets/main_background.dart';
 
