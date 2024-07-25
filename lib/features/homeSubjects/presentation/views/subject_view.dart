@@ -3,8 +3,8 @@ import 'package:get/get.dart';
 import 'package:my_manasa/constants.dart';
 import 'package:my_manasa/core/utils/styles.dart';
 import 'package:my_manasa/core/widgets/custom_appbar.dart';
-import 'package:my_manasa/features/home/presentation/views/teacher_view.dart';
-import 'package:my_manasa/features/home/presentation/views/widgets/teacher_subject_widget.dart';
+import 'package:my_manasa/features/homeTeachers/presentation/views/teacher_view.dart';
+import 'package:my_manasa/features/homeSubjects/presentation/views/widgets/teacher_subject_widget.dart';
 
 class SubjectView extends StatelessWidget {
   const SubjectView({super.key});

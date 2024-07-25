@@ -4,6 +4,7 @@ import 'package:my_manasa/constants.dart';
 import 'package:my_manasa/core/utils/styles.dart';
 import 'package:my_manasa/core/widgets/custom_button.dart';
 import 'package:my_manasa/core/widgets/main_background.dart';
+import 'package:my_manasa/features/authentication/presentation/views/change_password_view.dart';
 import 'package:pinput/pinput.dart';
 
 class EmailCodeView extends StatelessWidget {
@@ -81,7 +82,10 @@ class EmailCodeView extends StatelessWidget {
                           'استمرار',
                           style: Styles.semiBold20.copyWith(color: Colors.white),
                         ),
-                        onPressed: () {},
+                        onPressed: () {
+                          Get.to(const ChangePasswordView(),transition: Transition.rightToLeft);
+
+                        },
                       ),
                     ),
                   ],

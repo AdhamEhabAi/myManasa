@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:my_manasa/constants.dart';
 import 'package:my_manasa/core/widgets/custom_appbar.dart';
-import 'package:my_manasa/features/home/presentation/views/widgets/home_single_subject_widget.dart';
+import 'package:my_manasa/features/homeSubjects/presentation/views/widgets/home_single_subject_widget.dart';
 
 class AllSubjectView extends StatelessWidget {
   const AllSubjectView({super.key});

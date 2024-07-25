@@ -5,6 +5,7 @@ import 'package:my_manasa/core/utils/styles.dart';
 import 'package:my_manasa/core/widgets/custom_button.dart';
 import 'package:my_manasa/core/widgets/custom_text_field.dart';
 import 'package:my_manasa/core/widgets/main_background.dart';
+import 'package:my_manasa/features/authentication/presentation/views/login_view.dart';
 
 class ChangePasswordView extends StatelessWidget {
   const ChangePasswordView({super.key});
@@ -57,7 +58,10 @@ class ChangePasswordView extends StatelessWidget {
                         'تأكيد',
                         style: Styles.semiBold20.copyWith(color: Colors.white),
                       ),
-                      onPressed: () {},
+                      onPressed: () {
+                        Get.to(const LoginView(),transition: Transition.rightToLeft);
+
+                      },
                     ),
                   ],
                 ),

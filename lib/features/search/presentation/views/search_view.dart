@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:my_manasa/core/widgets/custom_appbar.dart';
-import 'package:my_manasa/features/home/presentation/views/widgets/search_view_body.dart';
+import 'package:my_manasa/features/search/presentation/views/widgets/search_view_body.dart';
 
 class SearchView extends StatelessWidget {
   const SearchView({super.key});

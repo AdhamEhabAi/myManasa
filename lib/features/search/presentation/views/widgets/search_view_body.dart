@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:my_manasa/constants.dart';
 import 'package:my_manasa/core/widgets/custom_text_field.dart';
-import 'package:my_manasa/features/home/presentation/views/widgets/search_widget.dart';
+import 'package:my_manasa/features/search/presentation/views/widgets/search_widget.dart';
 
 class SearchViewBody extends StatelessWidget {
   const SearchViewBody({

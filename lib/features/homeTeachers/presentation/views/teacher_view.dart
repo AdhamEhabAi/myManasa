@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:my_manasa/constants.dart';
 import 'package:my_manasa/core/utils/styles.dart';
 import 'package:my_manasa/core/widgets/custom_appbar.dart';
-import 'package:my_manasa/features/home/presentation/views/widgets/teacher_course_widget.dart';
-import 'package:my_manasa/features/home/presentation/views/widgets/teacher_view_header.dart';
+import 'package:my_manasa/features/homeSubjects/presentation/views/course_view.dart';
+import 'package:my_manasa/features/homeTeachers/presentation/views/widgets/teacher_course_widget.dart';
+import 'package:my_manasa/features/homeTeachers/presentation/views/widgets/teacher_view_header.dart';
 
 class TeacherView extends StatelessWidget {
   const TeacherView({super.key});
@@ -53,7 +55,12 @@ class TeacherView extends StatelessWidget {
                   child: ListView.separated(
                       scrollDirection: Axis.vertical,
                       itemBuilder: (context, index) {
-                        return const TeacherCourseWidget();
+                        return TeacherCourseWidget(
+                          onTap: () {
+                            Get.to(const CourseView(),
+                                transition: Transition.fade);
+                          },
+                        );
                       },
                       separatorBuilder: (context, index) => const SizedBox(
                             height: 20,
@@ -68,4 +75,3 @@ class TeacherView extends StatelessWidget {
     );
   }
 }
-

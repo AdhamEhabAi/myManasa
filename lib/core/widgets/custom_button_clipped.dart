@@ -7,14 +7,16 @@ class CustomButtonClipped extends StatelessWidget {
   final Color textColor;
   final CustomClipper<Path> clipper;
   final TextAlign textAlign;
+  final VoidCallback onTap;
 
   const CustomButtonClipped({
     Key? key,
     required this.text,
     required this.backgroundColor,
     required this.textColor,
-    required this.clipper, required this.textAlign,
+    required this.clipper, required this.textAlign, required this.onTap,
   }) : super(key: key);
+
 
   @override
   Widget build(BuildContext context) {
@@ -26,13 +28,16 @@ class CustomButtonClipped extends StatelessWidget {
           onTap: () {
             // Button action here
           },
-          child: Container(
-            padding: const EdgeInsets.symmetric(horizontal: 32, vertical: 16),
-            width: MediaQuery.of(context).size.width/2,
-            child: Text(
-              text,
-              style: Styles.semiBold18.copyWith(color: textColor),
-              textAlign: textAlign,
+          child: InkWell(
+            onTap: onTap,
+            child: Container(
+              padding: const EdgeInsets.symmetric(horizontal: 32, vertical: 16),
+              width: MediaQuery.of(context).size.width/2,
+              child: Text(
+                text,
+                style: Styles.semiBold18.copyWith(color: textColor),
+                textAlign: textAlign,
+              ),
             ),
           ),
         ),

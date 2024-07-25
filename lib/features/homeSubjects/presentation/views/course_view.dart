@@ -2,11 +2,11 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:my_manasa/core/utils/styles.dart';
 import 'package:my_manasa/core/widgets/custom_button.dart';
-import 'package:my_manasa/features/home/presentation/manager/home_cubit.dart';
-import 'package:my_manasa/features/home/presentation/views/pdf_view.dart';
-import 'package:my_manasa/features/home/presentation/views/video_view.dart';
-import 'package:my_manasa/features/home/presentation/views/widgets/video_or_pdf_widget.dart';
-import 'package:my_manasa/features/home/presentation/views/widgets/course_view_header.dart';
+import 'package:my_manasa/features/homeSubjects/presentation/manager/subject_cubit.dart';
+import 'package:my_manasa/features/homeSubjects/presentation/views/pdf_view.dart';
+import 'package:my_manasa/features/homeSubjects/presentation/views/video_view.dart';
+import 'package:my_manasa/features/homeSubjects/presentation/views/widgets/video_or_pdf_widget.dart';
+import 'package:my_manasa/features/homeSubjects/presentation/views/widgets/course_view_header.dart';
 
 class CourseView extends StatelessWidget {
   const CourseView({super.key});
@@ -63,11 +63,11 @@ class CourseView extends StatelessWidget {
                 ],
               ),
             ),
-            BlocBuilder<HomeCubit, HomeState>(
+            BlocBuilder<SubjectCubit, SubjectState>(
               builder: (context, state) {
                 bool isSelected = (state is CourseVideoPdfChanged)
                     ? state.isVideo
-                    : context.read<HomeCubit>().isVideo;
+                    : context.read<SubjectCubit>().isVideo;
                 return Padding(
                   padding: const EdgeInsets.symmetric(
                       horizontal: 29.0, vertical: 11.0),
@@ -81,7 +81,7 @@ class CourseView extends StatelessWidget {
                         duration: const Duration(milliseconds: 500),
                         curve: Curves.easeInOut,
                       );
-                      context.read<HomeCubit>().switchComplete();
+                      context.read<SubjectCubit>().switchComplete();
                     },
                   ),
                 );
@@ -91,7 +91,7 @@ class CourseView extends StatelessWidget {
               child: PageView(
                 controller: pageController,
                 onPageChanged: (index) {
-                  context.read<HomeCubit>().onPageChanged(index);
+                  context.read<SubjectCubit>().onPageChanged(index);
                 },
                 scrollDirection: Axis.horizontal,
                 children: const [

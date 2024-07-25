@@ -6,6 +6,7 @@ import 'package:my_manasa/core/widgets/custom_button.dart';
 import 'package:my_manasa/core/widgets/custom_text_field.dart';
 import 'package:my_manasa/core/widgets/main_background.dart';
 import 'package:my_manasa/features/authentication/presentation/views/widgets/drop_down_textfield.dart';
+import 'package:my_manasa/features/home/presentation/views/main_view.dart';
 
 class RegisterView extends StatefulWidget {
   const RegisterView({super.key});
@@ -126,7 +127,9 @@ class _RegisterViewState extends State<RegisterView> {
                                   style: Styles.semiBold20
                                       .copyWith(color: Colors.white),
                                 ),
-                                onPressed: () {}),
+                                onPressed: () {
+                                  Get.to(MainView(),transition: Transition.fadeIn);
+                                }),
                           ],
                         ),
                       ),

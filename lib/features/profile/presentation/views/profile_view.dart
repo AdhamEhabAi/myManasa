@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:my_manasa/features/home/presentation/views/widgets/master_profile_widget.dart';
-import 'package:my_manasa/features/home/presentation/views/widgets/profile_card_widget.dart';
-import 'package:my_manasa/features/home/presentation/views/widgets/square_profile_card.dart';
+import 'package:my_manasa/features/profile/presentation/views/widgets/master_profile_widget.dart';
+import 'package:my_manasa/features/profile/presentation/views/widgets/profile_card_widget.dart';
+import 'package:my_manasa/features/profile/presentation/views/widgets/square_profile_card.dart';
 
 class ProfileView extends StatelessWidget {
   const ProfileView({super.key});
@@ -45,15 +45,14 @@ class ProfileView extends StatelessWidget {
                     title: 'السياسة والخصوصية',
                     icon: Icons.policy_outlined,
                     ontap: () {
-                      Navigator.pushNamed(context, 'PrivAndPolicy');
                     }),
-                const ProfileCardWidget(
+                ProfileCardWidget(
+                  ontap: (){},
                     title: 'عن التطبيق', icon: Icons.change_circle_rounded),
                 ProfileCardWidget(
                     title: 'تسجيل الخروج',
                     icon: Icons.logout,
                     ontap: () {
-                      Navigator.pushReplacementNamed(context, 'SplashScreen');
                     }),
               ],
             ),

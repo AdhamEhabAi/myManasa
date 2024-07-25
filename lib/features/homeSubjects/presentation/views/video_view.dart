@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:my_manasa/features/home/presentation/views/widgets/video_course_widget.dart';
+import 'package:my_manasa/features/homeSubjects/presentation/views/widgets/video_course_widget.dart';
 
 class VideoView extends StatelessWidget {
   const VideoView({super.key});

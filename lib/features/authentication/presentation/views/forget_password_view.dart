@@ -5,6 +5,7 @@ import 'package:my_manasa/core/utils/styles.dart';
 import 'package:my_manasa/core/widgets/custom_button.dart';
 import 'package:my_manasa/core/widgets/custom_text_field.dart';
 import 'package:my_manasa/core/widgets/main_background.dart';
+import 'package:my_manasa/features/authentication/presentation/views/email_code_view.dart';
 
 class ForgetPasswordView extends StatelessWidget {
   const ForgetPasswordView({super.key});
@@ -53,7 +54,10 @@ class ForgetPasswordView extends StatelessWidget {
                           'إرسال الكود',
                           style: Styles.semiBold20.copyWith(color: Colors.white),
                         ),
-                        onPressed: () {},
+                        onPressed: () {
+                          Get.to(const EmailCodeView(),transition: Transition.rightToLeft);
+
+                        },
                     ),
                   ],
                 ),

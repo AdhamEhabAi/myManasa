@@ -1,11 +1,11 @@
-import 'package:dots_indicator/dots_indicator.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:my_manasa/constants.dart';
-import 'package:my_manasa/features/home/presentation/views/all_subjects_view.dart';
-import 'package:my_manasa/features/home/presentation/views/subject_view.dart';
+import 'package:my_manasa/features/homeSubjects/presentation/views/all_subjects_view.dart';
+import 'package:my_manasa/features/homeSubjects/presentation/views/subject_view.dart';
 import 'package:my_manasa/features/home/presentation/views/widgets/all_widget.dart';
-import 'package:my_manasa/features/home/presentation/views/widgets/home_single_subject_widget.dart';
+import 'package:my_manasa/features/homeSubjects/presentation/views/widgets/home_single_subject_widget.dart';
+import 'package:my_manasa/features/homeSubjects/presentation/views/widgets/subject_dots_indicator.dart';
 
 class HomeSubjectsWidget extends StatefulWidget {
   const HomeSubjectsWidget({super.key});
@@ -69,18 +69,10 @@ class _HomeSubjectsWidgetState extends State<HomeSubjectsWidget> {
           ),
           const SizedBox(height: 20,),
 
-          DotsIndicator(
-            dotsCount: 3,
-            position: _currentPage.ceil(),
-            decorator: DotsDecorator(
-              size: const Size(15, 15),
-              activeSize: const Size(15, 15),
-              activeColor: AppColors.primaryColor,
-              color: AppColors.primaryColor.withOpacity(.2),
-            ),
-          ),
+          SubjectDotsIndicator(currentPage: _currentPage),
         ],
       ),
     );
   }
 }
+

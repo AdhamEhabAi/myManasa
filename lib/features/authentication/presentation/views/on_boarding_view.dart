@@ -1,9 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:my_manasa/core/utils/styles.dart';
 import 'package:my_manasa/core/widgets/custom_button_clipped.dart';
 import 'package:my_manasa/core/widgets/left_clipper.dart';
 import 'package:my_manasa/core/widgets/right_clipper.dart';
 import 'package:my_manasa/core/widgets/main_background.dart';
+import 'package:my_manasa/features/authentication/presentation/views/login_view.dart';
+import 'package:my_manasa/features/authentication/presentation/views/register_view.dart';
 
 class OnBoardingView extends StatelessWidget {
   const OnBoardingView({super.key});
@@ -42,6 +45,9 @@ class OnBoardingView extends StatelessWidget {
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: <Widget>[
                   CustomButtonClipped(
+                    onTap: (){
+                      Get.to(const LoginView(),transition: Transition.rightToLeft);
+                    },
                     textAlign: TextAlign.center,
                     text: 'تسجيل الدخول',
                     backgroundColor: Colors.blue.shade900,
@@ -49,6 +55,10 @@ class OnBoardingView extends StatelessWidget {
                     clipper: RightClipper(),
                   ),
                   CustomButtonClipped(
+                    onTap: (){
+                      Get.to(const RegisterView(),transition: Transition.rightToLeft);
+                    },
+
                     textAlign: TextAlign.center,
                     text: 'انشاء حساب',
                     backgroundColor: Colors.blue.shade100,

@@ -3,9 +3,9 @@ import 'package:flutter/material.dart';
 import 'package:google_nav_bar/google_nav_bar.dart';
 import 'package:my_manasa/constants.dart';
 import 'package:my_manasa/features/home/presentation/views/home_view.dart';
-import 'package:my_manasa/features/home/presentation/views/my_courses_view.dart';
-import 'package:my_manasa/features/home/presentation/views/profile_view.dart';
-import 'package:my_manasa/features/home/presentation/views/quiz_view.dart';
+import 'package:my_manasa/features/myCourses/presentation/views/my_courses_view.dart';
+import 'package:my_manasa/features/profile/presentation/views/profile_view.dart';
+import 'package:my_manasa/features/Quiz/presentation/views/quiz_view.dart';
 
 class MainView extends StatefulWidget {
   const MainView({super.key});

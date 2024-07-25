@@ -1,10 +1,10 @@
-import 'package:dots_indicator/dots_indicator.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:my_manasa/constants.dart';
-import 'package:my_manasa/features/home/presentation/views/teacher_view.dart';
+import 'package:my_manasa/features/homeTeachers/presentation/views/teacher_view.dart';
 import 'package:my_manasa/features/home/presentation/views/widgets/all_widget.dart';
-import 'package:my_manasa/features/home/presentation/views/widgets/home_single_teacher_widget.dart';
+import 'package:my_manasa/features/homeTeachers/presentation/views/widgets/home_single_teacher_widget.dart';
+import 'package:my_manasa/features/homeTeachers/presentation/views/widgets/teachers_dots_indicator.dart';
 
 class HomeTeachersWidget extends StatefulWidget {
   const HomeTeachersWidget({super.key});
@@ -60,18 +60,10 @@ class _HomeTeachersWidgetState extends State<HomeTeachersWidget> {
           ),
           const SizedBox(height: 20,),
 
-          DotsIndicator(
-            dotsCount: 3,
-            position: _currentPage.ceil(),
-            decorator: DotsDecorator(
-              size: const Size(15, 15),
-              activeSize: const Size(15, 15),
-              activeColor: AppColors.primaryColor,
-              color: AppColors.primaryColor.withOpacity(.2),
-            ),
-          ),
+          TeachersDotsIndicator(currentPage: _currentPage),
         ],
       ),
     );
   }
 }
+

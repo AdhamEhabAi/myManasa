@@ -1,10 +1,10 @@
 import 'package:bloc/bloc.dart';
 import 'package:meta/meta.dart';
 
-part 'home_state.dart';
+part 'subject_state.dart';
 
-class HomeCubit extends Cubit<HomeState> {
-  HomeCubit() : super(HomeInitial());
+class SubjectCubit extends Cubit<SubjectState> {
+  SubjectCubit() : super(HomeInitial());
   bool isVideo = false;
 
 

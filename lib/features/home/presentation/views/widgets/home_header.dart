@@ -3,7 +3,7 @@ import 'package:get/get.dart';
 import 'package:my_manasa/constants.dart';
 import 'package:my_manasa/core/utils/styles.dart';
 import 'package:my_manasa/core/widgets/custom_text_field.dart';
-import 'package:my_manasa/features/home/presentation/views/search_view.dart';
+import 'package:my_manasa/features/search/presentation/views/search_view.dart';
 
 class HomeHeader extends StatelessWidget {
   const HomeHeader({

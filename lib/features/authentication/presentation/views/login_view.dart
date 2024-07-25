@@ -4,7 +4,10 @@ import 'package:my_manasa/constants.dart';
 import 'package:my_manasa/core/utils/styles.dart';
 import 'package:my_manasa/core/widgets/custom_button.dart';
 import 'package:my_manasa/core/widgets/custom_text_field.dart';
+import 'package:my_manasa/features/authentication/presentation/views/forget_password_view.dart';
+import 'package:my_manasa/features/authentication/presentation/views/register_view.dart';
 import 'package:my_manasa/features/authentication/presentation/views/widgets/login_background.dart';
+import 'package:my_manasa/features/home/presentation/views/main_view.dart';
 
 class LoginView extends StatelessWidget {
   const LoginView({super.key});
@@ -74,11 +77,16 @@ class LoginView extends StatelessWidget {
                     ),
                     Row(
                       children: [
-                        Text(
-                          'هل نسيت كلمة السر؟',
-                          style: Styles.semiBold14.copyWith(
-                              color: Colors.blue,
-                              decoration: TextDecoration.underline),
+                        InkWell(
+                          onTap: (){
+                            Get.to(const ForgetPasswordView(),transition: Transition.rightToLeft);
+                          },
+                          child: Text(
+                            'هل نسيت كلمة السر؟',
+                            style: Styles.semiBold14.copyWith(
+                                color: Colors.blue,
+                                decoration: TextDecoration.underline),
+                          ),
                         ),
                       ],
                     ),
@@ -88,9 +96,15 @@ class LoginView extends StatelessWidget {
                           'تسجيل الدخول',
                           style: Styles.semiBold20.copyWith(color: Colors.white),
                         ),
-                        onPressed: () {}),
+                        onPressed: () {
+                          Get.to(const MainView(),transition: Transition.fadeIn);
+
+                        }),
                     TextButton(
-                        onPressed: () {},
+                        onPressed: () {
+                          Get.to(const RegisterView(),transition: Transition.rightToLeft);
+
+                        },
                         child: Text(
                           'انشاء حساب جديد',
                           style: Styles.semiBold14.copyWith(color: Colors.black),

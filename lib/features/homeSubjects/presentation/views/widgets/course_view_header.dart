@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:my_manasa/constants.dart';
 import 'package:svg_flutter/svg_flutter.dart';
 
@@ -25,15 +26,20 @@ class CourseViewHeader extends StatelessWidget {
                 fit: BoxFit.fill),
           ),
         ),
-        const Positioned(
+        Positioned(
           top: 20,
           right: 20,
-          child: ImageIcon(
-            AssetImage(
-              'assets/images/back.png',
+          child: InkWell(
+            onTap: (){
+              Get.back();
+            },
+            child: const ImageIcon(
+              AssetImage(
+                'assets/images/back.png',
+              ),
+              size: 34,
+              color: AppColors.primaryColor,
             ),
-            size: 34,
-            color: AppColors.primaryColor,
           ),
         ),
         Positioned(
