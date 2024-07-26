@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:my_manasa/constants.dart';
+import 'package:my_manasa/features/homeTeachers/presentation/views/all_teachers_view.dart';
 import 'package:my_manasa/features/homeTeachers/presentation/views/teacher_view.dart';
 import 'package:my_manasa/features/home/presentation/views/widgets/all_widget.dart';
 import 'package:my_manasa/features/homeTeachers/presentation/views/widgets/home_single_teacher_widget.dart';
@@ -36,7 +37,9 @@ class _HomeTeachersWidgetState extends State<HomeTeachersWidget> {
           Padding(
             padding: const EdgeInsets.symmetric(horizontal: 40),
             child: AllWidget(
-              onTap: (){},
+              onTap: (){
+                Get.to(const AllTeachersView(),transition: Transition.downToUp);
+              },
               text: 'أشهر المدرسين',
             ),
           ),

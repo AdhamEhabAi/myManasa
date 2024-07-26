@@ -32,7 +32,7 @@ class MainBackGround extends StatelessWidget {
 
                   width: MediaQuery.of(context).size.width /1.8,
                   height: MediaQuery.of(context).size.height/4,
-                  child: SvgPicture.asset('assets/images/Group 8.svg')),
+                  child: SvgPicture.asset('assets/images/Group 8.svg',)),
             ],
           ),
         ],

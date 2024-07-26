@@ -8,10 +8,11 @@ class SearchView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return const Scaffold(
-      appBar: CustomAppBar(title: '',
-      backGroundColor: Colors.transparent,),
+      appBar: CustomAppBar(
+        title: '',
+        backGroundColor: Colors.transparent,
+      ),
       body: SearchViewBody(),
     );
   }
 }
-

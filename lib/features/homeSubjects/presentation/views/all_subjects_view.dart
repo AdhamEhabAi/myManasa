@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:my_manasa/constants.dart';
 import 'package:my_manasa/core/widgets/custom_appbar.dart';
+import 'package:my_manasa/features/homeSubjects/presentation/views/subject_view.dart';
 import 'package:my_manasa/features/homeSubjects/presentation/views/widgets/home_single_subject_widget.dart';
 
 class AllSubjectView extends StatelessWidget {
@@ -14,14 +16,11 @@ class AllSubjectView extends StatelessWidget {
         backGroundColor: Colors.transparent,
         titleColor: AppColors.primaryColor,
       ),
-      body: Padding(
-        padding: const EdgeInsets.all(
-          AppPadding.padding,
-        ),
+      body: Center(
         child: SizedBox(
-          width: MediaQuery.of(context).size.width,
-          height: MediaQuery.of(context).size.height,
+          width: MediaQuery.of(context).size.width * 0.9, // Slightly reduce the width to center
           child: GridView.builder(
+            padding: const EdgeInsets.symmetric(vertical: 15.0), // Optional padding for better spacing
             gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
               crossAxisCount: 2, // Number of columns
               mainAxisSpacing: 15.0, // Space between rows
@@ -30,7 +29,7 @@ class AllSubjectView extends StatelessWidget {
             itemBuilder: (context, index) {
               return HomeSingleSubjectWidget(
                 onTap: () {
-                  // Handle tap
+                  Get.to(const SubjectView(),transition: Transition.fade);
                 },
               );
             },

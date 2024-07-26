@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:my_manasa/features/profile/presentation/views/student_profile_view.dart';
 import 'package:my_manasa/features/profile/presentation/views/widgets/master_profile_widget.dart';
 import 'package:my_manasa/features/profile/presentation/views/widgets/profile_card_widget.dart';
 import 'package:my_manasa/features/profile/presentation/views/widgets/square_profile_card.dart';
@@ -21,6 +23,7 @@ class ProfileView extends StatelessWidget {
                     icon: Icons.account_circle,
                     subTitle: 'المعلومات الشخصية',
                     onTap: () {
+                      Get.to(const StudentProfileView(),transition: Transition.downToUp);
                     }),
                 const SizedBox(
                   height: 40,

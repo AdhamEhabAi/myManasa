@@ -45,7 +45,7 @@ class _HomeSubjectsWidgetState extends State<HomeSubjectsWidget> {
             padding: const EdgeInsets.symmetric(horizontal: 40),
             child: AllWidget(
               onTap: (){
-                Get.to(const AllSubjectView(),transition: Transition.fadeIn);
+                Get.to(const AllSubjectView(),transition: Transition.downToUp);
               },
               text: 'مواد الصف',
             ),
