@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:my_manasa/constants.dart';
 import 'package:my_manasa/core/utils/styles.dart';
+import 'package:my_manasa/features/Quiz/presentation/views/exam_view.dart';
 import 'package:my_manasa/features/Quiz/presentation/views/history_view.dart';
 import 'package:my_manasa/features/Quiz/presentation/views/widgets/quiz_widget.dart';
 
@@ -39,7 +40,11 @@ class QuizView extends StatelessWidget {
           child: ListView.separated(
             scrollDirection: Axis.vertical,
             itemBuilder: (context, index) {
-              return const QuizWidget();
+              return QuizWidget(
+                onTap: (){
+                  Get.to(ExamView(),transition: Transition.fadeIn);
+                },
+              );
             },
             separatorBuilder: (context, index) => const SizedBox(
               height: 20,
