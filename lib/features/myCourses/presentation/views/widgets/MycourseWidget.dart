@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:my_manasa/constants.dart';
 import 'package:my_manasa/core/utils/styles.dart';
 import 'package:my_manasa/core/widgets/custom_percent_indicator.dart';
-import 'package:percent_indicator/circular_percent_indicator.dart';
 
 class MyCourseWidget extends StatelessWidget {
   const MyCourseWidget({super.key});

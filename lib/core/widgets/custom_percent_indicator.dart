@@ -8,11 +8,12 @@ class CustomPercentIndicator extends StatelessWidget {
     required this.titleText,
     required this.doneVideos,
     required this.totalVideos,
-    required this.lineColor,
+    required this.lineColor, this.footerText = 'فيديو',
   });
-  final String  titleText;
+  final String  titleText,footerText;
   final int doneVideos, totalVideos;
   final Color lineColor;
+
 
   @override
   Widget build(BuildContext context) {
@@ -20,7 +21,7 @@ class CustomPercentIndicator extends StatelessWidget {
       padding: const EdgeInsets.only(left: 8.0),
       child: CircularPercentIndicator(
         footer: Text(
-          'فيديو',
+          footerText,
           style: Styles.semiBold10.copyWith(fontSize: 7),
         ),
         center: Text(

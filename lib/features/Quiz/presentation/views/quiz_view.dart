@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:my_manasa/constants.dart';
 import 'package:my_manasa/core/utils/styles.dart';
+import 'package:my_manasa/features/Quiz/presentation/views/history_view.dart';
 import 'package:my_manasa/features/Quiz/presentation/views/widgets/quiz_widget.dart';
 
 class QuizView extends StatelessWidget {
@@ -16,12 +18,17 @@ class QuizView extends StatelessWidget {
             style: Styles.bold20.copyWith(color: AppColors.primaryColor),
           ),
           automaticallyImplyLeading: false,
-          actions: const [
+          actions: [
             Padding(
-              padding: EdgeInsets.symmetric(horizontal: 30),
-              child: ImageIcon(
-                AssetImage('assets/images/history.png'),
-                color: AppColors.primaryColor,
+              padding: const EdgeInsets.symmetric(horizontal: 30),
+              child: InkWell(
+                onTap: (){
+                  Get.to(const HistoryView(),transition: Transition.fade);
+                },
+                child: const ImageIcon(
+                  AssetImage('assets/images/history.png'),
+                  color: AppColors.primaryColor,
+                ),
               ),
             ),
           ],
