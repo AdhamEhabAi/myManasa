@@ -2,8 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:get/get.dart';
-import 'package:my_manasa/features/home/presentation/views/main_view.dart';
 import 'package:my_manasa/features/homeSubjects/presentation/manager/subject_cubit.dart';
+import 'package:my_manasa/features/myCourses/presentation/manager/my_courses_cubit.dart';
+import 'package:my_manasa/features/myCourses/presentation/views/my_courses_play_video_view.dart';
 import 'package:my_manasa/generated/l10n.dart';
 
 void main() {
@@ -19,6 +20,8 @@ class MyApp extends StatelessWidget {
     return MultiBlocProvider(
       providers: [
         BlocProvider(create: (context) => SubjectCubit(),),
+        BlocProvider(create: (context) => MyCoursesCubit(),),
+
       ],
       child: const GetMaterialApp(
         locale: Locale('ar', 'AE'),
@@ -32,7 +35,7 @@ class MyApp extends StatelessWidget {
           Locale('ar', 'AE'),
         ],
         debugShowCheckedModeBanner: false,
-        home: MainView(),
+        home: MyCoursesPlayVideoView(),
       ),
     );
   }
