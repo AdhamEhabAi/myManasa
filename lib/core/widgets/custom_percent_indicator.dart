@@ -1,3 +1,5 @@
+import 'dart:ffi';
+
 import 'package:flutter/material.dart';
 import 'package:my_manasa/core/utils/styles.dart';
 import 'package:percent_indicator/circular_percent_indicator.dart';
@@ -8,11 +10,12 @@ class CustomPercentIndicator extends StatelessWidget {
     required this.titleText,
     required this.doneVideos,
     required this.totalVideos,
-    required this.lineColor, this.footerText = 'فيديو',
+    required this.lineColor, this.footerText = 'فيديو', this.radius = 14.0, this.lineRadius = 1.0,
   });
   final String  titleText,footerText;
   final int doneVideos, totalVideos;
   final Color lineColor;
+  final double radius,lineRadius;
 
 
   @override
@@ -29,8 +32,8 @@ class CustomPercentIndicator extends StatelessWidget {
           textDirection: TextDirection.ltr,
           style: Styles.semiBold10.copyWith(fontSize: 7),
         ),
-        radius: 14.0,
-        lineWidth: 1.0,
+        radius: radius,
+        lineWidth: lineRadius,
         percent: doneVideos / totalVideos,
         header: Text(
           titleText,
