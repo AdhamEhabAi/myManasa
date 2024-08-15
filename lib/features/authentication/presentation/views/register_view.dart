@@ -128,7 +128,7 @@ class _RegisterViewState extends State<RegisterView> {
                                       .copyWith(color: Colors.white),
                                 ),
                                 onPressed: () {
-                                  Get.to(MainView(),transition: Transition.fadeIn);
+                                  Get.to(const MainView(),transition: Transition.fadeIn);
                                 }),
                           ],
                         ),
