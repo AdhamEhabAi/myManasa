@@ -41,7 +41,7 @@ class PdfCourseWidget extends StatelessWidget {
                   'assets/images/Pdf.png',
                   fit: BoxFit.fill,
                 )),
-            const Column(
+             Column(
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [

@@ -33,7 +33,7 @@ class TeacherView extends StatelessWidget {
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      const Text(
+                      Text(
                         'الكورسات',
                         style: Styles.semiBold20,
                       ),

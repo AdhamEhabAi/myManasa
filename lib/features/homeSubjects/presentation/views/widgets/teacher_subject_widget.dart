@@ -17,13 +17,13 @@ class TeacherSubjectWidget extends StatelessWidget {
           borderRadius: BorderRadius.circular(32),
         ),
         width: MediaQuery.of(context).size.width,
-        child: const Row(
+        child:  Row(
           children: [
-            CircleAvatar(
+            const CircleAvatar(
               backgroundImage: AssetImage('assets/images/Teacher (2).png'),
               radius: 32,
             ),
-            SizedBox(width: 10,),
+            const SizedBox(width: 10,),
             Text('مستر /نبيل وليم',style: Styles.semiBold16,)
           ],
         ),

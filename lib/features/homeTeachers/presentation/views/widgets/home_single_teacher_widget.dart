@@ -73,7 +73,7 @@ class HomeSingleTeacherWidget extends StatelessWidget {
                                   'مستر /',
                                   style: Styles.semiBold14.copyWith(color: AppColors.primaryColor),
                                 ),
-                                const Text(
+                                Text(
                                   'مجدي بلال',
                                   style: Styles.semiBold14,
                                 ),

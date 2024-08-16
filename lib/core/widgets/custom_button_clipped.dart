@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:my_manasa/core/utils/styles.dart';
 
 class CustomButtonClipped extends StatelessWidget {
@@ -31,7 +32,7 @@ class CustomButtonClipped extends StatelessWidget {
           child: InkWell(
             onTap: onTap,
             child: Container(
-              padding: const EdgeInsets.symmetric(horizontal: 32, vertical: 16),
+              padding: EdgeInsets.symmetric(horizontal: 32.w, vertical: 16.h),
               width: MediaQuery.of(context).size.width/2,
               child: Text(
                 text,

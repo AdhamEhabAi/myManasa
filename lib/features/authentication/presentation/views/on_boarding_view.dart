@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:my_manasa/core/utils/styles.dart';
 import 'package:my_manasa/core/widgets/custom_button_clipped.dart';
@@ -19,34 +20,40 @@ class OnBoardingView extends StatelessWidget {
           const MainBackGround(),
           Column(
             children: [
-              const Spacer(flex: 3,),
-              Image.asset('assets/images/onboarding_image.png'),
-              const Spacer(flex: 1,),
-
-              const Column(
+              const Spacer(flex: 3),
+              Image.asset(
+                'assets/images/onboarding_image.png',
+                width: 300.w,
+                height: 300.h,
+              ),
+              const Spacer(flex: 1),
+              Column(
                 children: [
                   Text(
                     'رحلة تعلم افضل\n المستقبل يبدأ من هنا',
-                    style: Styles.regular24,
+                    style: Styles.regular24.copyWith(fontSize: 24.sp),
                     textAlign: TextAlign.center,
                   ),
                   SizedBox(
-                    height: 20,
+                    height: 20.h,
                   ),
-                  Text(
-                    'علي منصتنا نقدم لكم أدوات و موارد تعلمية مبتكرة تمكنكم من استكشاف عوالم جديدة و تطوير قراتكم بشكل شامل',
-                    style: Styles.regular12,
-                    textAlign: TextAlign.center,
+                  Padding(
+                    padding: EdgeInsets.symmetric(horizontal: 20.w),
+                    child: Text(
+                      'علي منصتنا نقدم لكم أدوات و موارد تعلمية مبتكرة تمكنكم من استكشاف عوالم جديدة و تطوير قراتكم بشكل شامل',
+                      style: Styles.regular12.copyWith(fontSize: 12.sp),
+                      textAlign: TextAlign.center,
+                    ),
                   ),
                 ],
               ),
-              const Spacer(flex: 2,),
+              const Spacer(flex: 2),
               Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: <Widget>[
                   CustomButtonClipped(
-                    onTap: (){
-                      Get.to(const LoginView(),transition: Transition.rightToLeft);
+                    onTap: () {
+                      Get.to(const LoginView(), transition: Transition.rightToLeft);
                     },
                     textAlign: TextAlign.center,
                     text: 'تسجيل الدخول',
@@ -55,21 +62,18 @@ class OnBoardingView extends StatelessWidget {
                     clipper: RightClipper(),
                   ),
                   CustomButtonClipped(
-                    onTap: (){
-                      Get.to(const RegisterView(),transition: Transition.rightToLeft);
+                    onTap: () {
+                      Get.to(const RegisterView(), transition: Transition.rightToLeft);
                     },
-
                     textAlign: TextAlign.center,
                     text: 'انشاء حساب',
                     backgroundColor: Colors.blue.shade100,
                     textColor: Colors.black,
                     clipper: LeftClipper(),
                   ),
-
                 ],
               ),
-              const Spacer(flex: 1,),
-
+              const Spacer(flex: 1),
             ],
           ),
         ],

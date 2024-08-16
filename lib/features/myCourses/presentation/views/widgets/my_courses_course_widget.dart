@@ -40,7 +40,7 @@ class MyCoursesCourseWidget extends StatelessWidget {
                     'assets/images/courseImage (2).png',
                     fit: BoxFit.fill,
                   )),
-              const Column(
+              Column(
                 children: [
                   Text(
                     'النصوص',

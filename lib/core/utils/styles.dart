@@ -1,140 +1,140 @@
-
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
-abstract class Styles{
-  static const TextStyle regular18 = TextStyle(
+abstract class Styles {
+  static TextStyle regular18 = TextStyle(
     fontFamily: 'Cairo',
-    fontSize: 18,
+    fontSize: 18.sp,
     fontWeight: FontWeight.w400,
   );
-  static const TextStyle regular20 = TextStyle(
+  static TextStyle regular20 = TextStyle(
     fontFamily: 'Cairo',
-    fontSize: 20,
+    fontSize: 20.sp,
     fontWeight: FontWeight.w400,
   );
-  static const TextStyle regular24 = TextStyle(
+  static TextStyle regular24 = TextStyle(
     fontFamily: 'Cairo',
-    fontSize: 24,
+    fontSize: 24.sp,
     fontWeight: FontWeight.w400,
   );
-  static const TextStyle regular14 = TextStyle(
+  static TextStyle regular14 = TextStyle(
     fontFamily: 'Cairo',
-    fontSize: 14,
+    fontSize: 14.sp,
     fontWeight: FontWeight.w400,
   );
-  static const TextStyle regular12 = TextStyle(
+  static TextStyle regular12 = TextStyle(
     fontFamily: 'Cairo',
-    fontSize: 12,
+    fontSize: 12.sp,
     fontWeight: FontWeight.w400,
   );
-  static const TextStyle semiBold14 = TextStyle(
+  static TextStyle semiBold14 = TextStyle(
     fontFamily: 'Cairo',
     fontWeight: FontWeight.w600,
-    fontSize: 14,
+    fontSize: 14.sp,
   );
-  static const TextStyle semiBold16 = TextStyle(
+  static TextStyle semiBold16 = TextStyle(
     fontFamily: 'Cairo',
     fontWeight: FontWeight.w600,
-    fontSize: 16,
+    fontSize: 16.sp,
   );
-  static const TextStyle semiBold18 = TextStyle(
+  static TextStyle semiBold18 = TextStyle(
     fontFamily: 'Cairo',
     fontWeight: FontWeight.w600,
-    fontSize: 18,
+    fontSize: 18.sp,
   );
-  static const TextStyle semiBold20 = TextStyle(
+  static TextStyle semiBold20 = TextStyle(
     fontFamily: 'Cairo',
     fontWeight: FontWeight.w600,
-    fontSize: 20,
+    fontSize: 20.sp,
   );
-  static const TextStyle semiBold24 = TextStyle(
+  static TextStyle semiBold24 = TextStyle(
     fontFamily: 'Cairo',
     fontWeight: FontWeight.w600,
-    fontSize: 24,
+    fontSize: 24.sp,
   );
-  static const TextStyle semiBold28 = TextStyle(
+  static TextStyle semiBold28 = TextStyle(
     fontFamily: 'Cairo',
     fontWeight: FontWeight.w600,
-    fontSize: 28,
+    fontSize: 28.sp,
   );
-  static const TextStyle semiBold36 = TextStyle(
+  static TextStyle semiBold36 = TextStyle(
     fontFamily: 'Cairo',
     fontWeight: FontWeight.w600,
-    fontSize: 36,
+    fontSize: 36.sp,
   );
-  static const TextStyle semiBold30 = TextStyle(
+  static TextStyle semiBold30 = TextStyle(
     fontFamily: 'Cairo',
     fontWeight: FontWeight.w600,
-    fontSize: 30,
+    fontSize: 30.sp,
   );
-  static const TextStyle semiBold12_95 = TextStyle(
+  static TextStyle semiBold12_95 = TextStyle(
     fontFamily: 'Cairo',
     fontWeight: FontWeight.w600,
-    fontSize: 12.95,
+    fontSize: 12.95.sp,
   );
-  static const TextStyle semiBold9_25 = TextStyle(
+  static TextStyle semiBold9_25 = TextStyle(
     fontFamily: 'Cairo',
     fontWeight: FontWeight.w600,
-    fontSize: 9.25,
+    fontSize: 9.25.sp,
   );
-  static const TextStyle semiBold10 = TextStyle(
+  static TextStyle semiBold10 = TextStyle(
     fontFamily: 'Cairo',
     fontWeight: FontWeight.w600,
-    fontSize: 10,
+    fontSize: 10.sp,
   );
-  static const TextStyle bold14 = TextStyle(
+  static TextStyle bold14 = TextStyle(
     fontFamily: 'Cairo',
     fontWeight: FontWeight.bold,
-    fontSize: 14,
+    fontSize: 14.sp,
   );
-  static const TextStyle bold10 = TextStyle(
+  static TextStyle bold10 = TextStyle(
     fontFamily: 'Cairo',
     fontWeight: FontWeight.bold,
-    fontSize: 10,
+    fontSize: 10.sp,
   );
-  static const TextStyle bold12 = TextStyle(
+  static TextStyle bold12 = TextStyle(
     fontFamily: 'Cairo',
     fontWeight: FontWeight.bold,
-    fontSize: 12,
+    fontSize: 12.sp,
   );
-  static const TextStyle bold14_8 = TextStyle(
+  static TextStyle bold14_8 = TextStyle(
     fontFamily: 'Cairo',
     fontWeight: FontWeight.bold,
-    fontSize: 14.8,
+    fontSize: 14.8.sp,
   );
-  static const TextStyle bold16 = TextStyle(
+  static TextStyle bold16 = TextStyle(
     fontFamily: 'Cairo',
     fontWeight: FontWeight.bold,
-    fontSize: 16,
+    fontSize: 16.sp,
   );
-  static const TextStyle bold18 = TextStyle(
+  static TextStyle bold18 = TextStyle(
     fontFamily: 'Cairo',
     fontWeight: FontWeight.bold,
-    fontSize: 18,
+    fontSize: 18.sp,
   );
-  static const TextStyle bold21 = TextStyle(
+  static TextStyle bold21 = TextStyle(
     fontFamily: 'Cairo',
     fontWeight: FontWeight.bold,
-    fontSize: 21,
+    fontSize: 21.sp,
   );
-  static const TextStyle bold22 = TextStyle(
+  static TextStyle bold22 = TextStyle(
     fontFamily: 'Cairo',
     fontWeight: FontWeight.bold,
-    fontSize: 22,
+    fontSize: 22.sp,
   );
-  static const TextStyle bold24 = TextStyle(
+  static TextStyle bold24 = TextStyle(
     fontFamily: 'Cairo',
     fontWeight: FontWeight.bold,
-    fontSize: 24,
+    fontSize: 24.sp,
   );
-  static const TextStyle bold32 = TextStyle(
+  static TextStyle bold32 = TextStyle(
     fontFamily: 'Cairo',
     fontWeight: FontWeight.bold,
-    fontSize: 32,
+    fontSize: 32.sp,
   );
-  static const TextStyle bold20 = TextStyle(
+  static TextStyle bold20 = TextStyle(
     fontFamily: 'Cairo',
     fontWeight: FontWeight.bold,
-    fontSize: 20,
+    fontSize: 20.sp,
   );
 }

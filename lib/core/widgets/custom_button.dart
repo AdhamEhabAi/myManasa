@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:my_manasa/constants.dart';
 
 class CustomButton extends StatelessWidget {
@@ -26,7 +27,7 @@ class CustomButton extends StatelessWidget {
               shape: RoundedRectangleBorder(
                   borderRadius: BorderRadius.circular(borderRadius))),
           child: Padding(
-            padding: const EdgeInsets.symmetric(vertical: 6.0),
+            padding: EdgeInsets.symmetric(vertical: 6.0.h),
             child: text,
           )),
     );

@@ -31,7 +31,7 @@ class TeacherViewHeader extends StatelessWidget {
                   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    const Text(
+                    Text(
                       'مستر /نبيل وليم',
                       style: Styles.semiBold20,
                     ),
@@ -42,7 +42,7 @@ class TeacherViewHeader extends StatelessWidget {
                     ),
                     Row(
                       children: [
-                        const Text(
+                        Text(
                           'تقييم:',
                           style: Styles.semiBold14,
                         ),

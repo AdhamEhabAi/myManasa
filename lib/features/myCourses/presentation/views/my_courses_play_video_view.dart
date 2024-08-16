@@ -64,14 +64,14 @@ class _MyCoursesPlayVideoViewState extends State<MyCoursesPlayVideoView> {
                     children: [
                       Row(
                         children: [
-                          const Text(
+                          Text(
                             'الدرس الاول',
                             style: Styles.semiBold24,
                           ),
                           const SizedBox(
                             width: 20,
                           ),
-                          const Text(
+                          Text(
                             '20:00',
                             style: Styles.semiBold24,
                           ),

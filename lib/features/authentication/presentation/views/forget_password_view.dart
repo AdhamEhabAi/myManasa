@@ -1,17 +1,20 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:get/get.dart';
 import 'package:my_manasa/constants.dart';
 import 'package:my_manasa/core/utils/styles.dart';
 import 'package:my_manasa/core/widgets/custom_button.dart';
 import 'package:my_manasa/core/widgets/custom_text_field.dart';
 import 'package:my_manasa/core/widgets/main_background.dart';
-import 'package:my_manasa/features/authentication/presentation/views/email_code_view.dart';
+import 'package:my_manasa/features/authentication/presentation/manager/auth_cubit.dart';
 
 class ForgetPasswordView extends StatelessWidget {
   const ForgetPasswordView({super.key});
 
   @override
   Widget build(BuildContext context) {
+    TextEditingController phoneController = TextEditingController();
+
     return SafeArea(
       child: Scaffold(
         body: Stack(
@@ -38,26 +41,35 @@ class ForgetPasswordView extends StatelessWidget {
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
                     Text(
-                      'اكتب البريد الأكتروني صحيح حتي نتمكن من ارسال الكود علي البريد الأكتروني',
+                      'اكتب رقم الهاتف الصحيح حتى نتمكن من إرسال الكود على رقم الهاتف',
                       style: Styles.regular18.copyWith(color: Colors.grey),
                     ),
-                    const SizedBox(height: 30,),
-                    const CustomTextField(
-                        labelText: 'البريد الاكتروني',
-                        borderColor: AppColors.primaryColor),
-                    const SizedBox(height: 80,),
-
-                    CustomButton(
-                      width: MediaQuery.of(context).size.width/2,
-                        borderRadius: 14,
-                        text: Text(
-                          'إرسال الكود',
-                          style: Styles.semiBold20.copyWith(color: Colors.white),
-                        ),
-                        onPressed: () {
-                          Get.to(const EmailCodeView(),transition: Transition.rightToLeft);
-
-                        },
+                    const SizedBox(
+                      height: 30,
+                    ),
+                    CustomTextField(
+                      controller: phoneController,
+                      labelText: 'رقم الهاتف',
+                      borderColor: AppColors.primaryColor,
+                    ),
+                    const SizedBox(
+                      height: 80,
+                    ),
+                    BlocBuilder<AuthCubit, AuthState>(
+                      builder: (context, state) {
+                        return CustomButton(
+                          width: MediaQuery.of(context).size.width / 2,
+                          borderRadius: 14,
+                          text: Text(
+                            'إرسال الكود',
+                            style: Styles.semiBold20.copyWith(color: Colors.white),
+                          ),
+                          onPressed: () {
+                            // Trigger phone number verification
+                            BlocProvider.of<AuthCubit>(context).verifyPhoneNumber(phoneController.text);
+                          },
+                        );
+                      },
                     ),
                   ],
                 ),

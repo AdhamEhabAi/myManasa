@@ -52,7 +52,7 @@ class MyCourseWidget extends StatelessWidget {
                         children: [
                           Row(
                             children: [
-                              const Expanded(
+                              Expanded(
                                 child: Text(
                                   'مع مستر / نبيل وليم',
                                   style: Styles.bold14,
@@ -84,7 +84,7 @@ class MyCourseWidget extends StatelessWidget {
                 ],
               ),
             ),
-            const Positioned(
+            Positioned(
                 bottom: 10,
                 left: 10,
                 child: Text(

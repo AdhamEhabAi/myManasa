@@ -26,7 +26,7 @@ class SubjectView extends StatelessWidget {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              const Text(
+               Text(
                 'أشهر المدرسين',
                 style: Styles.semiBold20,
               ),
@@ -48,7 +48,7 @@ class SubjectView extends StatelessWidget {
                         ),
                     itemCount: 3),
               ),
-              const Text(
+               Text(
                 'المدرسين',
                 style: Styles.semiBold20,
               ),

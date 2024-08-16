@@ -53,7 +53,7 @@ class QuizWidget extends StatelessWidget {
                         children: [
                           Row(
                             children: [
-                              const Expanded(
+                               Expanded(
                                 child: Text(
                                   'مع مستر / نبيل وليم',
                                   style: Styles.semiBold12_95,
@@ -73,7 +73,7 @@ class QuizWidget extends StatelessWidget {
                           const SizedBox(height: 8),
                           Row(
                             children: [
-                              const Text(
+                               Text(
                                 'يوجد اختبار الأن',
                                 style: Styles.semiBold12_95,
                               ),
@@ -96,7 +96,7 @@ class QuizWidget extends StatelessWidget {
                 ],
               ),
             ),
-            const Positioned(
+             Positioned(
                 bottom: 10,
                 left: 10,
                 child: Text(

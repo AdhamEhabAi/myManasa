@@ -43,7 +43,7 @@ class TeacherCourseWidget extends StatelessWidget {
                     'assets/images/courseImage (2).png',
                     fit: BoxFit.fill,
                   )),
-              const Column(
+              Column(
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [

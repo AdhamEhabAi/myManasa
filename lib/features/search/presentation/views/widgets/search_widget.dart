@@ -9,9 +9,9 @@ class SearchWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const Row(
+    return  Row(
       children: [
-        Padding(
+        const Padding(
           padding: EdgeInsets.all(12.0),
           child: Icon(Icons.search,color: AppColors.primaryColor,),
         ),

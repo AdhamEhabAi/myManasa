@@ -36,7 +36,7 @@ class GetCodeDialog extends StatelessWidget {
                   horizontal: 20),
               child: InfoTextField(
                 width: double.infinity,
-                codeController: textEditingController,
+                textEditingController: textEditingController,
                 hintText: '',
               ),
             ),

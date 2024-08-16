@@ -66,7 +66,7 @@ class HomeSingleSubjectWidget extends StatelessWidget {
                         ),
                       ),
                     ),
-                    const Positioned(
+                    Positioned(
                       bottom: 15,
                       right: 15,
                       child: Text(

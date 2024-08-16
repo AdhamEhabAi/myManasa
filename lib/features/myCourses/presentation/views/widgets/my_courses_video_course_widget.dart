@@ -22,7 +22,7 @@ class MyCoursesVideoCourseWidget extends StatelessWidget {
               ),
             ),
             const SizedBox(width: 10),
-            const Flexible(
+            Flexible(
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 crossAxisAlignment: CrossAxisAlignment.start,

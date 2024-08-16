@@ -55,7 +55,7 @@ class HistoryQuizWidget extends StatelessWidget {
                             child: Row(
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
-                                const Expanded(
+                                Expanded(
                                   child: Text(
                                     'مع مستر / نبيل وليم',
                                     style: Styles.semiBold12_95,
@@ -81,7 +81,7 @@ class HistoryQuizWidget extends StatelessWidget {
                 ],
               ),
             ),
-            const Positioned(
+            Positioned(
               bottom: 10,
               left: 10,
               child: Text(

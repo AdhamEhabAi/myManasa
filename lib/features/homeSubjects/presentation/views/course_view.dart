@@ -18,7 +18,6 @@ class CourseView extends StatelessWidget {
     final containerWidth = screenWidth - 58.0;
     final halfWidth = containerWidth / 2;
     final PageController pageController = PageController(initialPage: 1);
-    final TextEditingController textEditingController = TextEditingController();
 
     return SafeArea(
       child: Scaffold(
@@ -34,14 +33,14 @@ class CourseView extends StatelessWidget {
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      const Text(
+                      Text(
                         'كورس كامل عن القراءة',
                         style: Styles.bold16,
                       ),
                       const SizedBox(
                         height: 10,
                       ),
-                      const Text(
+                      Text(
                         'يحتوي هذة الكورس علي تأسيس كامل للصفوف و شرح وحل نماذج في الفيديو',
                         style: Styles.semiBold14,
                       ),
@@ -54,12 +53,12 @@ class CourseView extends StatelessWidget {
                           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                           children: [
                             Image.asset('assets/images/smallplay.png'),
-                            const Text(
+                             Text(
                               '35 فيديو',
                               style: Styles.semiBold16,
                             ),
                             Image.asset('assets/images/small timer.png'),
-                            const Text(
+                             Text(
                               '3ساعات',
                               style: Styles.semiBold16,
                             ),

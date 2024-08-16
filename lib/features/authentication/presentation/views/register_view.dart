@@ -1,12 +1,14 @@
 import 'package:flutter/material.dart';
-import 'package:get/get.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:my_manasa/constants.dart';
 import 'package:my_manasa/core/utils/styles.dart';
 import 'package:my_manasa/core/widgets/custom_button.dart';
 import 'package:my_manasa/core/widgets/custom_text_field.dart';
 import 'package:my_manasa/core/widgets/main_background.dart';
+import 'package:my_manasa/features/authentication/presentation/manager/auth_cubit.dart';
 import 'package:my_manasa/features/authentication/presentation/views/widgets/drop_down_textfield.dart';
-import 'package:my_manasa/features/home/presentation/views/main_view.dart';
+import 'package:get/get.dart' as trans;
 
 class RegisterView extends StatefulWidget {
   const RegisterView({super.key});
@@ -20,67 +22,101 @@ class _RegisterViewState extends State<RegisterView> {
 
   @override
   Widget build(BuildContext context) {
+    AuthCubit provider = BlocProvider.of<AuthCubit>(context);
     return SafeArea(
       child: Scaffold(
         body: Stack(
           children: [
             const MainBackGround(),
             Positioned(
-                top: 20,
-                right: 20,
-                child: IconButton(
-                    onPressed: () {
-                      Get.back();
-                    },
-                    icon: const ImageIcon(
-                      AssetImage(
-                        'assets/images/back.png',
-                      ),
-                      size: 34,
-                      color: AppColors.primaryColor,
-                    ))),
+              top: 20.h,
+              right: 20.w,
+              child: IconButton(
+                onPressed: () {
+                  trans.Get.back();
+                },
+                icon: ImageIcon(
+                  const AssetImage(
+                    'assets/images/back.png',
+                  ),
+                  size: 34.h,
+                  color: AppColors.primaryColor,
+                ),
+              ),
+            ),
             Positioned(
-              top: MediaQuery.of(context).size.height*.10,
-              left: 0,
-              right: 0,
+              top: MediaQuery.of(context).size.height * .10.h,
+              left: 0.w,
+              right: 0.w,
               child: SingleChildScrollView(
                 child: Center(
                   child: SizedBox(
-                    width: MediaQuery.of(context).size.width,
-                    height: MediaQuery.of(context).size.height * 0.80,
+                    width: MediaQuery.of(context).size.width.w,
+                    height: MediaQuery.of(context).size.height * 0.80.h,
                     child: Padding(
-                      padding: const EdgeInsets.symmetric(
-                          horizontal: AppPadding.padding),
+                      padding: EdgeInsets.symmetric(
+                          horizontal: AppPadding.padding.w),
                       child: Form(
+                        key: provider.registerFormKey,
                         child: Column(
                           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                           crossAxisAlignment: CrossAxisAlignment.center,
                           children: [
-                            const Text(
+                            Text(
                               'إنشاء حساب',
-                              style: Styles.semiBold30,
+                              style: Styles.semiBold30.copyWith(fontSize: 30.sp),
                             ),
-                            const CustomTextField(
+                            CustomTextField(
+                              controller: provider.fName,
+                              validator: (value) {
+                                if (value == null || value.isEmpty) {
+                                  return 'ادخل الاسم الاول';
+                                }
+                                return null;
+                              },
                               borderColor: AppColors.primaryColor,
                               labelText: 'الأسم الأول',
                             ),
-                            const CustomTextField(
+                            CustomTextField(
+                              controller: provider.lName,
+                              validator: (value) {
+                                if (value == null || value.isEmpty) {
+                                  return 'ادخل الاسم الثاني';
+                                }
+                                return null;
+                              },
                               borderColor: AppColors.primaryColor,
                               labelText: 'الأسم الثاني',
                             ),
-                            const CustomTextField(
+                            CustomTextField(
+                              controller: provider.fPhone,
+                              validator: (value) {
+                                if (value == null || value.isEmpty) {
+                                  return 'ادخل رقم الموبيل';
+                                }
+                                return null;
+                              },
                               borderColor: AppColors.primaryColor,
                               prefix: Icon(
                                 Icons.phone,
                                 color: AppColors.primaryColor,
+                                size: 24.h,
                               ),
                               labelText: 'رقم الموبيل',
                             ),
-                            const CustomTextField(
+                            CustomTextField(
+                              controller: provider.lPhone,
+                              validator: (value) {
+                                if (value == null || value.isEmpty) {
+                                  return 'ادخل رقم الموبيل ولي الامر';
+                                }
+                                return null;
+                              },
                               borderColor: AppColors.primaryColor,
                               prefix: Icon(
                                 Icons.phone,
                                 color: AppColors.primaryColor,
+                                size: 24.h,
                               ),
                               labelText: 'رقم الموبيل ولي الامر',
                             ),
@@ -89,10 +125,8 @@ class _RegisterViewState extends State<RegisterView> {
                               labelText: 'الصف',
                               items: const [
                                 'الصف الاول',
-                                'الصف الاول',
-                                'الصف الاول',
-                                'الصف الاول',
-                                'الصف الاول'
+                                'الصف الثاني',
+                                'الصف الثالث',
                               ],
                               onChanged: (String? newValue) {
                                 setState(() {
@@ -100,36 +134,75 @@ class _RegisterViewState extends State<RegisterView> {
                                 });
                               },
                             ),
-                            const CustomTextField(
+                            CustomTextField(
+                              controller: provider.email,
+                              validator: (value) {
+                                if (value == null || value.isEmpty) {
+                                  return 'ادخل البريد الاكتروني';
+                                }
+                                return null;
+                              },
                               borderColor: AppColors.primaryColor,
                               prefix: Icon(
                                 Icons.email,
                                 color: AppColors.primaryColor,
+                                size: 24.h,
                               ),
                               labelText: 'البريد الاكتروني',
                             ),
-                            const CustomTextField(
+                            CustomTextField(
+                              controller: provider.password,
+                              validator: (value) {
+                                if (value == null || value.isEmpty) {
+                                  return 'ادخل كلمة المرور';
+                                }
+                                return null;
+                              },
                               borderColor: AppColors.primaryColor,
                               prefix: Icon(
                                 Icons.lock,
                                 color: AppColors.primaryColor,
+                                size: 24.h,
                               ),
                               suffix: Icon(
                                 Icons.visibility_off,
                                 color: AppColors.primaryColor,
+                                size: 24.h,
                               ),
                               labelText: 'كلمة المرور',
                             ),
-                            CustomButton(
-                                borderRadius: 14,
-                                text: Text(
-                                  'إنشاء حساب',
-                                  style: Styles.semiBold20
-                                      .copyWith(color: Colors.white),
-                                ),
-                                onPressed: () {
-                                  Get.to(const MainView(),transition: Transition.fadeIn);
-                                }),
+                            BlocConsumer<AuthCubit, AuthState>(
+                              listener: (context, state) {
+                                if (state is RegisterFailure) {
+                                  trans.Get.showSnackbar(trans.GetSnackBar(
+                                    duration: const Duration(seconds: 2),
+                                    messageText: Text(
+                                      state.errMessage,
+                                      style: Styles.semiBold14.copyWith(color: Colors.white),
+                                    ),
+                                  ));
+                                }
+                              },
+                              builder: (context, state) {
+                                if (state is RegisterLoading) {
+                                  return const CircularProgressIndicator(); // Display a loading indicator while registering
+                                }
+                                return CustomButton(
+                                  borderRadius: 14.r,
+                                  text: Text(
+                                    'إنشاء حساب',
+                                    style: Styles.semiBold20
+                                        .copyWith(color: Colors.white, fontSize: 20.sp),
+                                  ),
+                                  onPressed: () {
+                                    if (provider.registerFormKey.currentState!
+                                        .validate()) {
+                                      provider.userRegister();
+                                    }
+                                  },
+                                );
+                              },
+                            ),
                           ],
                         ),
                       ),
