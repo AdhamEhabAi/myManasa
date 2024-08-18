@@ -1,5 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:get/get.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:get/get.dart' as trans;
+import 'package:my_manasa/core/utils/funtions.dart';
+import 'package:my_manasa/features/authentication/presentation/manager/auth_cubit.dart';
 import 'package:my_manasa/features/profile/presentation/views/student_profile_view.dart';
 import 'package:my_manasa/features/profile/presentation/views/widgets/master_profile_widget.dart';
 import 'package:my_manasa/features/profile/presentation/views/widgets/profile_card_widget.dart';
@@ -10,23 +14,24 @@ class ProfileView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    AuthCubit authCubit = BlocProvider.of<AuthCubit>(context);
     return SafeArea(
       child: Scaffold(
         body: SafeArea(
           child: Padding(
-            padding: const EdgeInsets.symmetric(vertical: 20),
+            padding: EdgeInsets.symmetric(vertical: 20.h),
             child: Column(
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: [
                 MasterProfileWidget(
-                    title: 'Mohamed Ashraf',
+                    title: '${authCubit.userModel!.fname} ${authCubit.userModel!.lname}',
                     icon: Icons.account_circle,
                     subTitle: 'المعلومات الشخصية',
                     onTap: () {
-                      Get.to(const StudentProfileView(),transition: Transition.downToUp);
+                      trans.Get.to(const StudentProfileView(),transition: trans.Transition.downToUp);
                     }),
-                const SizedBox(
-                  height: 40,
+                SizedBox(
+                  height: 40.h,
                 ),
                 const Row(
                   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
@@ -41,8 +46,8 @@ class ProfileView extends StatelessWidget {
                         icon: Icons.question_mark_outlined)
                   ],
                 ),
-                const SizedBox(
-                  height: 40,
+                 SizedBox(
+                  height: 40.h,
                 ),
                 ProfileCardWidget(
                     title: 'السياسة والخصوصية',
@@ -56,6 +61,7 @@ class ProfileView extends StatelessWidget {
                     title: 'تسجيل الخروج',
                     icon: Icons.logout,
                     ontap: () {
+                      logout();
                     }),
               ],
             ),

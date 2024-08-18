@@ -18,7 +18,6 @@ class CourseView extends StatelessWidget {
     final containerWidth = screenWidth - 58.0;
     final halfWidth = containerWidth / 2;
     final PageController pageController = PageController(initialPage: 1);
-
     return SafeArea(
       child: Scaffold(
         body: SingleChildScrollView(

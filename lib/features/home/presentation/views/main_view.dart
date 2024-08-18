@@ -1,5 +1,5 @@
-
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:google_nav_bar/google_nav_bar.dart';
 import 'package:my_manasa/constants.dart';
 import 'package:my_manasa/features/home/presentation/views/home_view.dart';
@@ -40,7 +40,7 @@ class _MainViewState extends State<MainView> {
       bottomNavigationBar: Container(
         color: AppColors.primaryColor,
         child: Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 15, vertical: 15),
+          padding: EdgeInsets.symmetric(horizontal: 15.w, vertical: 15.h),
           child: GNav(
             onTabChange: (index) {
               setState(() {
@@ -54,29 +54,42 @@ class _MainViewState extends State<MainView> {
             activeColor: Colors.white,
             backgroundColor: AppColors.primaryColor,
             tabBackgroundColor: AppColors.secondaryColor,
-            padding: const EdgeInsets.all(16),
+            padding: EdgeInsets.all(16.r),
             gap: 8,
-            tabs: const [
+            tabs: [
               GButton(
                 icon: Icons.home,
-                leading: ImageIcon(AssetImage('assets/images/home.png'),color: Colors.white,size: 24,),
+                leading: ImageIcon(
+                  const AssetImage('assets/images/home.png'),
+                  color: Colors.white,
+                  size: 24.w,
+                ),
                 text: 'الرئيسية',
               ),
               GButton(
-                leading: ImageIcon(AssetImage('assets/images/quiz.png'),color: Colors.white,size: 24,),
-
+                leading: ImageIcon(
+                  const AssetImage('assets/images/quiz.png'),
+                  color: Colors.white,
+                  size: 24.w,
+                ),
                 icon: Icons.quiz,
                 text: 'الاختبارات',
               ),
               GButton(
-                leading: ImageIcon(AssetImage('assets/images/course.png'),color: Colors.white,size: 24,),
-
+                leading: ImageIcon(
+                  const AssetImage('assets/images/course.png'),
+                  color: Colors.white,
+                  size: 24.w,
+                ),
                 icon: Icons.play_arrow_outlined,
                 text: 'دوراتي',
               ),
               GButton(
-                leading: ImageIcon(AssetImage('assets/images/profile.png'),color: Colors.white,size: 24,),
-
+                leading: ImageIcon(
+                  const AssetImage('assets/images/profile.png'),
+                  color: Colors.white,
+                  size: 24.w,
+                ),
                 icon: Icons.account_circle_outlined,
                 text: 'الملف الشخصي',
               ),

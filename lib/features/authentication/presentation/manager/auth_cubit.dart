@@ -12,6 +12,7 @@ import 'package:my_manasa/features/authentication/presentation/views/change_pass
 import 'package:my_manasa/features/authentication/presentation/views/login_view.dart';
 import 'package:get/get.dart' as trans;
 import 'package:my_manasa/features/authentication/presentation/views/email_code_view.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 part 'auth_state.dart';
 
@@ -44,7 +45,6 @@ class AuthCubit extends Cubit<AuthState> {
   TextEditingController password = TextEditingController();
   TextEditingController loginEmail = TextEditingController();
   TextEditingController loginPassword = TextEditingController();
-
 
   void verifyPhoneNumber(String phoneNumber) {
     if (numbers.contains(phoneNumber)) {
@@ -116,6 +116,7 @@ class AuthCubit extends Cubit<AuthState> {
 
   Future<void> userLogin() async {
     try {
+      emit(LoginLoading());
       final http.Response response = await apiService.post(url: signInApi, body: {
         'username': loginEmail.text,
         'password': loginPassword.text,
@@ -127,6 +128,7 @@ class AuthCubit extends Cubit<AuthState> {
         emit(LoginFailure(errMessage: 'هناك مشكلة'));
       } else {
         userModel = UserModel.fromJson(data);
+        await saveUserToPreferences(userModel!); // Save user to SharedPreferences
         emit(LoginSuccess());
       }
     } catch (e) {
@@ -134,5 +136,29 @@ class AuthCubit extends Cubit<AuthState> {
       print('error : ${e.toString()}');
     }
   }
-}
 
+  Future<void> saveUserToPreferences(UserModel user) async {
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+
+    // Convert the UserModel to a JSON string
+    String userJson = jsonEncode(user.toJson());
+
+    // Save the JSON string in SharedPreferences
+    await prefs.setString('user_model', userJson);
+  }
+
+  Future<UserModel?> getUserFromPreferences() async {
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+
+    // Retrieve the JSON string from SharedPreferences
+    String? userJson = prefs.getString('user_model');
+
+    if (userJson != null) {
+      // Convert the JSON string back to a UserModel object
+      Map<String, dynamic> userMap = jsonDecode(userJson);
+      return UserModel.fromJson(userMap);
+    }
+
+    return null; // Return null if no user data found
+  }
+}

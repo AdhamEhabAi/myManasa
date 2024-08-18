@@ -31,6 +31,27 @@ class UserModel {
     required this.rnk,
   });
 
+  // Convert a UserModel object into a Map object (JSON)
+  Map<String, dynamic> toJson() {
+    return {
+      'id': id,
+      'fname': fname,
+      'lname': lname,
+      'img': img,
+      'fnum': fnum,
+      'filterTeatcher': filterTeatcher,
+      'lnum': lnum,
+      'country': country,
+      'uname': uname,
+      'upass': upass,
+      'yr': yr,
+      'rank': rank,
+      'active': active,
+      'rnk': rnk,
+    };
+  }
+
+  // Convert a Map object into a UserModel object
   factory UserModel.fromJson(Map<String, dynamic> jsonData) {
     return UserModel(
       id: jsonData['id'] ?? '',
