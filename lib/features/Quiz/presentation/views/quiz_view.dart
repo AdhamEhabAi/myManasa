@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:my_manasa/constants.dart';
+import 'package:my_manasa/core/dialogs/start_exam_dialog.dart';
 import 'package:my_manasa/core/utils/styles.dart';
-import 'package:my_manasa/features/Quiz/presentation/views/exam_view.dart';
 import 'package:my_manasa/features/Quiz/presentation/views/history_view.dart';
 import 'package:my_manasa/features/Quiz/presentation/views/widgets/quiz_widget.dart';
 
@@ -42,7 +42,7 @@ class QuizView extends StatelessWidget {
             itemBuilder: (context, index) {
               return QuizWidget(
                 onTap: (){
-                  Get.to(ExamView(),transition: Transition.fadeIn);
+                  showDialog(context: context, builder: (context) => const StartExamDialog(),);
                 },
               );
             },

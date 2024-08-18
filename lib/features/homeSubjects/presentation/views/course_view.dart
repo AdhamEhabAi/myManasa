@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:my_manasa/core/dialogs/get_code_dialog.dart';
 import 'package:my_manasa/core/utils/styles.dart';
 import 'package:my_manasa/core/widgets/custom_button.dart';
-import 'package:my_manasa/core/widgets/custom_percent_indicator.dart';
 import 'package:my_manasa/features/homeSubjects/presentation/manager/subject_cubit.dart';
 import 'package:my_manasa/features/homeSubjects/presentation/views/pdf_view.dart';
 import 'package:my_manasa/features/homeSubjects/presentation/views/video_view.dart';
@@ -18,6 +18,7 @@ class CourseView extends StatelessWidget {
     final containerWidth = screenWidth - 58.0;
     final halfWidth = containerWidth / 2;
     final PageController pageController = PageController(initialPage: 1);
+    TextEditingController codeController = TextEditingController();
     return SafeArea(
       child: Scaffold(
         body: SingleChildScrollView(
@@ -116,32 +117,7 @@ class CourseView extends StatelessWidget {
                         showDialog(
                           context: context,
                           builder: (context) {
-                            return Dialog(
-                              shape: RoundedRectangleBorder(
-                                borderRadius: BorderRadius.circular(30),
-                              ),
-                              child: Container(
-                                width: MediaQuery.of(context).size.width * .8,
-                                height: MediaQuery.of(context).size.height / 4,
-                                padding: const EdgeInsets.all(20),
-                                child: Column(
-                                  mainAxisSize: MainAxisSize.min,
-                                  mainAxisAlignment:
-                                      MainAxisAlignment.spaceEvenly,
-                                  children: [
-                                    CustomPercentIndicator(
-                                      lineRadius: 3,
-                                      radius: 30,
-                                        titleText: '',
-                                        doneVideos: 15,
-                                        totalVideos: 30,
-                                        footerText: 'درجة',
-
-                                        lineColor: Colors.greenAccent,),
-                                  ],
-                                ),
-                              ),
-                            );
+                            return  GetCodeDialog(textEditingController: codeController,);
                           },
                         );
                       }),
@@ -154,3 +130,4 @@ class CourseView extends StatelessWidget {
     );
   }
 }
+

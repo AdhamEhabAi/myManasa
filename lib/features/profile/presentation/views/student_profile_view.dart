@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:my_manasa/constants.dart';
+import 'package:my_manasa/core/dialogs/change_done_dialog.dart';
 import 'package:my_manasa/core/utils/styles.dart';
 import 'package:my_manasa/core/widgets/custom_appbar.dart';
 import 'package:my_manasa/core/widgets/custom_button.dart';
@@ -29,33 +31,33 @@ class _StudentProfileViewState extends State<StudentProfileView> {
           child: SingleChildScrollView(
             child: Column(
               children: [
-                const Stack(
+                Stack(
                   clipBehavior: Clip.none,
                   children: [
                     CircleAvatar(
-                      backgroundImage: AssetImage('assets/images/WhatsApp Image 2024-04-30 at 00.30 2.png'),
-                      radius: 50,
+                      backgroundImage: const AssetImage('assets/images/WhatsApp Image 2024-04-30 at 00.30 2.png'),
+                      radius: 50.r, // Responsive radius
                     ),
                     Positioned(
-                      bottom: 6,
-                      right: -6,
+                      bottom: 6.h, // Responsive positioning
+                      right: -6.w, // Responsive positioning
                       child: CircleAvatar(
                         backgroundColor: AppColors.primaryColor,
-                        radius: 14,
+                        radius: 14.r, // Responsive radius
                         child: Icon(
                           Icons.edit,
                           color: Colors.white,
-                          size: 14,
+                          size: 14.sp, // Responsive icon size
                         ),
                       ),
                     ),
                   ],
                 ),
                 Padding(
-                  padding: const EdgeInsets.all(AppPadding.padding),
+                  padding: EdgeInsets.all(AppPadding.padding.r), // Responsive padding
                   child: SizedBox(
-                    height: MediaQuery.of(context).size.height * 0.8,
-                    width: MediaQuery.of(context).size.width,
+                    height: 0.8.sh, // Responsive height
+                    width: 1.sw, // Responsive width
                     child: Form(
                       child: Column(
                         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
@@ -69,19 +71,21 @@ class _StudentProfileViewState extends State<StudentProfileView> {
                             borderColor: AppColors.primaryColor,
                             labelText: 'الأسم الثاني',
                           ),
-                          const CustomTextField(
+                          CustomTextField(
                             borderColor: AppColors.primaryColor,
                             prefix: Icon(
                               Icons.phone,
                               color: AppColors.primaryColor,
+                              size: 20.sp, // Responsive icon size
                             ),
                             labelText: 'رقم الموبيل',
                           ),
-                          const CustomTextField(
+                          CustomTextField(
                             borderColor: AppColors.primaryColor,
                             prefix: Icon(
                               Icons.phone,
                               color: AppColors.primaryColor,
+                              size: 20.sp, // Responsive icon size
                             ),
                             labelText: 'رقم الموبيل ولي الامر',
                           ),
@@ -101,33 +105,43 @@ class _StudentProfileViewState extends State<StudentProfileView> {
                               });
                             },
                           ),
-                          const CustomTextField(
+                          CustomTextField(
                             borderColor: AppColors.primaryColor,
                             prefix: Icon(
                               Icons.email,
                               color: AppColors.primaryColor,
+                              size: 20.sp, // Responsive icon size
                             ),
                             labelText: 'البريد الاكتروني',
                           ),
-                          const CustomTextField(
+                          CustomTextField(
                             borderColor: AppColors.primaryColor,
                             prefix: Icon(
                               Icons.lock,
                               color: AppColors.primaryColor,
+                              size: 20.sp, // Responsive icon size
                             ),
                             suffix: Icon(
                               Icons.visibility_off,
                               color: AppColors.primaryColor,
+                              size: 20.sp, // Responsive icon size
                             ),
                             labelText: 'كلمة المرور',
                           ),
                           CustomButton(
-                            borderRadius: 14,
+                            borderRadius: 14.r, // Responsive border radius
                             text: Text(
                               'تغير',
-                              style: Styles.semiBold20.copyWith(color: Colors.white),
+                              style: Styles.semiBold20.copyWith(
+                                color: Colors.white,
+                                fontSize: 18.sp, // Responsive font size
+                              ),
                             ),
                             onPressed: () {
+                              showDialog(
+                                context: context,
+                                builder: (context) => const ChangeDoneDialog(),
+                              );
                             },
                           ),
                         ],

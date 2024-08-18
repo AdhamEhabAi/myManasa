@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:get/get.dart';
+import 'package:my_manasa/core/utils/funtions.dart';
 import 'package:my_manasa/core/utils/styles.dart';
 import 'package:my_manasa/core/widgets/custom_button.dart';
 
@@ -11,7 +14,7 @@ class SignOutDialog extends StatelessWidget {
   Widget build(BuildContext context) {
     return Dialog(
       shape: RoundedRectangleBorder(
-        borderRadius: BorderRadius.circular(30),
+        borderRadius: BorderRadius.circular(30.r),
       ),
       child: Container(
         width: MediaQuery.of(context).size.width * .8,
@@ -36,7 +39,9 @@ class SignOutDialog extends StatelessWidget {
                         'نعم',
                         style: Styles.semiBold20.copyWith(height: .3,color: Colors.white),
                       ),
-                      onPressed: () {}),
+                      onPressed: () {
+                        logout();
+                      }),
                 ),
                 const SizedBox(width: 20,),
                 Expanded(
@@ -46,7 +51,9 @@ class SignOutDialog extends StatelessWidget {
                         'لا',
                         style: Styles.semiBold20.copyWith(height: .3,color: Colors.black),
                       ),
-                      onPressed: () {}),
+                      onPressed: () {
+                        Get.back();
+                      }),
                 ),
 
               ],

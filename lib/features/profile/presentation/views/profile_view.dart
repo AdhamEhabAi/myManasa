@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart' as trans;
-import 'package:my_manasa/core/utils/funtions.dart';
+import 'package:my_manasa/core/dialogs/sign_out_dialog.dart';
 import 'package:my_manasa/features/authentication/presentation/manager/auth_cubit.dart';
 import 'package:my_manasa/features/profile/presentation/views/student_profile_view.dart';
 import 'package:my_manasa/features/profile/presentation/views/widgets/master_profile_widget.dart';
@@ -24,11 +24,13 @@ class ProfileView extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: [
                 MasterProfileWidget(
-                    title: '${authCubit.userModel!.fname} ${authCubit.userModel!.lname}',
+                    title:
+                        '${authCubit.userModel!.fname} ${authCubit.userModel!.lname}',
                     icon: Icons.account_circle,
                     subTitle: 'المعلومات الشخصية',
                     onTap: () {
-                      trans.Get.to(const StudentProfileView(),transition: trans.Transition.downToUp);
+                      trans.Get.to(const StudentProfileView(),
+                          transition: trans.Transition.downToUp);
                     }),
                 SizedBox(
                   height: 40.h,
@@ -46,22 +48,25 @@ class ProfileView extends StatelessWidget {
                         icon: Icons.question_mark_outlined)
                   ],
                 ),
-                 SizedBox(
+                SizedBox(
                   height: 40.h,
                 ),
                 ProfileCardWidget(
                     title: 'السياسة والخصوصية',
                     icon: Icons.policy_outlined,
-                    ontap: () {
-                    }),
+                    ontap: () {}),
                 ProfileCardWidget(
-                  ontap: (){},
-                    title: 'عن التطبيق', icon: Icons.change_circle_rounded),
+                    ontap: () {},
+                    title: 'عن التطبيق',
+                    icon: Icons.change_circle_rounded),
                 ProfileCardWidget(
                     title: 'تسجيل الخروج',
                     icon: Icons.logout,
                     ontap: () {
-                      logout();
+                      showDialog(
+                        context: context,
+                        builder: (context) => const SignOutDialog(),
+                      );
                     }),
               ],
             ),

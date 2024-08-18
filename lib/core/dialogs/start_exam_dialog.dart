@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:my_manasa/core/utils/styles.dart';
 import 'package:my_manasa/core/widgets/custom_button.dart';
+import 'package:my_manasa/features/Quiz/presentation/views/exam_view.dart';
 
 class StartExamDialog extends StatelessWidget {
   const StartExamDialog({
@@ -36,7 +38,10 @@ class StartExamDialog extends StatelessWidget {
                         'نعم',
                         style: Styles.semiBold20.copyWith(height: .3,color: Colors.white),
                       ),
-                      onPressed: () {}),
+                      onPressed: () {
+                        Get.to(const ExamView(),transition: Transition.fadeIn);
+
+                      }),
                 ),
                 const SizedBox(width: 20,),
                 Expanded(
@@ -46,7 +51,9 @@ class StartExamDialog extends StatelessWidget {
                         'لا',
                         style: Styles.semiBold20.copyWith(height: .3,color: Colors.black),
                       ),
-                      onPressed: () {}),
+                      onPressed: () {
+                        Get.back();
+                      }),
                 ),
 
               ],

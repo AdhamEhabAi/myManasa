@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:get/get.dart';
+import 'package:my_manasa/core/dialogs/buy_completed_dialog.dart';
 import 'package:my_manasa/core/utils/styles.dart';
 import 'package:my_manasa/core/widgets/custom_button.dart';
 import 'package:my_manasa/core/widgets/info_textfield.dart';
@@ -15,7 +18,7 @@ class GetCodeDialog extends StatelessWidget {
   Widget build(BuildContext context) {
     return Dialog(
       shape: RoundedRectangleBorder(
-        borderRadius: BorderRadius.circular(30),
+        borderRadius: BorderRadius.circular(30.r),
       ),
       child: Container(
         width: MediaQuery.of(context).size.width * .8,
@@ -32,27 +35,28 @@ class GetCodeDialog extends StatelessWidget {
             ),
             const SizedBox(height: 20),
             Padding(
-              padding: const EdgeInsets.symmetric(
-                  horizontal: 20),
+              padding:  EdgeInsets.symmetric(
+                  horizontal: 20.w),
               child: InfoTextField(
                 width: double.infinity,
                 textEditingController: textEditingController,
                 hintText: '',
               ),
             ),
-            const SizedBox(height: 20),
+             SizedBox(height: 20.h),
             Padding(
-              padding: const EdgeInsets.symmetric(
-                  horizontal: 40.0),
+              padding:  EdgeInsets.symmetric(
+                  horizontal: 40.0.w),
               child: CustomButton(
                 text: Text(
                   'شراء',
                   style: Styles.semiBold14
                       .copyWith(color: Colors.white),
                 ),
-                borderRadius: 10,
+                borderRadius: 10.r,
                 onPressed: () {
-                  Navigator.of(context).pop();
+                  Get.back();
+                  showDialog(context: context, builder: (context) => const BuyCompletedDialog(),);
                 },
               ),
             ),
