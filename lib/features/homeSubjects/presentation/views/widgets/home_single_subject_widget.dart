@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:my_manasa/constants.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:my_manasa/core/utils/styles.dart';
 
 class HomeSingleSubjectWidget extends StatelessWidget {
@@ -14,8 +14,7 @@ class HomeSingleSubjectWidget extends StatelessWidget {
     return InkWell(
       onTap: onTap,
       child: Padding(
-        padding: const EdgeInsets.only(
-            left: AppPadding.padding, top: 10, bottom: 10),
+        padding:  EdgeInsets.all(10.r),
         child: Container(
           width: MediaQuery.of(context).size.width / 1.7,
           decoration: BoxDecoration(

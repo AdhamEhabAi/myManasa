@@ -16,28 +16,22 @@ class AllTeachersView extends StatelessWidget {
         backGroundColor: Colors.transparent,
         titleColor: AppColors.primaryColor,
       ),
-      body: Center(
-        child: Padding(
-          padding: const EdgeInsets.only(right: 10.0),
-          child: SizedBox(
-            child: GridView.builder(
-              gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-                crossAxisCount: 2, // Number of columns
+      body: SizedBox(
+        child: GridView.builder(
+          gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+            crossAxisCount: 2, // Number of columns
 
-
-              ),
-              itemCount: 7, // Number of items in the grid
-              itemBuilder: (context, index) {
-                return AllTeachersTeacherWidget(
-                  onTap: () {
-                    Get.to(const TeacherView(), transition: Transition.fadeIn);
-
-                    // Handle tap
-                  },
-                );
-              },
-            ),
           ),
+          itemCount: 7, // Number of items in the grid
+          itemBuilder: (context, index) {
+            return AllTeachersTeacherWidget(
+              onTap: () {
+                Get.to(const TeacherView(), transition: Transition.fadeIn);
+
+                // Handle tap
+              },
+            );
+          },
         ),
       ),
     );
