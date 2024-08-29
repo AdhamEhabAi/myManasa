@@ -1,11 +1,15 @@
+import 'dart:developer';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:my_manasa/constants.dart';
+import 'package:my_manasa/core/utils/funtions.dart';
 import 'package:my_manasa/core/utils/styles.dart';
 import 'package:my_manasa/core/widgets/custom_button.dart';
-import 'package:my_manasa/core/widgets/custom_text_field.dart';
+import 'package:my_manasa/core/widgets/custom_text_form_field.dart';
 import 'package:my_manasa/core/widgets/main_background.dart';
+import 'package:my_manasa/core/widgets/toast_m.dart';
 import 'package:my_manasa/features/authentication/presentation/manager/auth_cubit.dart';
 import 'package:my_manasa/features/authentication/presentation/views/widgets/drop_down_textfield.dart';
 import 'package:get/get.dart' as trans;
@@ -66,7 +70,7 @@ class _RegisterViewState extends State<RegisterView> {
                               'إنشاء حساب',
                               style: Styles.semiBold30.copyWith(fontSize: 30.sp),
                             ),
-                            CustomTextField(
+                            CustomTextFormField(
                               controller: provider.fName,
                               validator: (value) {
                                 if (value == null || value.isEmpty) {
@@ -74,10 +78,9 @@ class _RegisterViewState extends State<RegisterView> {
                                 }
                                 return null;
                               },
-                              borderColor: AppColors.primaryColor,
                               labelText: 'الأسم الأول',
                             ),
-                            CustomTextField(
+                            CustomTextFormField(
                               controller: provider.lName,
                               validator: (value) {
                                 if (value == null || value.isEmpty) {
@@ -85,35 +88,42 @@ class _RegisterViewState extends State<RegisterView> {
                                 }
                                 return null;
                               },
-                              borderColor: AppColors.primaryColor,
                               labelText: 'الأسم الثاني',
                             ),
-                            CustomTextField(
+                            CustomTextFormField(
                               controller: provider.fPhone,
                               validator: (value) {
+                                RegExp regExp = RegExp(r'^(012|010|011|015)\d{8}$');
                                 if (value == null || value.isEmpty) {
-                                  return 'ادخل رقم الموبيل';
+                                  return 'ادخل رقم الموبيل ولي الامر';
+                                }else if(regExp.hasMatch(value)){
+                                  return null;
+                                }else{
+                                  return 'ادخل رقم الهاتف صحيح';
                                 }
-                                return null;
+
                               },
-                              borderColor: AppColors.primaryColor,
-                              prefix: Icon(
+                              prefixIcon: Icon(
                                 Icons.phone,
                                 color: AppColors.primaryColor,
                                 size: 24.h,
                               ),
                               labelText: 'رقم الموبيل',
                             ),
-                            CustomTextField(
+                            CustomTextFormField(
                               controller: provider.lPhone,
                               validator: (value) {
+                                RegExp regExp = RegExp(r'^(012|010|011|015)\d{8}$');
                                 if (value == null || value.isEmpty) {
                                   return 'ادخل رقم الموبيل ولي الامر';
+                                }else if(regExp.hasMatch(value)){
+                                  return null;
+                                }else{
+                                  return 'ادخل رقم الهاتف صحيح';
                                 }
-                                return null;
+
                               },
-                              borderColor: AppColors.primaryColor,
-                              prefix: Icon(
+                              prefixIcon: Icon(
                                 Icons.phone,
                                 color: AppColors.primaryColor,
                                 size: 24.h,
@@ -134,23 +144,24 @@ class _RegisterViewState extends State<RegisterView> {
                                 });
                               },
                             ),
-                            CustomTextField(
+                            CustomTextFormField(
                               controller: provider.email,
                               validator: (value) {
                                 if (value == null || value.isEmpty) {
                                   return 'ادخل البريد الاكتروني';
+                                }else{
+                                  return validateEmail(value);
                                 }
-                                return null;
+
                               },
-                              borderColor: AppColors.primaryColor,
-                              prefix: Icon(
+                              prefixIcon: Icon(
                                 Icons.email,
                                 color: AppColors.primaryColor,
                                 size: 24.h,
                               ),
                               labelText: 'البريد الاكتروني',
                             ),
-                            CustomTextField(
+                            CustomTextFormField(
                               controller: provider.password,
                               validator: (value) {
                                 if (value == null || value.isEmpty) {
@@ -158,31 +169,19 @@ class _RegisterViewState extends State<RegisterView> {
                                 }
                                 return null;
                               },
-                              borderColor: AppColors.primaryColor,
-                              prefix: Icon(
+                              prefixIcon: Icon(
                                 Icons.lock,
                                 color: AppColors.primaryColor,
                                 size: 24.h,
                               ),
-                              suffix: Icon(
+                              suffixIcon: Icon(
                                 Icons.visibility_off,
                                 color: AppColors.primaryColor,
                                 size: 24.h,
                               ),
                               labelText: 'كلمة المرور',
                             ),
-                            BlocConsumer<AuthCubit, AuthState>(
-                              listener: (context, state) {
-                                if (state is RegisterFailure) {
-                                  trans.Get.showSnackbar(trans.GetSnackBar(
-                                    duration: const Duration(seconds: 2),
-                                    messageText: Text(
-                                      state.errMessage,
-                                      style: Styles.semiBold14.copyWith(color: Colors.white),
-                                    ),
-                                  ));
-                                }
-                              },
+                            BlocBuilder<AuthCubit, AuthState>(
                               builder: (context, state) {
                                 if (state is RegisterLoading) {
                                   return const CircularProgressIndicator(); // Display a loading indicator while registering

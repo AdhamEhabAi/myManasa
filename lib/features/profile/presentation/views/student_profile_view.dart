@@ -5,7 +5,7 @@ import 'package:my_manasa/core/dialogs/change_done_dialog.dart';
 import 'package:my_manasa/core/utils/styles.dart';
 import 'package:my_manasa/core/widgets/custom_appbar.dart';
 import 'package:my_manasa/core/widgets/custom_button.dart';
-import 'package:my_manasa/core/widgets/custom_text_field.dart';
+import 'package:my_manasa/core/widgets/custom_text_form_field.dart';
 import 'package:my_manasa/features/authentication/presentation/views/widgets/drop_down_textfield.dart';
 
 class StudentProfileView extends StatefulWidget {
@@ -20,6 +20,7 @@ class _StudentProfileViewState extends State<StudentProfileView> {
 
   @override
   Widget build(BuildContext context) {
+    TextEditingController textEditingController = TextEditingController();
     return SafeArea(
       child: Scaffold(
         appBar: const CustomAppBar(
@@ -63,26 +64,26 @@ class _StudentProfileViewState extends State<StudentProfileView> {
                         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                         crossAxisAlignment: CrossAxisAlignment.center,
                         children: [
-                          const CustomTextField(
-                            borderColor: AppColors.primaryColor,
+                          CustomTextFormField(
+                            controller: textEditingController,
                             labelText: 'الأسم الأول',
                           ),
-                          const CustomTextField(
-                            borderColor: AppColors.primaryColor,
+                          CustomTextFormField(
+                            controller: textEditingController,
                             labelText: 'الأسم الثاني',
                           ),
-                          CustomTextField(
-                            borderColor: AppColors.primaryColor,
-                            prefix: Icon(
+                          CustomTextFormField(
+                            controller:textEditingController ,
+                            prefixIcon: Icon(
                               Icons.phone,
                               color: AppColors.primaryColor,
                               size: 20.sp, // Responsive icon size
                             ),
                             labelText: 'رقم الموبيل',
                           ),
-                          CustomTextField(
-                            borderColor: AppColors.primaryColor,
-                            prefix: Icon(
+                          CustomTextFormField(
+                            controller: textEditingController,
+                            prefixIcon: Icon(
                               Icons.phone,
                               color: AppColors.primaryColor,
                               size: 20.sp, // Responsive icon size
@@ -105,23 +106,23 @@ class _StudentProfileViewState extends State<StudentProfileView> {
                               });
                             },
                           ),
-                          CustomTextField(
-                            borderColor: AppColors.primaryColor,
-                            prefix: Icon(
+                          CustomTextFormField(
+                            controller: textEditingController,
+                            prefixIcon: Icon(
                               Icons.email,
                               color: AppColors.primaryColor,
                               size: 20.sp, // Responsive icon size
                             ),
                             labelText: 'البريد الاكتروني',
                           ),
-                          CustomTextField(
-                            borderColor: AppColors.primaryColor,
-                            prefix: Icon(
+                          CustomTextFormField(
+                            controller: textEditingController,
+                            prefixIcon: Icon(
                               Icons.lock,
                               color: AppColors.primaryColor,
                               size: 20.sp, // Responsive icon size
                             ),
-                            suffix: Icon(
+                            suffixIcon: Icon(
                               Icons.visibility_off,
                               color: AppColors.primaryColor,
                               size: 20.sp, // Responsive icon size

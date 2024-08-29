@@ -4,7 +4,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart' as trans;
 import 'package:my_manasa/constants.dart';
 import 'package:my_manasa/core/utils/styles.dart';
-import 'package:my_manasa/core/widgets/custom_text_field.dart';
+import 'package:my_manasa/core/widgets/custom_text_form_field.dart';
 import 'package:my_manasa/features/authentication/presentation/manager/auth_cubit.dart';
 import 'package:my_manasa/features/search/presentation/views/search_view.dart';
 
@@ -15,6 +15,7 @@ class HomeHeader extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    TextEditingController searchController = TextEditingController();
     AuthCubit authCubit = BlocProvider.of<AuthCubit>(context);
     return Container(
       width: MediaQuery.of(context).size.width,
@@ -33,7 +34,8 @@ class HomeHeader extends StatelessWidget {
                 overflow: TextOverflow.ellipsis,
               ),
             ),
-            CustomTextField(
+            CustomTextFormField(
+              controller: searchController,
               enabled: false,
               onTap: () {
                 trans.Get.to(
@@ -41,14 +43,14 @@ class HomeHeader extends StatelessWidget {
                   transition: trans.Transition.fadeIn,
                 );
               },
-              labelText: 'بحث',
+              hintText: 'بحث',
               color: Colors.transparent,
-              prefix: const Icon(
+              prefixIcon: const Icon(
                 Icons.search,
                 size: 30,
                 color: Colors.white,
               ),
-              suffix: Image.asset(
+              suffixIcon: Image.asset(
                 'assets/images/search.png',
                 width: 20.w,
                 color: Colors.white,

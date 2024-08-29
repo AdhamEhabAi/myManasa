@@ -1,10 +1,13 @@
+import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
+import 'package:my_manasa/core/utils/api_service.dart';
 import 'package:my_manasa/features/authentication/presentation/manager/auth_cubit.dart';
 import 'package:my_manasa/features/authentication/presentation/views/splash_view.dart';
+import 'package:my_manasa/features/authentication/repo/auth_repo.dart';
 import 'package:my_manasa/features/homeSubjects/presentation/manager/subject_cubit.dart';
 import 'package:my_manasa/features/myCourses/presentation/manager/my_courses_cubit.dart';
 import 'package:my_manasa/generated/l10n.dart';
@@ -27,7 +30,7 @@ class MyApp extends StatelessWidget {
           providers: [
             BlocProvider(create: (context) => SubjectCubit()),
             BlocProvider(create: (context) => MyCoursesCubit()),
-            BlocProvider(create: (context) => AuthCubit()),
+            BlocProvider(create: (context) => AuthCubit(AuthRepo(ApiService()))),
           ],
           child: GetMaterialApp(
             locale: const Locale('ar', 'AE'),

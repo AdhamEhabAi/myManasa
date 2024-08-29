@@ -3,9 +3,10 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart' as trans;
 import 'package:my_manasa/constants.dart';
+import 'package:my_manasa/core/utils/funtions.dart';
 import 'package:my_manasa/core/utils/styles.dart';
 import 'package:my_manasa/core/widgets/custom_button.dart';
-import 'package:my_manasa/core/widgets/custom_text_field.dart';
+import 'package:my_manasa/core/widgets/custom_text_form_field.dart';
 import 'package:my_manasa/features/authentication/presentation/manager/auth_cubit.dart';
 import 'package:my_manasa/features/authentication/presentation/views/forget_password_view.dart';
 import 'package:my_manasa/features/authentication/presentation/views/register_view.dart';
@@ -49,17 +50,7 @@ class LoginView extends StatelessWidget {
                 physics: const NeverScrollableScrollPhysics(),
                 child: BlocConsumer<AuthCubit, AuthState>(
                   listener: (context, state) {
-                    if (state is LoginFailure) {
-                      trans.Get.showSnackbar(
-                        trans.GetSnackBar(
-                          duration: const Duration(seconds: 2),
-                          messageText: Text(
-                            state.errMessage,
-                            style: Styles.semiBold14.copyWith(color: Colors.white),
-                          ),
-                        ),
-                      );
-                    } else if (state is LoginSuccess) {
+                    if (state is LoginSuccess) {
                       trans.Get.offAll(() => const MainView(), transition: trans.Transition.fadeIn);
                     }
                   },
@@ -86,32 +77,30 @@ class LoginView extends StatelessWidget {
                               SizedBox(height: 10.h),
                             ],
                           ),
-                          CustomTextField(
+                          CustomTextFormField(
                             controller: authCubit.loginEmail,
-                            borderColor: AppColors.primaryColor,
-                            prefix: const Icon(
+                            prefixIcon: const Icon(
                               Icons.email,
                               color: AppColors.primaryColor,
                             ),
                             labelText: 'البريد الاكتروني',
                             validator: (value) {
                               if (value == null || value.isEmpty) {
-                                return 'يرجى إدخال البريد الإلكتروني';
-                              } else if (!RegExp(r'^[^@]+@[^@]+\.[^@]+').hasMatch(value)) {
-                                return 'يرجى إدخال بريد إلكتروني صالح';
+                                return 'ادخل البريد الاكتروني';
+                              }else{
+                                return validateEmail(value);
                               }
-                              return null;
+
                             },
                           ),
                           SizedBox(height: 20.h),
-                          CustomTextField(
+                          CustomTextFormField(
                             controller: authCubit.loginPassword,
-                            borderColor: AppColors.primaryColor,
-                            prefix: const Icon(
+                            prefixIcon: const Icon(
                               Icons.lock,
                               color: AppColors.primaryColor,
                             ),
-                            suffix: const Icon(
+                            suffixIcon: const Icon(
                               Icons.visibility_off,
                               color: AppColors.primaryColor,
                             ),

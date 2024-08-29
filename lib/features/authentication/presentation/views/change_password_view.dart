@@ -3,15 +3,16 @@ import 'package:get/get.dart';
 import 'package:my_manasa/constants.dart';
 import 'package:my_manasa/core/utils/styles.dart';
 import 'package:my_manasa/core/widgets/custom_button.dart';
-import 'package:my_manasa/core/widgets/custom_text_field.dart';
+import 'package:my_manasa/core/widgets/custom_text_form_field.dart';
 import 'package:my_manasa/core/widgets/main_background.dart';
 import 'package:my_manasa/features/authentication/presentation/views/login_view.dart';
 
 class ChangePasswordView extends StatelessWidget {
   const ChangePasswordView({super.key});
-
   @override
   Widget build(BuildContext context) {
+    TextEditingController passController = TextEditingController();
+
     return SafeArea(
       child: Scaffold(
         body: Stack(
@@ -37,18 +38,20 @@ class ChangePasswordView extends StatelessWidget {
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                    const CustomTextField(
-                      suffix: Icon(Icons.visibility_off,color: AppColors.primaryColor,),
+                    CustomTextFormField(
+                      controller: passController,
+                      suffixIcon: const Icon(Icons.visibility_off,color: AppColors.primaryColor,),
                       color: Colors.transparent,
                         labelText: 'كلمة المرور',
-                        borderColor: AppColors.primaryColor),
+                    ),
                     const SizedBox(height: 30,),
-                    const CustomTextField(
-                        suffix: Icon(Icons.visibility_off,color: AppColors.primaryColor,),
+                     CustomTextFormField(
+                      controller: passController,
+                         suffixIcon: Icon(Icons.visibility_off,color: AppColors.primaryColor,),
 
                         color: Colors.transparent,
                         labelText: 'تأكيد كلمة المرور',
-                        borderColor: AppColors.primaryColor),
+                     ),
                     const SizedBox(height: 80,),
 
                     CustomButton(

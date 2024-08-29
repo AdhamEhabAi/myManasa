@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:my_manasa/constants.dart';
-import 'package:my_manasa/core/widgets/custom_text_field.dart';
+import 'package:my_manasa/core/widgets/custom_text_form_field.dart';
 import 'package:my_manasa/features/search/presentation/views/widgets/search_widget.dart';
 
 class SearchViewBody extends StatelessWidget {
@@ -10,6 +10,7 @@ class SearchViewBody extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    TextEditingController textEditingController = TextEditingController();
     return Container(
       width: MediaQuery.of(context).size.width,
       height: MediaQuery.of(context).size.height,
@@ -23,11 +24,11 @@ class SearchViewBody extends StatelessWidget {
         padding: const EdgeInsets.all(AppPadding.padding),
         child: Column(
           children: [
-            CustomTextField(
-              borderColor: AppColors.primaryColor,
+            CustomTextFormField(
+              controller: textEditingController,
               labelText: 'بحث',
-              prefix: const Icon(Icons.search, size: 30),
-              suffix: Image.asset('assets/images/search.png', width: 20),
+              prefixIcon: const Icon(Icons.search, size: 30),
+              suffixIcon: Image.asset('assets/images/search.png', width: 20),
             ),
             const SizedBox(
               height: 20,

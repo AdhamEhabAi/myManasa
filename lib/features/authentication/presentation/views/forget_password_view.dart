@@ -4,7 +4,7 @@ import 'package:get/get.dart';
 import 'package:my_manasa/constants.dart';
 import 'package:my_manasa/core/utils/styles.dart';
 import 'package:my_manasa/core/widgets/custom_button.dart';
-import 'package:my_manasa/core/widgets/custom_text_field.dart';
+import 'package:my_manasa/core/widgets/custom_text_form_field.dart';
 import 'package:my_manasa/core/widgets/main_background.dart';
 import 'package:my_manasa/features/authentication/presentation/manager/auth_cubit.dart';
 
@@ -47,10 +47,10 @@ class ForgetPasswordView extends StatelessWidget {
                     const SizedBox(
                       height: 30,
                     ),
-                    CustomTextField(
+                    CustomTextFormField(
                       controller: phoneController,
                       labelText: 'رقم الهاتف',
-                      borderColor: AppColors.primaryColor,
+
                     ),
                     const SizedBox(
                       height: 80,
