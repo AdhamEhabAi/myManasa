@@ -2,11 +2,20 @@ import 'package:flutter/material.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:my_manasa/constants.dart';
+import 'package:my_manasa/core/network/api_endpoints.dart';
 import 'package:my_manasa/core/utils/styles.dart';
+import 'package:my_manasa/features/homeTeachers/data/models/teacher_model.dart';
+import 'package:cached_network_image/cached_network_image.dart';
 
 class AllTeachersTeacherWidget extends StatelessWidget {
-  const AllTeachersTeacherWidget({super.key, required this.onTap});
+  final Teacher teacher;
   final VoidCallback onTap;
+
+  const AllTeachersTeacherWidget({
+    super.key,
+    required this.onTap,
+    required this.teacher,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -18,129 +27,123 @@ class AllTeachersTeacherWidget extends StatelessWidget {
           decoration: BoxDecoration(
             boxShadow: [
               BoxShadow(
-                color: Colors.black.withOpacity(0.3),
-                offset: Offset(0, 4.h), // Responsive offset
-                blurRadius: 4.r, // Responsive blurRadius
-                spreadRadius: 0.r, // Responsive spreadRadius
+                color: Colors.black.withOpacity(0.05), // Reduced opacity
+                blurRadius: 1.r, // Reduced blur radius to minimize shadow height
               ),
             ],
             borderRadius: BorderRadius.circular(17.r), // Responsive borderRadius
           ),
           child: Column(
+            mainAxisSize: MainAxisSize.min, // Adjust to minimum size needed
             children: [
-              Expanded(
-                child: Container(
-                  decoration: BoxDecoration(
-                    borderRadius: BorderRadius.only(
-                      topLeft: Radius.circular(17.r), // Responsive borderRadius
-                      topRight: Radius.circular(17.r), // Responsive borderRadius
-                    ),
-                    image: const DecorationImage(
-                      image: AssetImage('assets/images/Teacher (2).png'),
-                      fit: BoxFit.cover,
-                    ),
+              ClipRRect(
+                borderRadius: BorderRadius.only(
+                  topLeft: Radius.circular(17.r),
+                  topRight: Radius.circular(17.r),
+                ),
+                child: CachedNetworkImage(
+                  imageUrl: APIEndpoints.imgPath + teacher.img,
+                  fit: BoxFit.cover,
+                  placeholder: (context, url) => Image.asset(
+                    'assets/images/Teacher.png',
+                    fit: BoxFit.cover,
                   ),
+                  errorWidget: (context, url, error) => Image.asset(
+                    'assets/images/Teacher.png',
+                    fit: BoxFit.cover,
+                  ),
+                  height: 100.h, // Set a fixed height for the image
+                  width: double.infinity, // Full width of the parent
                 ),
               ),
-              Expanded(
-                child: Container(
-                  decoration: BoxDecoration(
-                    boxShadow: [
-                      BoxShadow(
-                        color: Colors.black.withOpacity(0.1),
-                        offset: Offset(0, 4.h), // Responsive offset
-                        blurRadius: 4.r, // Responsive blurRadius
-                        spreadRadius: 0.r, // Responsive spreadRadius
-                      ),
-                    ],
-                    color: Colors.white,
-                    borderRadius: BorderRadius.only(
-                      bottomRight: Radius.circular(17.r), // Responsive borderRadius
-                      bottomLeft: Radius.circular(17.r), // Responsive borderRadius
-                    ),
+              Container(
+                decoration: BoxDecoration(
+                  color: Colors.white,
+                  borderRadius: BorderRadius.only(
+                    bottomRight: Radius.circular(17.r), // Responsive borderRadius
+                    bottomLeft: Radius.circular(17.r), // Responsive borderRadius
                   ),
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      Padding(
-                        padding: EdgeInsets.symmetric(horizontal: 4.w), // Responsive padding
-                        child: Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: [
-                            Row(
-                              children: [
-                                Text(
-                                  'مستر /',
-                                  style: Styles.semiBold10.copyWith(
-                                    color: AppColors.primaryColor,
-                                    fontSize: 10.sp, // Responsive fontSize
-                                  ),
-                                ),
-                                Text(
-                                  'مجدي بلال',
-                                  style: Styles.semiBold10.copyWith(
-                                    fontSize: 10.sp, // Responsive fontSize
-                                  ),
-                                ),
-                              ],
-                            ),
-                            SizedBox(height: 5.h), // Responsive height
-                            Text(
-                              'دكتور في مادة العلوم',
-                              overflow: TextOverflow.ellipsis,
-                              style: Styles.semiBold10.copyWith(
-                                color: Colors.grey,
-                                fontSize: 9.sp, // Responsive fontSize
-                              ),
-                            ),
-                          ],
-                        ),
-                      ),
-                      Column(
-                        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                ),
+                padding: EdgeInsets.symmetric(horizontal: 4.w, vertical: 8.h), // Add padding
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    Expanded(
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        mainAxisAlignment: MainAxisAlignment.center,
                         children: [
-                          Column(
+                          Row(
                             children: [
                               Text(
-                                'تقييم',
+                                'مستر /',
                                 style: Styles.semiBold10.copyWith(
-                                  color: Colors.grey,
-                                  fontSize: 10.sp, // Responsive fontSize
+                                  color: AppColors.primaryColor,
+                                  fontSize: 8.sp, // Reduced font size
                                 ),
                               ),
-                              SizedBox(height: 5.h), // Responsive height
-                              RatingBar(
-                                initialRating: 4,
-                                ignoreGestures: true,
-                                minRating: 1,
-                                direction: Axis.horizontal,
-                                allowHalfRating: true,
-                                itemCount: 5,
-                                itemSize: 10.w, // Responsive itemSize
-                                ratingWidget: RatingWidget(
-                                  full: const Icon(Icons.star, color: Colors.amber),
-                                  half: const Icon(Icons.star_half, color: Colors.amber),
-                                  empty: const Icon(Icons.star_border, color: Colors.amber),
+                              SizedBox(width: 3.w), // Add spacing
+                              Expanded(
+                                child: Text(
+                                  '${teacher.fname} ${teacher.lname}',
+                                  style: Styles.semiBold10.copyWith(
+                                    fontSize: 8.sp, // Reduced font size
+                                  ),
+                                  overflow: TextOverflow.ellipsis, // Handle overflow
+                                  maxLines: 1, // Limit to one line
                                 ),
-                                onRatingUpdate: (rating) {},
                               ),
                             ],
                           ),
-                          Padding(
-                            padding: EdgeInsets.only(left: 4.w), // Responsive padding
-                            child: Text(
-                              'مادة العلوم',
-                              style: Styles.semiBold10.copyWith(
-                                color: AppColors.primaryColor,
-                                fontSize: 10.sp, // Responsive fontSize
-                              ),
+                          SizedBox(height: 4.h), // Reduced height
+                          Text(
+                            'أستاذ ${teacher.sec}',
+                            overflow: TextOverflow.ellipsis,
+                            style: Styles.semiBold10.copyWith(
+                              color: Colors.grey,
+                              fontSize: 8.sp, // Reduced font size
                             ),
                           ),
                         ],
                       ),
-                    ],
-                  ),
+                    ),
+                    Column(
+                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                      children: [
+                        Text(
+                          'تقييم',
+                          style: Styles.semiBold10.copyWith(
+                            color: Colors.grey,
+                            fontSize: 8.sp, // Reduced font size
+                          ),
+                        ),
+                        SizedBox(height: 4.h), // Reduced height
+                        RatingBar(
+                          initialRating: double.parse(teacher.rank),
+                          ignoreGestures: true,
+                          minRating: 1,
+                          direction: Axis.horizontal,
+                          allowHalfRating: true,
+                          itemCount: 5,
+                          itemSize: 8.w, // Reduced item size
+                          ratingWidget: RatingWidget(
+                            full: const Icon(Icons.star, color: Colors.amber),
+                            half: const Icon(Icons.star_half, color: Colors.amber),
+                            empty: const Icon(Icons.star_border, color: Colors.amber),
+                          ),
+                          onRatingUpdate: (rating) {},
+                        ),
+                        SizedBox(height: 4.h), // Reduced height
+                        Text(
+                          'مادة ${teacher.sec}',
+                          style: Styles.semiBold10.copyWith(
+                            color: AppColors.primaryColor,
+                            fontSize: 8.sp, // Reduced font size
+                          ),
+                        ),
+                      ],
+                    ),
+                  ],
                 ),
               ),
             ],
