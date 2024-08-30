@@ -11,7 +11,12 @@ final class TeacherError extends TeacherState {
   TeacherError(this.failure);
 }
 final class TeacherLoaded extends TeacherState {
-  final List<Teacher> teachers;
+}
+final class CoursesLoading extends TeacherState {}
+final class CoursesError extends TeacherState {
+  final String failure;
 
-  TeacherLoaded(this.teachers);
+  CoursesError(this.failure);
+}
+final class CoursesLoaded extends TeacherState {
 }

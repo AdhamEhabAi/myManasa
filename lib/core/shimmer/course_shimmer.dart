@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:shimmer/shimmer.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';  // Import ScreenUtil for responsive design
 
 class CourseShimmer extends StatelessWidget {
   const CourseShimmer({super.key});
@@ -7,58 +8,61 @@ class CourseShimmer extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.all(12.0),
+      padding: EdgeInsets.all(12.0.w),  // Use ScreenUtil for responsive padding
       child: SizedBox(
-        height: 250,
+        height: 250.h,  // Make height responsive
         child: Shimmer.fromColors(
           baseColor: Colors.grey[300]!,
           highlightColor: Colors.grey[100]!,
           period: const Duration(milliseconds: 1000),
-          child: ListView.separated(scrollDirection: Axis.horizontal,
+          child: ListView.separated(
+            scrollDirection: Axis.horizontal,
             itemBuilder: (context, index) {
               return SizedBox(
-                height: 100,
+                height: 100.h,  // Make height responsive
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.start,
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Container(
-                      width: 270,
-                      height: 150,
+                      width: 270.w,  // Make width responsive
+                      height: 150.h,  // Make height responsive
                       decoration: BoxDecoration(
                         color: Colors.white,
-                        borderRadius: BorderRadius.circular(16),
+                        borderRadius: BorderRadius.circular(16.r),  // Make radius responsive
                       ),
                     ),
-                    const SizedBox(height: 10,),
+                    SizedBox(height: 10.h),  // Make height responsive
                     Center(
                       child: Container(
-                        width: 200,
-                        height: 30,
+                        width: 200.w,  // Make width responsive
+                        height: 30.h,  // Make height responsive
                         decoration: BoxDecoration(
                           color: Colors.white,
-                          borderRadius: BorderRadius.circular(16),
+                          borderRadius: BorderRadius.circular(16.r),  // Make radius responsive
                         ),
                       ),
                     ),
-                    const SizedBox(height: 10,),
+                    SizedBox(height: 10.h),  // Make height responsive
                     Row(
                       children: [
-                        Container(
-                          width: 180,
-                          height: 30,
-                          decoration: BoxDecoration(
-                            color: Colors.white,
-                            borderRadius: BorderRadius.circular(16),
+                        Flexible(  // Add Flexible here to avoid overflow
+                          child: Container(
+                            width: 180.w,  // Make width responsive
+                            height: 30.h,  // Make height responsive
+                            decoration: BoxDecoration(
+                              color: Colors.white,
+                              borderRadius: BorderRadius.circular(16.r),  // Make radius responsive
+                            ),
                           ),
                         ),
-                        const SizedBox(width: 30,),
+                        SizedBox(width: 30.w),  // Make width responsive
                         Container(
-                          width: 50,
-                          height: 30,
+                          width: 50.w,  // Make width responsive
+                          height: 30.h,  // Make height responsive
                           decoration: BoxDecoration(
                             color: Colors.white,
-                            borderRadius: BorderRadius.circular(16),
+                            borderRadius: BorderRadius.circular(16.r),  // Make radius responsive
                           ),
                         ),
                       ],
@@ -67,7 +71,7 @@ class CourseShimmer extends StatelessWidget {
                 ),
               );
             },
-            separatorBuilder: (context, index) => const SizedBox(width: 20,),
+            separatorBuilder: (context, index) => SizedBox(width: 20.w),  // Make width responsive
             itemCount: 3,
           ),
         ),

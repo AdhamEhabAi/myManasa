@@ -20,9 +20,10 @@ class HomeSingleSubjectWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     return Padding(
       padding: EdgeInsets.only(
-        left: AppPadding.padding.w, // Match the left padding
-        top: 10.h, // Match the top padding
-        bottom: 10.h, // Match the bottom padding
+        left: 10.w,
+        right: 10.w,
+        top: 10.h,
+        bottom: 10.h,
       ),
       child: InkWell(
         onTap: onTap,

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:shimmer/shimmer.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart'; // Import ScreenUtil for responsive design
 
 class TeacherShimmer extends StatelessWidget {
   const TeacherShimmer({super.key});
@@ -7,7 +8,7 @@ class TeacherShimmer extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 12.0, vertical: 16.0),
+      padding: EdgeInsets.symmetric(horizontal: 12.0.w, vertical: 16.0.h), // Make padding responsive
       child: Shimmer.fromColors(
         baseColor: Colors.grey[300]!,
         highlightColor: Colors.grey[100]!,
@@ -16,16 +17,16 @@ class TeacherShimmer extends StatelessWidget {
           scrollDirection: Axis.horizontal,
           itemBuilder: (context, index) {
             return Container(
-              width: 260,
-              margin: const EdgeInsets.symmetric(vertical: 8.0),
+              width: 260.w, // Make width responsive
+              margin: EdgeInsets.symmetric(vertical: 8.0.h), // Make margin responsive
               decoration: BoxDecoration(
                 color: Colors.white,
-                borderRadius: BorderRadius.circular(17), // Rounded corners
+                borderRadius: BorderRadius.circular(17.r), // Make radius responsive
                 boxShadow: [
                   BoxShadow(
                     color: Colors.black.withOpacity(0.1),
-                    offset: const Offset(0, 1), // Minimal offset
-                    blurRadius: 2, // Light shadow for a subtle effect
+                    offset: Offset(0, 1.h), // Make offset responsive
+                    blurRadius: 2.r, // Make blur radius responsive
                   ),
                 ],
               ),
@@ -34,52 +35,52 @@ class TeacherShimmer extends StatelessWidget {
                 children: [
                   // Image Placeholder
                   Container(
-                    height: 120, // Height for image placeholder
-                    decoration: const BoxDecoration(
+                    height: 120.h, // Make height responsive
+                    decoration: BoxDecoration(
                       color: Colors.white,
                       borderRadius: BorderRadius.only(
-                        topLeft: Radius.circular(17),
-                        topRight: Radius.circular(17),
+                        topLeft: Radius.circular(17.r),
+                        topRight: Radius.circular(17.r),
                       ),
                     ),
                   ),
                   // Text Placeholder
-                  Expanded(
+                  Expanded(  // Use Expanded to avoid overflow
                     child: Padding(
-                      padding: const EdgeInsets.symmetric(horizontal: 12.0, vertical: 8.0),
+                      padding: EdgeInsets.symmetric(horizontal: 12.0.w, vertical: 8.0.h), // Make padding responsive
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           // Wrapping text placeholders with Flexible
                           Flexible(
                             child: Container(
-                              width: 120, // Width for the name placeholder
-                              height: 15,
+                              width: 120.w, // Make width responsive
+                              height: 15.h, // Make height responsive
                               decoration: BoxDecoration(
                                 color: Colors.white,
-                                borderRadius: BorderRadius.circular(8),
+                                borderRadius: BorderRadius.circular(8.r), // Make radius responsive
                               ),
                             ),
                           ),
-                          const SizedBox(height: 5), // Space between text
+                          SizedBox(height: 5.h), // Make spacing responsive
                           Flexible(
                             child: Container(
-                              width: 80, // Width for the secondary text placeholder
-                              height: 15,
+                              width: 80.w, // Make width responsive
+                              height: 15.h, // Make height responsive
                               decoration: BoxDecoration(
                                 color: Colors.white,
-                                borderRadius: BorderRadius.circular(8),
+                                borderRadius: BorderRadius.circular(8.r), // Make radius responsive
                               ),
                             ),
                           ),
-                          const SizedBox(height: 5), // Space between text
+                          SizedBox(height: 5.h), // Make spacing responsive
                           Flexible(
                             child: Container(
-                              width: 60, // Width for the subject placeholder
-                              height: 15,
+                              width: 60.w, // Make width responsive
+                              height: 15.h, // Make height responsive
                               decoration: BoxDecoration(
                                 color: Colors.white,
-                                borderRadius: BorderRadius.circular(8),
+                                borderRadius: BorderRadius.circular(8.r), // Make radius responsive
                               ),
                             ),
                           ),
@@ -91,7 +92,7 @@ class TeacherShimmer extends StatelessWidget {
               ),
             );
           },
-          separatorBuilder: (context, index) => const SizedBox(width: 12), // Spacing between shimmer items
+          separatorBuilder: (context, index) => SizedBox(width: 12.w), // Make spacing responsive
           itemCount: 3, // Number of shimmer items to display
         ),
       ),

@@ -27,11 +27,14 @@ class AllTeachersTeacherWidget extends StatelessWidget {
           decoration: BoxDecoration(
             boxShadow: [
               BoxShadow(
-                color: Colors.black.withOpacity(0.05), // Reduced opacity
-                blurRadius: 1.r, // Reduced blur radius to minimize shadow height
+                color: Colors.black.withOpacity(0.3), // Shadow color with higher opacity
+                offset: const Offset(0, 4), // Offset to create a downward shadow effect
+                blurRadius: 4.r, // Increased blur radius for a more prominent shadow
+                spreadRadius: 0, // No spread radius
               ),
             ],
             borderRadius: BorderRadius.circular(17.r), // Responsive borderRadius
+            color: Colors.white, // Background color for the container
           ),
           child: Column(
             mainAxisSize: MainAxisSize.min, // Adjust to minimum size needed

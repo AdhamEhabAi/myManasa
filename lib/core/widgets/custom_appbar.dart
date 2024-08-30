@@ -18,7 +18,6 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
   @override
   Widget build(BuildContext context) {
     return AppBar(
-
       title: Text(
         title,
         style: Styles.bold24.copyWith(color: titleColor),
@@ -38,6 +37,9 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
             size: 34,
             color: iconColor,
           )),
+      actions: [
+        Image.asset('assets/images/logo.png'),
+      ],
     );
   }
 

@@ -22,6 +22,7 @@ class HomeSingleTeacherWidget extends StatelessWidget {
     return Padding(
       padding: EdgeInsets.only(
         left: AppPadding.padding.w,
+        right: 10.w,
         top: 10.h,
         bottom: 10.h,
       ),

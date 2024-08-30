@@ -74,8 +74,8 @@ class SubjectQuizView extends StatelessWidget {
                       itemBuilder: (context, index) {
                         return SubjectQuizWidget(
                           onTap: () {
-                            Get.to(const CourseView(),
-                                transition: Transition.fade);
+                            // Get.to(CourseView(),
+                            //     transition: Transition.fade);
                           },
                         );
                       },

@@ -13,6 +13,13 @@ class AllSubjectView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final provider = BlocProvider.of<SubjectCubit>(context);
+
+    // Fetch subjects only if the list is empty
+    if (provider.subjectsList.isEmpty) {
+      provider.fetchSubjects();
+    }
+
     return Scaffold(
       appBar: const CustomAppBar(
         title: 'مواد الصف',
@@ -21,11 +28,13 @@ class AllSubjectView extends StatelessWidget {
       ),
       body: BlocBuilder<SubjectCubit, SubjectState>(
         builder: (context, state) {
-          if (state is SubjectsLoading) {
+          final provider = BlocProvider.of<SubjectCubit>(context);
+
+          if (state is SubjectsLoading && provider.subjectsList.isEmpty) {
             return const Center(child: CircularProgressIndicator()); // Show loading indicator
           } else if (state is SubjectsFail) {
             return Center(child: Text(state.errMessage)); // Show error message
-          } else if (state is SubjectsSuccess) {
+          } else if (provider.subjectsList.isNotEmpty) {
             return SizedBox(
               width: MediaQuery.of(context).size.width,
               child: GridView.builder(
@@ -33,13 +42,13 @@ class AllSubjectView extends StatelessWidget {
                 gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
                   crossAxisCount: 2,
                 ),
-                itemCount: state.subjects.length,
+                itemCount: provider.subjectsList.length,
                 itemBuilder: (context, index) {
                   return HomeSingleSubjectWidget(
-                    subject: state.subjects[index], // Pass the subject data
+                    subject: provider.subjectsList[index], // Use subjectsList from provider
                     onTap: () {
                       trans.Get.to(
-                        SubjectView(subject: state.subjects[index]),
+                            () => SubjectView(subject: provider.subjectsList[index]),
                         transition: trans.Transition.fade,
                       );
                     },

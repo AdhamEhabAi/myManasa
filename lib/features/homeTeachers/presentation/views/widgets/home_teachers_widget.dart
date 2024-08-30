@@ -30,7 +30,11 @@ class _HomeTeachersWidgetState extends State<HomeTeachersWidget> {
         _currentPage = _pageController.page!;
       });
     });
-    BlocProvider.of<TeacherCubit>(context).fetchAllTeachers();
+
+    final provider = BlocProvider.of<TeacherCubit>(context);
+    if (provider.teachersList.isEmpty) {
+      provider.fetchAllTeachers();
+    }
   }
 
   @override
@@ -43,33 +47,33 @@ class _HomeTeachersWidgetState extends State<HomeTeachersWidget> {
             padding: EdgeInsets.symmetric(horizontal: 40.w), // Adapted padding
             child: AllWidget(
               onTap: () {
-                trans.Get.to(const AllTeachersView(),
+                trans.Get.to(() => const AllTeachersView(), // Changed to use function
                     transition: trans.Transition.downToUp);
               },
               text: 'أشهر المدرسين',
             ),
           ),
           SizedBox(height: 10.h), // Adapted height
-
           Padding(
-            padding:
-            EdgeInsets.only(right: AppPadding.padding.w), // Adapted padding
+            padding: EdgeInsets.only(right: AppPadding.padding.w), // Adapted padding
             child: SizedBox(
               height: MediaQuery.of(context).size.height / 4.3, // Kept dynamic height
               child: BlocBuilder<TeacherCubit, TeacherState>(
                 builder: (context, state) {
-                  if (state is TeacherLoading) {
-                    return const TeacherShimmer(); // Use the shimmer effect while loading
-                  } else if (state is TeacherLoaded) {
+                  TeacherCubit provider = BlocProvider.of<TeacherCubit>(context);
+
+                  if (state is TeacherLoading && provider.teachersList.isEmpty) {
+                    return const TeacherShimmer(); // Use shimmer only if list is empty
+                  } else if (provider.teachersList.isNotEmpty) { // Use teachersList directly
                     return ListView.builder(
                       scrollDirection: Axis.horizontal,
                       physics: const BouncingScrollPhysics(),
                       controller: _pageController,
-                      itemCount: state.teachers.length.clamp(0, 3),
+                      itemCount: provider.teachersList.length.clamp(0, 3),
                       itemBuilder: (context, index) => HomeSingleTeacherWidget(
-                        teacher: state.teachers[index],
+                        teacher: provider.teachersList[index],
                         onTap: () {
-                          trans.Get.to( TeacherView(teacher: state.teachers[index],),
+                          trans.Get.to(() => TeacherView(teacher: provider.teachersList[index]), // Use function
                               transition: trans.Transition.fadeIn);
                         },
                       ),
@@ -84,7 +88,6 @@ class _HomeTeachersWidgetState extends State<HomeTeachersWidget> {
             ),
           ),
           SizedBox(height: 20.h), // Adapted height
-
           TeachersDotsIndicator(currentPage: _currentPage),
         ],
       ),

@@ -9,6 +9,7 @@ class SubjectCubit extends Cubit<SubjectState> {
   SubjectCubit(this.subjectRepo) : super(HomeInitial());
   bool isVideo = false;
   final SubjectRepo subjectRepo;
+  List<SubjectModel> subjectsList = [];
 
   Future<void> fetchSubjects() async {
     emit(SubjectsLoading());
@@ -18,7 +19,8 @@ class SubjectCubit extends Cubit<SubjectState> {
         emit(SubjectsFail(failure.message));
       },
           (subjects) {
-        emit(SubjectsSuccess(subjects));
+            subjectsList = subjects;
+        emit(SubjectsSuccess());
       },
     );
   }

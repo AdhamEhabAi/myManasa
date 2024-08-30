@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:get/get.dart' as trans;
 import 'package:my_manasa/constants.dart';
+import 'package:my_manasa/core/shimmer/course_shimmer.dart';
 import 'package:my_manasa/features/homeSubjects/presentation/views/all_subjects_view.dart';
 import 'package:my_manasa/features/homeSubjects/presentation/views/subject_view.dart';
 import 'package:my_manasa/features/homeSubjects/presentation/manager/subject_cubit.dart';
@@ -24,7 +25,6 @@ class _HomeSubjectsWidgetState extends State<HomeSubjectsWidget> {
   @override
   void initState() {
     super.initState();
-    // Fetch subjects when the widget is initialized
     BlocProvider.of<SubjectCubit>(context).fetchSubjects();
 
     // Page controller listener for dots indicator
@@ -61,28 +61,28 @@ class _HomeSubjectsWidgetState extends State<HomeSubjectsWidget> {
           SizedBox(height: 10.h), // Adapted height
           Padding(
             padding:
-                EdgeInsets.only(right: AppPadding.padding.w), // Adapted padding
+            EdgeInsets.only(right: AppPadding.padding.w), // Adapted padding
             child: SizedBox(
-              height: MediaQuery.of(context).size.height /
-                  4.3, // Kept dynamic height
+              height: MediaQuery.of(context).size.height / 4.3, // Kept dynamic height
               child: BlocBuilder<SubjectCubit, SubjectState>(
                 builder: (context, state) {
-                  if (state is SubjectsLoading) {
-                    // Show loading indicator while fetching subjects
-                    return const Center(child: CircularProgressIndicator());
+                  final provider = BlocProvider.of<SubjectCubit>(context);
+
+                  if (state is SubjectsLoading && provider.subjectsList.isEmpty) {
+                    return const CourseShimmer();
                   } else if (state is SubjectsFail) {
                     return Center(child: Text(state.errMessage));
-                  } else if (state is SubjectsSuccess) {
+                  } else if (provider.subjectsList.isNotEmpty) {
                     return ListView.builder(
                       scrollDirection: Axis.horizontal,
                       physics: const BouncingScrollPhysics(),
                       controller: _pageController,
-                      itemCount: state.subjects.length.clamp(0, 3),
+                      itemCount: provider.subjectsList.length.clamp(0, 3),
                       itemBuilder: (context, index) => HomeSingleSubjectWidget(
-                        subject: state.subjects[index], // Pass the subject data
+                        subject: provider.subjectsList[index], // Use subjectsList from provider
                         onTap: () {
                           trans.Get.to(
-                            SubjectView(subject: state.subjects[index]),
+                                () => SubjectView(subject: provider.subjectsList[index]),
                             transition: trans.Transition.fade,
                           );
                         },
@@ -97,7 +97,6 @@ class _HomeSubjectsWidgetState extends State<HomeSubjectsWidget> {
             ),
           ),
           SizedBox(height: 20.h), // Adapted height
-
           SubjectDotsIndicator(currentPage: _currentPage),
         ],
       ),

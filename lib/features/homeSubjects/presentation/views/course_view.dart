@@ -10,9 +10,11 @@ import 'package:my_manasa/features/homeSubjects/presentation/views/pdf_view.dart
 import 'package:my_manasa/features/homeSubjects/presentation/views/video_view.dart';
 import 'package:my_manasa/features/homeSubjects/presentation/views/widgets/video_or_pdf_widget.dart';
 import 'package:my_manasa/features/homeSubjects/presentation/views/widgets/course_view_header.dart';
+import 'package:my_manasa/features/homeTeachers/data/models/course_model.dart';
 
 class CourseView extends StatelessWidget {
-  const CourseView({super.key});
+  const CourseView({super.key, required this.course});
+  final CourseModel course;
 
   @override
   Widget build(BuildContext context) {
