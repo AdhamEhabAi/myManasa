@@ -13,7 +13,7 @@ class TeacherSubjectWidget extends StatelessWidget {
       onTap: onTap,
       child: Container(
         decoration: BoxDecoration(
-          color: AppColors.secondaryColor,
+          color: const Color(0xFFf4d4d4 ),
           borderRadius: BorderRadius.circular(32),
         ),
         width: MediaQuery.of(context).size.width,

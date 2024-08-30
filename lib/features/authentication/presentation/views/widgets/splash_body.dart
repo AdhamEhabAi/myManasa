@@ -1,7 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:my_manasa/constants.dart';
-import 'package:my_manasa/core/utils/styles.dart';
-import 'package:svg_flutter/svg_flutter.dart';
 
 class SplashBody extends StatelessWidget {
   const SplashBody({
@@ -16,26 +13,17 @@ class SplashBody extends StatelessWidget {
       children: [
         Row(
           children: [
-            SvgPicture.asset('assets/images/Group 9.svg',width: MediaQuery.of(context).size.width /1.2),
+            Image.asset('assets/images/uppersplash.png',width: MediaQuery.of(context).size.width /1.2),
           ],
         ),
-        Column(
-          children: [
-            SizedBox(
-                width: MediaQuery.of(context).size.width / 2,
-                height: MediaQuery.of(context).size.width / 3,
-                child:
-                Image.asset('assets/images/logo.png', fit: BoxFit.fill)),
-            Center(
-              child: Text(
-                'West online Academy',
-                style:
-                Styles.semiBold20.copyWith(color: AppColors.primaryColor),
-              ),
-            )
-          ],
+        Center(
+          child: SizedBox(
+              width: MediaQuery.of(context).size.width / 2,
+              height: MediaQuery.of(context).size.width / 3,
+              child:
+              Image.asset('assets/images/logo.png', fit: BoxFit.fill)),
         ),
-        SvgPicture.asset('assets/images/Group 8.svg',width: MediaQuery.of(context).size.width /1.5),
+        Image.asset('assets/images/lowerSplash.png',width: MediaQuery.of(context).size.width /1.5),
       ],
     );
   }

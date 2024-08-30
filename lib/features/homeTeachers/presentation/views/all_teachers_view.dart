@@ -36,7 +36,7 @@ class AllTeachersView extends StatelessWidget {
                 return AllTeachersTeacherWidget(
                   teacher: teachers[index],
                   onTap: () {
-                    trans.Get.to(const TeacherView(), transition: trans.Transition.fadeIn);
+                    trans.Get.to(TeacherView(teacher: teachers[index],), transition: trans.Transition.fadeIn);
                   },
                 );
               },

@@ -1,11 +1,27 @@
 import 'package:bloc/bloc.dart';
 import 'package:meta/meta.dart';
+import 'package:my_manasa/features/homeSubjects/data/models/SubjectModel.dart';
+import 'package:my_manasa/features/homeSubjects/repo/subject_repo.dart';
 
 part 'subject_state.dart';
 
 class SubjectCubit extends Cubit<SubjectState> {
-  SubjectCubit() : super(HomeInitial());
+  SubjectCubit(this.subjectRepo) : super(HomeInitial());
   bool isVideo = false;
+  final SubjectRepo subjectRepo;
+
+  Future<void> fetchSubjects() async {
+    emit(SubjectsLoading());
+    final result = await subjectRepo.getSubjects();
+    result.fold(
+          (failure) {
+        emit(SubjectsFail(failure.message));
+      },
+          (subjects) {
+        emit(SubjectsSuccess(subjects));
+      },
+    );
+  }
 
 
   void switchComplete() {

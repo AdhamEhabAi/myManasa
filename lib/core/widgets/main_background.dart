@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:svg_flutter/svg_flutter.dart';
 
 class MainBackGround extends StatelessWidget {
   const MainBackGround({
@@ -17,10 +16,9 @@ class MainBackGround extends StatelessWidget {
         children: [
           AnimatedContainer(
             duration: const Duration(seconds: 1),
-            width: MediaQuery.of(context).size.width / 1.3,
-            height: MediaQuery.of(context).size.height / 3,
-            child: SvgPicture.asset(
-              'assets/images/Group 9.svg',
+
+            child: Image.asset(
+              'assets/images/MainBackGroundUpper.png',
               fit: BoxFit.fill,
             ),
           ),
@@ -30,9 +28,7 @@ class MainBackGround extends StatelessWidget {
               AnimatedContainer(
                   duration: const Duration(seconds: 1),
 
-                  width: MediaQuery.of(context).size.width /1.8,
-                  height: MediaQuery.of(context).size.height/4,
-                  child: SvgPicture.asset('assets/images/Group 8.svg',)),
+                  child: Image.asset('assets/images/MainBackgorundLower.png',)),
             ],
           ),
         ],

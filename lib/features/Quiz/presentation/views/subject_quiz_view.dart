@@ -5,6 +5,7 @@ import 'package:my_manasa/core/utils/styles.dart';
 import 'package:my_manasa/core/widgets/custom_appbar.dart';
 import 'package:my_manasa/features/Quiz/presentation/views/widgets/subject_quiz_widget.dart';
 import 'package:my_manasa/features/homeSubjects/presentation/views/course_view.dart';
+import 'package:my_manasa/features/homeTeachers/data/models/teacher_model.dart';
 import 'package:my_manasa/features/homeTeachers/presentation/views/widgets/teacher_view_header.dart';
 
 class SubjectQuizView extends StatelessWidget {
@@ -27,7 +28,23 @@ class SubjectQuizView extends StatelessWidget {
             height: MediaQuery.of(context).size.height,
             child: Column(
               children: [
-                const TeacherViewHeader(),
+                TeacherViewHeader(teacher: Teacher(
+                    id: 'id',
+                    filterTeatcher: 'filterTeatcher',
+                    fname: 'fname',
+                    lname: 'lname',
+                    fnum: 'fnum',
+                    lnum: 'lnum',
+                    yr: 'yr',
+                    sec: 'sec',
+                    email: 'email',
+                    uname: 'uname',
+                    img: 'img',
+                    upass: 'upass',
+                    rank: 'rank',
+                    active: 'active',
+                    rnk: 'rnk',
+                    otname: 'otname'),),
                 Padding(
                   padding: const EdgeInsets.all(AppPadding.padding),
                   child: Column(

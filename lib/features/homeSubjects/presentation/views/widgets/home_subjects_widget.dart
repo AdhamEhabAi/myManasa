@@ -1,11 +1,13 @@
 import 'package:flutter/material.dart';
-import 'package:get/get.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:get/get.dart' as trans;
 import 'package:my_manasa/constants.dart';
 import 'package:my_manasa/features/homeSubjects/presentation/views/all_subjects_view.dart';
 import 'package:my_manasa/features/homeSubjects/presentation/views/subject_view.dart';
-import 'package:my_manasa/features/home/presentation/views/widgets/all_widget.dart';
+import 'package:my_manasa/features/homeSubjects/presentation/manager/subject_cubit.dart';
 import 'package:my_manasa/features/homeSubjects/presentation/views/widgets/home_single_subject_widget.dart';
 import 'package:my_manasa/features/homeSubjects/presentation/views/widgets/subject_dots_indicator.dart';
+import 'package:my_manasa/features/home/presentation/views/widgets/all_widget.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class HomeSubjectsWidget extends StatefulWidget {
@@ -22,6 +24,10 @@ class _HomeSubjectsWidgetState extends State<HomeSubjectsWidget> {
   @override
   void initState() {
     super.initState();
+    // Fetch subjects when the widget is initialized
+    BlocProvider.of<SubjectCubit>(context).fetchSubjects();
+
+    // Page controller listener for dots indicator
     _pageController.addListener(() {
       setState(() {
         _currentPage = _pageController.page ?? 0;
@@ -45,28 +51,48 @@ class _HomeSubjectsWidgetState extends State<HomeSubjectsWidget> {
           Padding(
             padding: EdgeInsets.symmetric(horizontal: 40.w), // Adapted padding
             child: AllWidget(
-              onTap: (){
-                Get.to(const AllSubjectView(),transition: Transition.downToUp);
+              onTap: () {
+                trans.Get.to(const AllSubjectView(),
+                    transition: trans.Transition.downToUp);
               },
               text: 'مواد الصف',
             ),
           ),
           SizedBox(height: 10.h), // Adapted height
-
           Padding(
-            padding: EdgeInsets.only(right: AppPadding.padding.w), // Adapted padding
+            padding:
+                EdgeInsets.only(right: AppPadding.padding.w), // Adapted padding
             child: SizedBox(
-              height: MediaQuery.of(context).size.height / 4.3, // Kept dynamic height
-              child: ListView.builder(
-                scrollDirection: Axis.horizontal,
-                physics: const BouncingScrollPhysics(),
-                controller: _pageController,
-                itemCount: 3,
-                itemBuilder: (context, index) => HomeSingleSubjectWidget(
-                  onTap: () {
-                    Get.to(const SubjectView(), transition: Transition.fade);
-                  },
-                ),
+              height: MediaQuery.of(context).size.height /
+                  4.3, // Kept dynamic height
+              child: BlocBuilder<SubjectCubit, SubjectState>(
+                builder: (context, state) {
+                  if (state is SubjectsLoading) {
+                    // Show loading indicator while fetching subjects
+                    return const Center(child: CircularProgressIndicator());
+                  } else if (state is SubjectsFail) {
+                    return Center(child: Text(state.errMessage));
+                  } else if (state is SubjectsSuccess) {
+                    return ListView.builder(
+                      scrollDirection: Axis.horizontal,
+                      physics: const BouncingScrollPhysics(),
+                      controller: _pageController,
+                      itemCount: state.subjects.length.clamp(0, 3),
+                      itemBuilder: (context, index) => HomeSingleSubjectWidget(
+                        subject: state.subjects[index], // Pass the subject data
+                        onTap: () {
+                          trans.Get.to(
+                            SubjectView(subject: state.subjects[index]),
+                            transition: trans.Transition.fade,
+                          );
+                        },
+                      ),
+                    );
+                  } else {
+                    // Show a placeholder if there are no subjects
+                    return const Center(child: Text('No subjects available'));
+                  }
+                },
               ),
             ),
           ),

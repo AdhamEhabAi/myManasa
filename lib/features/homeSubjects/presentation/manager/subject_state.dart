@@ -12,3 +12,14 @@ class CourseVideoPdfChanged extends SubjectState {
   CourseVideoPdfChanged(this.isVideo);
 }
 
+class SubjectsLoading extends SubjectState {}
+class SubjectsSuccess extends SubjectState {
+ final List<SubjectModel> subjects;
+
+  SubjectsSuccess(this.subjects);
+}
+class SubjectsFail extends SubjectState {
+  final String errMessage;
+
+  SubjectsFail(this.errMessage);
+}

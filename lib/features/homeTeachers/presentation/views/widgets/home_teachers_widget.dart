@@ -69,7 +69,7 @@ class _HomeTeachersWidgetState extends State<HomeTeachersWidget> {
                       itemBuilder: (context, index) => HomeSingleTeacherWidget(
                         teacher: state.teachers[index],
                         onTap: () {
-                          trans.Get.to(const TeacherView(),
+                          trans.Get.to( TeacherView(teacher: state.teachers[index],),
                               transition: trans.Transition.fadeIn);
                         },
                       ),

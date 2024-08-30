@@ -3,6 +3,7 @@ import 'package:get/get.dart';
 import 'package:my_manasa/constants.dart';
 import 'package:my_manasa/core/utils/styles.dart';
 import 'package:my_manasa/core/widgets/custom_appbar.dart';
+import 'package:my_manasa/features/homeTeachers/data/models/teacher_model.dart';
 import 'package:my_manasa/features/homeTeachers/presentation/views/widgets/teacher_view_header.dart';
 import 'package:my_manasa/features/myCourses/presentation/views/my_course_view.dart';
 import 'package:my_manasa/features/myCourses/presentation/views/widgets/my_courses_course_widget.dart';
@@ -27,7 +28,23 @@ class MyCoursesTeacherView extends StatelessWidget {
             height: MediaQuery.of(context).size.height,
             child: Column(
               children: [
-                const TeacherViewHeader(),
+                 TeacherViewHeader(teacher: Teacher(
+                     id: 'id',
+                     filterTeatcher: 'filterTeatcher',
+                     fname: 'fname',
+                     lname: 'lname',
+                     fnum: 'fnum',
+                     lnum: 'lnum',
+                     yr: 'yr',
+                     sec: 'sec',
+                     email: 'email',
+                     uname: 'uname',
+                     img: 'img',
+                     upass: 'upass',
+                     rank: 'rank',
+                     active: 'active',
+                     rnk: '2',
+                     otname: 'otname'),),
                 Padding(
                   padding: const EdgeInsets.all(AppPadding.padding),
                   child: Column(

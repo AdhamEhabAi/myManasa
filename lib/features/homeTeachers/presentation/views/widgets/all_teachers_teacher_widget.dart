@@ -45,11 +45,11 @@ class AllTeachersTeacherWidget extends StatelessWidget {
                   imageUrl: APIEndpoints.imgPath + teacher.img,
                   fit: BoxFit.cover,
                   placeholder: (context, url) => Image.asset(
-                    'assets/images/Teacher.png',
+                    'assets/images/logo.png',
                     fit: BoxFit.cover,
                   ),
                   errorWidget: (context, url, error) => Image.asset(
-                    'assets/images/Teacher.png',
+                    'assets/images/logo.png',
                     fit: BoxFit.cover,
                   ),
                   height: 100.h, // Set a fixed height for the image
@@ -137,7 +137,7 @@ class AllTeachersTeacherWidget extends StatelessWidget {
                         Text(
                           'مادة ${teacher.sec}',
                           style: Styles.semiBold10.copyWith(
-                            color: AppColors.primaryColor,
+                            color: AppColors.secondaryColor,
                             fontSize: 8.sp, // Reduced font size
                           ),
                         ),

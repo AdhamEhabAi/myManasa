@@ -16,8 +16,8 @@ class TeacherShimmer extends StatelessWidget {
           scrollDirection: Axis.horizontal,
           itemBuilder: (context, index) {
             return Container(
-              width: 260, // Width matching your card design
-              margin: const EdgeInsets.symmetric(vertical: 8.0), // Adjust vertical margin
+              width: 260,
+              margin: const EdgeInsets.symmetric(vertical: 8.0),
               decoration: BoxDecoration(
                 color: Colors.white,
                 borderRadius: BorderRadius.circular(17), // Rounded corners

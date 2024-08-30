@@ -53,7 +53,7 @@ class _MainViewState extends State<MainView> {
             color: Colors.white,
             activeColor: Colors.white,
             backgroundColor: AppColors.primaryColor,
-            tabBackgroundColor: AppColors.secondaryColor,
+            tabBackgroundColor: const Color(0xFFde5e5f),
             padding: EdgeInsets.all(16.r),
             gap: 8,
             tabs: [

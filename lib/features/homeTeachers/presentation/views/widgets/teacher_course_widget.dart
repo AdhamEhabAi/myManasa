@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:my_manasa/constants.dart';
 import 'package:my_manasa/core/utils/styles.dart';
 
@@ -27,18 +28,18 @@ class TeacherCourseWidget extends StatelessWidget {
 
               )
             ],
-            borderRadius: BorderRadius.circular(30),
+            borderRadius: BorderRadius.circular(30.r),
           ),
           child: Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               Container(
                   width: MediaQuery.of(context).size.width/4.5,
-                  height: 60,
-                  decoration: const BoxDecoration(
+                  height: 60.h,
+                  decoration:  BoxDecoration(
                       borderRadius: BorderRadius.only(
-                          topRight: Radius.circular(30),
-                          bottomRight: Radius.circular(30))),
+                          topRight: Radius.circular(30.r),
+                          bottomRight: Radius.circular(30.r))),
                   child: Image.asset(
                     'assets/images/courseImage (2).png',
                     fit: BoxFit.fill,
@@ -58,8 +59,8 @@ class TeacherCourseWidget extends StatelessWidget {
                 ],
               ),
               CircleAvatar(
-                radius: 12,
-                child: Image.asset('assets/images/course icon.png',fit: BoxFit.cover,),
+                radius: 14.r,
+                child: Image.asset('assets/images/course icon.png',fit: BoxFit.cover,color: AppColors.secondaryColor,),
               ),
               const SizedBox(width: 10,),
             ],

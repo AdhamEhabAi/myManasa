@@ -34,11 +34,12 @@ class HomeSingleTeacherWidget extends StatelessWidget {
               BoxShadow(
                 color: Colors.black.withOpacity(0.3),
                 offset: const Offset(0, 4),
-                blurRadius: 4.r,
-                spreadRadius: 0.r,
+                blurRadius: 4.r, // Match blur radius
+                spreadRadius: 0.r, // Match spread radius
               ),
             ],
             borderRadius: BorderRadius.circular(17.r),
+            color: Colors.grey, // Added background color for consistency
           ),
           child: Column(
             children: [
@@ -54,13 +55,13 @@ class HomeSingleTeacherWidget extends StatelessWidget {
                     width: double.infinity,
                     height: double.infinity,
                     placeholder: (context, url) => Image.asset(
-                      'assets/images/Teacher (2).png',
+                      'assets/images/logo.png',
                       fit: BoxFit.cover,
                       width: double.infinity,
                       height: double.infinity,
                     ),
                     errorWidget: (context, url, error) => Image.asset(
-                      'assets/images/Teacher (2).png',
+                      'assets/images/logo.png',
                       fit: BoxFit.cover,
                       width: double.infinity,
                       height: double.infinity,
@@ -71,6 +72,14 @@ class HomeSingleTeacherWidget extends StatelessWidget {
               Expanded(
                 child: Container(
                   decoration: BoxDecoration(
+                    boxShadow: [
+                      BoxShadow(
+                        color: Colors.black.withOpacity(0.1),
+                        offset: const Offset(0, 4),
+                        blurRadius: 4.r, // Match blur radius
+                        spreadRadius: 0.r, // Match spread radius
+                      ),
+                    ],
                     color: Colors.white,
                     borderRadius: BorderRadius.only(
                       bottomRight: Radius.circular(17.r),
@@ -149,7 +158,7 @@ class HomeSingleTeacherWidget extends StatelessWidget {
                             Text(
                               'مادة ${teacher.sec}',
                               style: Styles.semiBold10.copyWith(
-                                color: AppColors.primaryColor,
+                                color: AppColors.secondaryColor,
                                 fontSize: 10.sp,
                               ),
                             ),

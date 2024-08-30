@@ -9,24 +9,17 @@ class HomeView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const SafeArea(
-      child: Scaffold(
-        body: SingleChildScrollView(
-          physics: BouncingScrollPhysics(),
-          child: Stack(
-            children: [
-              MainBackGround(),
-              Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  HomeHeader(),
-                  HomeSubjectsWidget(),
-                  HomeTeachersWidget(),
+    return const Scaffold(
+      body: SingleChildScrollView(
+        physics: BouncingScrollPhysics(),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            HomeHeader(),
+            HomeSubjectsWidget(),
+            HomeTeachersWidget(),
 
-                ],
-              )
-            ],
-          ),
+          ],
         ),
       ),
     );

@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:my_manasa/constants.dart';
 import 'package:my_manasa/core/dialogs/get_code_dialog.dart';
 import 'package:my_manasa/core/utils/styles.dart';
 import 'package:my_manasa/core/widgets/custom_button.dart';
@@ -29,7 +31,7 @@ class CourseView extends StatelessWidget {
               children: [
                 const CourseViewHeader(),
                 Padding(
-                  padding: const EdgeInsets.all(12),
+                  padding: EdgeInsets.all(12.w),
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
@@ -37,27 +39,28 @@ class CourseView extends StatelessWidget {
                         'كورس كامل عن القراءة',
                         style: Styles.bold16,
                       ),
-                      const SizedBox(
-                        height: 10,
+                      SizedBox(
+                        height: 10.h,
                       ),
                       Text(
                         'يحتوي هذة الكورس علي تأسيس كامل للصفوف و شرح وحل نماذج في الفيديو',
                         style: Styles.semiBold14,
+                        maxLines: 2,
                       ),
-                      const SizedBox(
-                        height: 10,
+                      SizedBox(
+                        height: 10.h,
                       ),
                       SizedBox(
                         width: MediaQuery.of(context).size.width / 2,
                         child: Row(
                           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                           children: [
-                            Image.asset('assets/images/smallplay.png'),
+                            Image.asset('assets/images/smallplay.png',color: AppColors.primaryColor,),
                              Text(
                               '35 فيديو',
                               style: Styles.semiBold16,
                             ),
-                            Image.asset('assets/images/small timer.png'),
+                            Image.asset('assets/images/small timer.png',color: AppColors.secondaryColor,),
                              Text(
                               '3ساعات',
                               style: Styles.semiBold16,

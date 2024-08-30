@@ -43,6 +43,21 @@ class AuthCubit extends Cubit<AuthState> {
   TextEditingController password = TextEditingController();
   TextEditingController loginEmail = TextEditingController();
   TextEditingController loginPassword = TextEditingController();
+  String? selectedCountry;
+
+  String getValueOfSelectedCountry() {
+    switch (selectedCountry) {
+      case 'الصف الاول الثانوي':
+        return '1';
+      case 'الصف الثاني الثانوي':
+        return '2';
+      case 'الصف الثالث الثانوي':
+        return '3';
+      default:
+        throw Exception('Invalid country selected');
+    }
+  }
+
 
   void verifyPhoneNumber(String phoneNumber) {
     if (numbers.contains(phoneNumber)) {
@@ -83,7 +98,7 @@ class AuthCubit extends Cubit<AuthState> {
         lnum: lPhone.text,
         username: email.text,
         password: password.text,
-        userClass: '1',
+        userClass: getValueOfSelectedCountry(),
         country: '1',
       );
 

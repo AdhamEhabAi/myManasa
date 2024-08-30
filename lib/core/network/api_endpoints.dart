@@ -5,6 +5,8 @@ class APIEndpoints {
   static const imgPath = '$baseUrl/upload/';
   static const signInApi = '$baseUrl/api-login.php';
   static const signUpApi = '$baseUrl/api-sing-up.php';
+  static const getAllSubjects = '$baseUrl/api-selectData.php?tableName=cat&where=NULL&equalWhat=00';
+
   static const getAllLessonsApi =
       '$baseUrl/api-selectData.php?tableName=videos&where=sub&equalWhat=';
   static const getAllTeachersApi =

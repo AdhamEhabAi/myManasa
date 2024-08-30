@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:get/get.dart';
+import 'package:get/get.dart' as trans;
 import 'package:my_manasa/constants.dart';
 import 'package:my_manasa/core/widgets/custom_appbar.dart';
+import 'package:my_manasa/features/homeSubjects/presentation/manager/subject_cubit.dart';
 import 'package:my_manasa/features/homeSubjects/presentation/views/subject_view.dart';
 import 'package:my_manasa/features/homeSubjects/presentation/views/widgets/home_single_subject_widget.dart';
 
@@ -17,23 +19,38 @@ class AllSubjectView extends StatelessWidget {
         backGroundColor: Colors.transparent,
         titleColor: AppColors.primaryColor,
       ),
-      body: SizedBox(
-        width: MediaQuery.of(context).size.width,
-        child: GridView.builder(
-          padding: const EdgeInsets.symmetric(vertical: 15.0),
-          gridDelegate:  SliverGridDelegateWithFixedCrossAxisCount(
-            crossAxisCount: 2, // Number of columns
-            mainAxisSpacing: 15.0.w, // Space between rows
-          ),
-          itemCount: 7, // Number of items in the grid
-          itemBuilder: (context, index) {
-            return HomeSingleSubjectWidget(
-              onTap: () {
-                Get.to(const SubjectView(),transition: Transition.fade);
-              },
+      body: BlocBuilder<SubjectCubit, SubjectState>(
+        builder: (context, state) {
+          if (state is SubjectsLoading) {
+            return const Center(child: CircularProgressIndicator()); // Show loading indicator
+          } else if (state is SubjectsFail) {
+            return Center(child: Text(state.errMessage)); // Show error message
+          } else if (state is SubjectsSuccess) {
+            return SizedBox(
+              width: MediaQuery.of(context).size.width,
+              child: GridView.builder(
+                padding: EdgeInsets.symmetric(vertical: 15.0.h),
+                gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+                  crossAxisCount: 2,
+                ),
+                itemCount: state.subjects.length,
+                itemBuilder: (context, index) {
+                  return HomeSingleSubjectWidget(
+                    subject: state.subjects[index], // Pass the subject data
+                    onTap: () {
+                      trans.Get.to(
+                        SubjectView(subject: state.subjects[index]),
+                        transition: trans.Transition.fade,
+                      );
+                    },
+                  );
+                },
+              ),
             );
-          },
-        ),
+          } else {
+            return const Center(child: Text('No subjects available')); // Placeholder if no subjects
+          }
+        },
       ),
     );
   }

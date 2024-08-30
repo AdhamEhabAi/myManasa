@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
-import 'package:my_manasa/constants.dart';
 
 class SquareProfileCard extends StatelessWidget {
-  const SquareProfileCard({required this.title,required this.subTitle,required this.icon,super.key});
+  const SquareProfileCard({required this.title,required this.subTitle,required this.icon,super.key, required this.backGroundColor});
 
   final IconData? icon;
   final String title;
   final String subTitle;
+  final Color backGroundColor;
 
   @override
   Widget build(BuildContext context) {
@@ -19,7 +19,7 @@ class SquareProfileCard extends StatelessWidget {
           BoxShadow(color: Colors.black.withOpacity(0.4),blurRadius: 5),
         ],
         borderRadius: BorderRadius.circular(12),
-        color: AppColors.secondaryColor,
+        color: backGroundColor,
       ),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,

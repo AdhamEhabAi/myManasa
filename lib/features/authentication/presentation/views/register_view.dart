@@ -22,41 +22,40 @@ class RegisterView extends StatefulWidget {
 }
 
 class _RegisterViewState extends State<RegisterView> {
-  String? selectedCountry;
 
   @override
   Widget build(BuildContext context) {
     AuthCubit provider = BlocProvider.of<AuthCubit>(context);
     return SafeArea(
       child: Scaffold(
-        body: Stack(
-          children: [
-            const MainBackGround(),
-            Positioned(
-              top: 20.h,
-              right: 20.w,
-              child: IconButton(
-                onPressed: () {
-                  trans.Get.back();
-                },
-                icon: ImageIcon(
-                  const AssetImage(
-                    'assets/images/back.png',
+        body: SingleChildScrollView(
+          child: Stack(
+            children: [
+              const MainBackGround(),
+              Positioned(
+                top: 20.h,
+                right: 20.w,
+                child: IconButton(
+                  onPressed: () {
+                    trans.Get.back();
+                  },
+                  icon: ImageIcon(
+                    const AssetImage(
+                      'assets/images/back.png',
+                    ),
+                    size: 34.h,
+                    color: AppColors.secondaryColor,
                   ),
-                  size: 34.h,
-                  color: AppColors.primaryColor,
                 ),
               ),
-            ),
-            Positioned(
-              top: MediaQuery.of(context).size.height * .10.h,
-              left: 0.w,
-              right: 0.w,
-              child: SingleChildScrollView(
+              Positioned(
+                top: MediaQuery.of(context).size.height * .10.h,
+                left: 0.w,
+                right: 0.w,
                 child: Center(
                   child: SizedBox(
                     width: MediaQuery.of(context).size.width.w,
-                    height: MediaQuery.of(context).size.height * 0.80.h,
+                    height: MediaQuery.of(context).size.height * 0.70.h,
                     child: Padding(
                       padding: EdgeInsets.symmetric(
                           horizontal: AppPadding.padding.w),
@@ -101,7 +100,7 @@ class _RegisterViewState extends State<RegisterView> {
                                 }else{
                                   return 'ادخل رقم الهاتف صحيح';
                                 }
-
+          
                               },
                               prefixIcon: Icon(
                                 Icons.phone,
@@ -121,7 +120,7 @@ class _RegisterViewState extends State<RegisterView> {
                                 }else{
                                   return 'ادخل رقم الهاتف صحيح';
                                 }
-
+          
                               },
                               prefixIcon: Icon(
                                 Icons.phone,
@@ -134,13 +133,13 @@ class _RegisterViewState extends State<RegisterView> {
                               hintText: 'اختار الصف',
                               labelText: 'الصف',
                               items: const [
-                                'الصف الاول',
-                                'الصف الثاني',
-                                'الصف الثالث',
+                                'الصف الاول الثانوي',
+                                'الصف الثاني الثانوي',
+                                'الصف الثالث الثانوي',
                               ],
                               onChanged: (String? newValue) {
                                 setState(() {
-                                  selectedCountry = newValue;
+                                  provider.selectedCountry = newValue;
                                 });
                               },
                             ),
@@ -152,7 +151,7 @@ class _RegisterViewState extends State<RegisterView> {
                                 }else{
                                   return validateEmail(value);
                                 }
-
+          
                               },
                               prefixIcon: Icon(
                                 Icons.email,
@@ -194,11 +193,15 @@ class _RegisterViewState extends State<RegisterView> {
                                         .copyWith(color: Colors.white, fontSize: 20.sp),
                                   ),
                                   onPressed: () {
-                                    if (provider.registerFormKey.currentState!
-                                        .validate()) {
+                                    if (provider.registerFormKey.currentState!.validate()) {
+                                      if (provider.selectedCountry == null) {
+                                        ToastM.show('الرجاء اختيار الصف');
+                                        return;
+                                      }
                                       provider.userRegister();
                                     }
                                   },
+          
                                 );
                               },
                             ),
@@ -209,8 +212,8 @@ class _RegisterViewState extends State<RegisterView> {
                   ),
                 ),
               ),
-            ),
-          ],
+            ],
+          ),
         ),
       ),
     );

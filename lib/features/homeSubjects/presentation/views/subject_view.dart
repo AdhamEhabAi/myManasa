@@ -3,18 +3,20 @@ import 'package:get/get.dart';
 import 'package:my_manasa/constants.dart';
 import 'package:my_manasa/core/utils/styles.dart';
 import 'package:my_manasa/core/widgets/custom_appbar.dart';
+import 'package:my_manasa/features/homeSubjects/data/models/SubjectModel.dart';
+import 'package:my_manasa/features/homeTeachers/data/models/teacher_model.dart';
 import 'package:my_manasa/features/homeTeachers/presentation/views/teacher_view.dart';
 import 'package:my_manasa/features/homeSubjects/presentation/views/widgets/teacher_subject_widget.dart';
 
 class SubjectView extends StatelessWidget {
-  const SubjectView({super.key});
-
+  const SubjectView({super.key, required this.subject});
+final SubjectModel subject;
   @override
   Widget build(BuildContext context) {
     return SafeArea(
       child: Scaffold(
-        appBar: const CustomAppBar(
-          title: 'اللغة العربية',
+        appBar:  CustomAppBar(
+          title: subject.name,
           backGroundColor: Colors.transparent,
           titleColor: AppColors.primaryColor,
         ),
@@ -26,7 +28,7 @@ class SubjectView extends StatelessWidget {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-               Text(
+              Text(
                 'أشهر المدرسين',
                 style: Styles.semiBold20,
               ),
@@ -39,7 +41,27 @@ class SubjectView extends StatelessWidget {
                     itemBuilder: (context, index) {
                       return TeacherSubjectWidget(
                         onTap: () {
-                          Get.to(const TeacherView(), transition: Transition.fadeIn);
+                          Get.to(
+                              TeacherView(
+                                teacher: Teacher(
+                                    id: 'id',
+                                    filterTeatcher: 'filterTeatcher',
+                                    fname: 'fname',
+                                    lname: 'lname',
+                                    fnum: 'fnum',
+                                    lnum: 'lnum',
+                                    yr: 'yr',
+                                    sec: 'sec',
+                                    email: 'email',
+                                    uname: 'uname',
+                                    img: 'img',
+                                    upass: 'upass',
+                                    rank: 'rank',
+                                    active: 'active',
+                                    rnk: 'rnk',
+                                    otname: 'otname'),
+                              ),
+                              transition: Transition.fadeIn);
                         },
                       );
                     },
@@ -48,7 +70,7 @@ class SubjectView extends StatelessWidget {
                         ),
                     itemCount: 3),
               ),
-               Text(
+              Text(
                 'المدرسين',
                 style: Styles.semiBold20,
               ),
@@ -61,7 +83,23 @@ class SubjectView extends StatelessWidget {
                       itemBuilder: (context, index) {
                         return TeacherSubjectWidget(
                           onTap: () {
-                            Get.to(const TeacherView(),
+                            Get.to( TeacherView(teacher: Teacher(
+                                id: 'id',
+                                filterTeatcher: 'filterTeatcher',
+                                fname: 'fname',
+                                lname: 'lname',
+                                fnum: 'fnum',
+                                lnum: 'lnum',
+                                yr: 'yr',
+                                sec: 'sec',
+                                email: 'email',
+                                uname: 'uname',
+                                img: 'img',
+                                upass: 'upass',
+                                rank: 'rank',
+                                active: 'active',
+                                rnk: 'rnk',
+                                otname: 'otname'),),
                                 transition: Transition.fadeIn);
                           },
                         );

@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart' as trans;
+import 'package:my_manasa/constants.dart';
 import 'package:my_manasa/core/dialogs/sign_out_dialog.dart';
 import 'package:my_manasa/features/authentication/presentation/manager/auth_cubit.dart';
 import 'package:my_manasa/features/profile/presentation/views/student_profile_view.dart';
@@ -39,10 +40,12 @@ class ProfileView extends StatelessWidget {
                   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                   children: [
                     SquareProfileCard(
+                      backGroundColor: AppColors.primaryColor,
                         title: 'تعليمات',
                         subTitle: 'تعليمات هامة لتحقيق اقصى استفادة',
                         icon: Icons.integration_instructions_rounded),
                     SquareProfileCard(
+                      backGroundColor: AppColors.secondaryColor,
                         title: 'تحتاج مساعدة ؟',
                         subTitle: 'تواصل معنا لمزيد من المعلومات',
                         icon: Icons.question_mark_outlined)
