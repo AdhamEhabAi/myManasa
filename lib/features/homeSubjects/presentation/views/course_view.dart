@@ -31,21 +31,21 @@ class CourseView extends StatelessWidget {
             height: MediaQuery.of(context).size.height * .96,
             child: Column(
               children: [
-                const CourseViewHeader(),
+                 CourseViewHeader(course: course,),
                 Padding(
                   padding: EdgeInsets.all(12.w),
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Text(
-                        'كورس كامل عن القراءة',
+                        course.name,
                         style: Styles.bold16,
                       ),
                       SizedBox(
                         height: 10.h,
                       ),
                       Text(
-                        'يحتوي هذة الكورس علي تأسيس كامل للصفوف و شرح وحل نماذج في الفيديو',
+                       course.title ?? 'يحتوي هذة الكورس علي تأسيس كامل للصفوف و شرح وحل نماذج في الفيديو',
                         style: Styles.semiBold14,
                         maxLines: 2,
                       ),

@@ -4,6 +4,7 @@ import 'package:my_manasa/core/utils/styles.dart';
 
 import 'package:my_manasa/features/homeSubjects/presentation/views/widgets/course_view_header.dart';
 import 'package:my_manasa/features/homeSubjects/presentation/views/widgets/video_or_pdf_widget.dart';
+import 'package:my_manasa/features/homeTeachers/data/models/course_model.dart';
 import 'package:my_manasa/features/myCourses/presentation/manager/my_courses_cubit.dart';
 import 'package:my_manasa/features/myCourses/presentation/views/my_courses_pdf_view.dart';
 import 'package:my_manasa/features/myCourses/presentation/views/my_courses_video_view.dart';
@@ -22,7 +23,25 @@ class MyCourseView extends StatelessWidget {
       child: Scaffold(
         body: Column(
           children: [
-            const CourseViewHeader(),
+            CourseViewHeader(
+              course: CourseModel(
+                  id: 'id',
+                  name: 'name',
+                  typeClassroom: 'typeClassroom',
+                  videoControl: 'videoControl',
+                  cat: 'cat',
+                  vstatus: 'vstatus',
+                  sstatus: 'sstatus',
+                  videoLimit: 'videoLimit',
+                  sub: 'sub',
+                  pub: 'pub',
+                  yr: 'yr',
+                  price: 'price',
+                  exam: 'exam',
+                  fres: 'fres',
+                  cnct: 'cnct',
+                  exmlnk: 'exmlnk'),
+            ),
             Padding(
               padding: const EdgeInsets.all(12),
               child: Column(

@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:my_manasa/constants.dart';
 import 'package:my_manasa/core/utils/styles.dart';
 
 class TeacherSubjectWidget extends StatelessWidget {

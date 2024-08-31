@@ -53,11 +53,11 @@ class _HomeTeachersWidgetState extends State<HomeTeachersWidget> {
               text: 'أشهر المدرسين',
             ),
           ),
-          SizedBox(height: 10.h), // Adapted height
+          SizedBox(height: 10.h),
           Padding(
-            padding: EdgeInsets.only(right: AppPadding.padding.w), // Adapted padding
+            padding: EdgeInsets.only(right: AppPadding.padding.w),
             child: SizedBox(
-              height: MediaQuery.of(context).size.height / 4.3, // Kept dynamic height
+              height: MediaQuery.of(context).size.height / 4.3,
               child: BlocBuilder<TeacherCubit, TeacherState>(
                 builder: (context, state) {
                   TeacherCubit provider = BlocProvider.of<TeacherCubit>(context);

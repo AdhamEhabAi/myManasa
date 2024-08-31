@@ -23,8 +23,8 @@ class QuizView extends StatelessWidget {
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: 30),
               child: InkWell(
-                onTap: (){
-                  Get.to(const HistoryView(),transition: Transition.fade);
+                onTap: () {
+                  Get.to(const HistoryView(), transition: Transition.fade);
                 },
                 child: const ImageIcon(
                   AssetImage('assets/images/history.png'),
@@ -41,8 +41,11 @@ class QuizView extends StatelessWidget {
             scrollDirection: Axis.vertical,
             itemBuilder: (context, index) {
               return QuizWidget(
-                onTap: (){
-                  showDialog(context: context, builder: (context) => const StartExamDialog(),);
+                onTap: () {
+                  showDialog(
+                    context: context,
+                    builder: (context) => const StartExamDialog(),
+                  );
                 },
               );
             },
@@ -56,4 +59,3 @@ class QuizView extends StatelessWidget {
     );
   }
 }
-

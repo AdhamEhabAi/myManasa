@@ -1,10 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:google_nav_bar/google_nav_bar.dart';
 import 'package:my_manasa/constants.dart';
 import 'package:my_manasa/features/home/presentation/views/home_view.dart';
-import 'package:my_manasa/features/homeTeachers/presentation/manager/teacher_cubit.dart';
 import 'package:my_manasa/features/myCourses/presentation/views/my_courses_view.dart';
 import 'package:my_manasa/features/profile/presentation/views/profile_view.dart';
 import 'package:my_manasa/features/Quiz/presentation/views/quiz_view.dart';

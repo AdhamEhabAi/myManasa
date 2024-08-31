@@ -99,6 +99,7 @@ class _ExamViewState extends State<ExamView> {
     return SafeArea(
         child: Scaffold(
       appBar: const CustomAppBar(
+        logoColor: Colors.white,
         title: '',
         iconColor: Colors.white,
       ),

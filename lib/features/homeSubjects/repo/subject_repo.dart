@@ -1,7 +1,6 @@
 import 'dart:convert';
 import 'package:dartz/dartz.dart';
 import 'package:my_manasa/core/app_repository/repo.dart';
-import 'package:my_manasa/core/errors/exceptions.dart';
 import 'package:my_manasa/core/errors/failures.dart';
 import 'package:my_manasa/core/network/api_endpoints.dart';
 import 'package:my_manasa/core/utils/api_service.dart';

@@ -8,7 +8,6 @@ import 'package:my_manasa/core/utils/styles.dart';
 import 'package:my_manasa/core/widgets/custom_button.dart';
 import 'package:my_manasa/core/widgets/custom_text_form_field.dart';
 import 'package:my_manasa/features/authentication/presentation/manager/auth_cubit.dart';
-import 'package:my_manasa/features/authentication/presentation/views/forget_password_view.dart';
 import 'package:my_manasa/features/authentication/presentation/views/register_view.dart';
 import 'package:my_manasa/features/home/presentation/views/main_view.dart';
 

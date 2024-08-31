@@ -19,10 +19,25 @@ class HomeHeader extends StatefulWidget {
 class _HomeHeaderState extends State<HomeHeader> {
   double _logoWidth = 120;
   bool _isExpanded = false;
+  late TextEditingController searchController;
+  late FocusNode searchFocusNode;
+
+  @override
+  void initState() {
+    super.initState();
+    searchController = TextEditingController();
+    searchFocusNode = FocusNode();
+  }
+
+  @override
+  void dispose() {
+    searchController.dispose();
+    searchFocusNode.dispose();
+    super.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {
-    TextEditingController searchController = TextEditingController();
     AuthCubit authCubit = BlocProvider.of<AuthCubit>(context);
 
     return Container(
@@ -72,12 +87,12 @@ class _HomeHeaderState extends State<HomeHeader> {
                         ),
                         Expanded(
                           child: TextField(
+                            focusNode: searchFocusNode,
                             onTap: () {
-                              if (_isExpanded) {
-                              }else{
+                              if (!_isExpanded) {
                                 setState(() {
-                                  _isExpanded = !_isExpanded;
-                                  _logoWidth = _isExpanded ? 0 : 120; // Toggle logo size
+                                  _isExpanded = true;
+                                  _logoWidth = 0; // Toggle logo size
                                 });
                               }
                             },
@@ -92,28 +107,29 @@ class _HomeHeaderState extends State<HomeHeader> {
                                 transition: trans.Transition.fadeIn,
                               );
                               searchController.clear();
+                              searchFocusNode.unfocus();
                             },
                           ),
                         ),
                         GestureDetector(
                           onTap: () {
                             if (_isExpanded) {
-                                _isExpanded = !_isExpanded;
-                                _logoWidth = _isExpanded ? 0 : 120; // Toggle logo size
-                                searchController.clear();
                               setState(() {
-
+                                _isExpanded = false;
+                                _logoWidth = 120; // Toggle logo size
+                                searchController.clear();
+                                searchFocusNode.unfocus(); // Unfocus when closing
                               });
-                            }else{
-
                             }
                           },
                           child: Padding(
-                            padding: EdgeInsets.symmetric(horizontal: 8.0),
-                            child: _isExpanded ? Icon(
+                            padding: const EdgeInsets.symmetric(horizontal: 8.0),
+                            child: _isExpanded
+                                ? const Icon(
                               Icons.close,
                               color: AppColors.primaryColor,
-                            ) : SizedBox(),
+                            )
+                                : const SizedBox(),
                           ),
                         ),
                       ],
