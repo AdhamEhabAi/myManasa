@@ -11,8 +11,15 @@ import 'package:my_manasa/features/authentication/presentation/manager/auth_cubi
 import 'package:my_manasa/features/authentication/presentation/views/register_view.dart';
 import 'package:my_manasa/features/home/presentation/views/main_view.dart';
 
-class LoginView extends StatelessWidget {
+class LoginView extends StatefulWidget {
   const LoginView({super.key});
+
+  @override
+  _LoginViewState createState() => _LoginViewState();
+}
+
+class _LoginViewState extends State<LoginView> {
+  bool _isPasswordVisible = false; // Local state to manage password visibility
 
   @override
   Widget build(BuildContext context) {
@@ -34,7 +41,7 @@ class LoginView extends StatelessWidget {
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.center,
                   children: [
-                    SizedBox(height: 50.h), // Top spacing for logo section
+                    SizedBox(height: 50.h),
                     Column(
                       children: [
                         Image.asset(
@@ -80,16 +87,26 @@ class LoginView extends StatelessWidget {
                     SizedBox(height: 20.h),
                     // Password TextFormField
                     CustomTextFormField(
+                      keyboardType: TextInputType.visiblePassword,
+                      obscureText: !_isPasswordVisible,
                       controller: authCubit.loginPassword,
                       prefixIcon: const Icon(
                         Icons.lock,
                         color: AppColors.primaryColor,
                       ),
-                      suffixIcon: const Icon(
-                        Icons.visibility_off,
-                        color: AppColors.primaryColor,
+                      suffixIcon: InkWell(
+                        onTap: () {
+                          setState(() {
+                            _isPasswordVisible = !_isPasswordVisible;
+                          });
+                        },
+                        child: Icon(
+                          _isPasswordVisible ? Icons.visibility : Icons.visibility_off,
+                          color: AppColors.primaryColor,
+                        ),
                       ),
                       labelText: 'كلمة المرور',
+                      maxLines: 1,
                       validator: (value) {
                         if (value == null || value.isEmpty) {
                           return 'يرجى إدخال كلمة المرور';
@@ -115,7 +132,6 @@ class LoginView extends StatelessWidget {
                           style: Styles.semiBold14.copyWith(
                             color: Colors.red,
                             decoration: TextDecoration.underline,
-
                           ),
                         ),
                       ),
