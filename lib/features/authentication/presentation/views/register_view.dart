@@ -1,4 +1,3 @@
-
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -21,6 +20,7 @@ class RegisterView extends StatefulWidget {
 }
 
 class _RegisterViewState extends State<RegisterView> {
+  bool _isPasswordVisible = false; // Local state for password visibility
 
   @override
   Widget build(BuildContext context) {
@@ -94,12 +94,11 @@ class _RegisterViewState extends State<RegisterView> {
                                 RegExp regExp = RegExp(r'^(012|010|011|015)\d{8}$');
                                 if (value == null || value.isEmpty) {
                                   return 'ادخل رقم الموبيل ولي الامر';
-                                }else if(regExp.hasMatch(value)){
+                                } else if (regExp.hasMatch(value)) {
                                   return null;
-                                }else{
+                                } else {
                                   return 'ادخل رقم الهاتف صحيح';
                                 }
-          
                               },
                               prefixIcon: Icon(
                                 Icons.phone,
@@ -114,12 +113,11 @@ class _RegisterViewState extends State<RegisterView> {
                                 RegExp regExp = RegExp(r'^(012|010|011|015)\d{8}$');
                                 if (value == null || value.isEmpty) {
                                   return 'ادخل رقم الموبيل ولي الامر';
-                                }else if(regExp.hasMatch(value)){
+                                } else if (regExp.hasMatch(value)) {
                                   return null;
-                                }else{
+                                } else {
                                   return 'ادخل رقم الهاتف صحيح';
                                 }
-          
                               },
                               prefixIcon: Icon(
                                 Icons.phone,
@@ -147,10 +145,9 @@ class _RegisterViewState extends State<RegisterView> {
                               validator: (value) {
                                 if (value == null || value.isEmpty) {
                                   return 'ادخل البريد الاكتروني';
-                                }else{
+                                } else {
                                   return validateEmail(value);
                                 }
-          
                               },
                               prefixIcon: Icon(
                                 Icons.email,
@@ -159,8 +156,10 @@ class _RegisterViewState extends State<RegisterView> {
                               ),
                               labelText: 'البريد الاكتروني',
                             ),
+                            // Password TextFormField with toggle visibility
                             CustomTextFormField(
                               controller: provider.password,
+                              obscureText: !_isPasswordVisible, // Use local state for visibility
                               validator: (value) {
                                 if (value == null || value.isEmpty) {
                                   return 'ادخل كلمة المرور';
@@ -172,10 +171,17 @@ class _RegisterViewState extends State<RegisterView> {
                                 color: AppColors.primaryColor,
                                 size: 24.h,
                               ),
-                              suffixIcon: Icon(
-                                Icons.visibility_off,
-                                color: AppColors.primaryColor,
-                                size: 24.h,
+                              suffixIcon: InkWell(
+                                onTap: () {
+                                  setState(() {
+                                    _isPasswordVisible = !_isPasswordVisible; // Toggle visibility
+                                  });
+                                },
+                                child: Icon(
+                                  _isPasswordVisible ? Icons.visibility : Icons.visibility_off,
+                                  color: AppColors.primaryColor,
+                                  size: 24.h,
+                                ),
                               ),
                               labelText: 'كلمة المرور',
                             ),
@@ -200,7 +206,6 @@ class _RegisterViewState extends State<RegisterView> {
                                       provider.userRegister();
                                     }
                                   },
-          
                                 );
                               },
                             ),
