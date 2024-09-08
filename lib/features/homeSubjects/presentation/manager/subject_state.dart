@@ -25,8 +25,7 @@ class CourseVideoPdfChanged extends SubjectState {
 class AllTeachersLoading extends SubjectState {}
 
 class AllTeachersLoaded extends SubjectState {
-  final List<Teacher> teachers;
-  AllTeachersLoaded(this.teachers);
+
 }
 
 class AllTeachersFail extends SubjectState {

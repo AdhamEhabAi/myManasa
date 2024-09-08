@@ -9,19 +9,28 @@ import 'package:my_manasa/features/homeTeachers/presentation/views/teacher_view.
 import 'package:my_manasa/features/homeSubjects/presentation/manager/subject_cubit.dart';
 import 'package:my_manasa/features/homeSubjects/presentation/views/widgets/teacher_subject_widget.dart';
 
-class SubjectView extends StatelessWidget {
+class SubjectView extends StatefulWidget {
   const SubjectView({super.key, required this.subject});
   final SubjectModel subject;
 
   @override
-  Widget build(BuildContext context) {
-    // Fetch all teachers when this view is built
-    context.read<SubjectCubit>().fetchAllTeachersForSubject(subjectName: subject.name);
+  _SubjectViewState createState() => _SubjectViewState();
+}
 
+class _SubjectViewState extends State<SubjectView> {
+  @override
+  void initState() {
+    super.initState();
+    final subjectCubit = context.read<SubjectCubit>();
+    subjectCubit.fetchAllTeachersForSubject(subjectName: widget.subject.name);
+  }
+
+  @override
+  Widget build(BuildContext context) {
     return SafeArea(
       child: Scaffold(
         appBar: CustomAppBar(
-          title: subject.name,
+          title: widget.subject.name,
           backGroundColor: Colors.transparent,
           titleColor: AppColors.primaryColor,
         ),
@@ -45,9 +54,13 @@ class SubjectView extends StatelessWidget {
                     if (state is AllTeachersLoading) {
                       return const Center(child: CircularProgressIndicator());
                     } else if (state is AllTeachersLoaded) {
+                      final teachersList = context.read<SubjectCubit>().teachersList;
+                      if (teachersList.isEmpty) {
+                        return Center(child: Text('لا يوجد مدرسين', style: Styles.semiBold20));
+                      }
                       return ListView.separated(
                         itemBuilder: (context, index) {
-                          final teacher = state.teachers[index];
+                          final teacher = teachersList[index];
                           return TeacherSubjectWidget(
                             teacher: teacher,
                             onTap: () {
@@ -59,12 +72,12 @@ class SubjectView extends StatelessWidget {
                           );
                         },
                         separatorBuilder: (context, index) => const SizedBox(height: 20),
-                        itemCount: state.teachers.length,
+                        itemCount: teachersList.length,
                       );
                     } else if (state is AllTeachersFail) {
                       return Center(child: Text(state.message, style: Styles.semiBold20));
                     } else {
-                      return Center(child: Text('No teachers found.', style: Styles.semiBold20));
+                      return Center(child: Text('لا يوجد مدرسين', style: Styles.semiBold20));
                     }
                   },
                 ),
