@@ -54,7 +54,7 @@ class _SubjectViewState extends State<SubjectView> {
                     if (state is AllTeachersLoading) {
                       return const Center(child: CircularProgressIndicator());
                     } else if (state is AllTeachersLoaded) {
-                      final teachersList = context.read<SubjectCubit>().teachersList;
+                      final teachersList = state.teachers; // Use teachers list from the state
                       if (teachersList.isEmpty) {
                         return Center(child: Text('لا يوجد مدرسين', style: Styles.semiBold20));
                       }

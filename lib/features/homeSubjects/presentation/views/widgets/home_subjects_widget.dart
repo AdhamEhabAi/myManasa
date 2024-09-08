@@ -79,7 +79,7 @@ class _HomeSubjectsWidgetState extends State<HomeSubjectsWidget> {
                       controller: _pageController,
                       itemCount: provider.subjectsList.length.clamp(0, 3),
                       itemBuilder: (context, index) => HomeSingleSubjectWidget(
-                        subject: provider.subjectsList[index], // Use subjectsList from provider
+                        subject: provider.subjectsList[index],
                         onTap: () {
                           trans.Get.to(
                                 () => SubjectView(subject: provider.subjectsList[index]),
