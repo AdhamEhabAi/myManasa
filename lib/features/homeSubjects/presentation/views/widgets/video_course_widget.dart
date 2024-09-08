@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:my_manasa/constants.dart';
 import 'package:my_manasa/core/utils/styles.dart';
+import 'package:my_manasa/features/myCourses/data/models/video_model.dart';
 
 class VideoCourseWidget extends StatelessWidget {
-  const VideoCourseWidget({super.key});
+  const VideoCourseWidget({super.key, required this.videoModel});
+  final VideoModel videoModel;
 
   @override
   Widget build(BuildContext context) {
@@ -18,7 +20,7 @@ class VideoCourseWidget extends StatelessWidget {
               width: MediaQuery.of(context).size.width / 4.5,
               height: 65,
               child: Image.asset(
-                'assets/images/VideoImage.png',
+                'assets/images/logo.png',
                 fit: BoxFit.fill,
               ),
             ),
@@ -29,7 +31,7 @@ class VideoCourseWidget extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Text(
-                    'الدرس الاول',
+                    videoModel.name,
                     style: Styles.bold16,
                   ),
                   Text(

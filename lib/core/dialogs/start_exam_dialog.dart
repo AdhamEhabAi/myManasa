@@ -39,7 +39,7 @@ class StartExamDialog extends StatelessWidget {
                         style: Styles.semiBold20.copyWith(height: .3,color: Colors.white),
                       ),
                       onPressed: () {
-                        Get.to(const ExamView(),transition: Transition.fadeIn);
+                        // Get.to(const ExamView(),transition: Transition.fadeIn);
 
                       }),
                 ),

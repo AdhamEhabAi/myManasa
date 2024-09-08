@@ -7,7 +7,8 @@ class APIEndpoints {
       '$baseUrl/api-selectData.php?tableName=cat&where=NULL&equalWhat=00';
   static const getCoursesByTeacherID =
       '$baseUrl/api-selectData.php?tableName=videos&where=pub&equalWhat=';
-
+  static const getAllVideosForOwnedCourse =
+      '$baseUrl/api-selectData.php?tableName=videolink&where=idclassroom&equalWhat=';
 
 
   static const getAllLessonsApi =

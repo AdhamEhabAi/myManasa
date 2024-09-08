@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:get/get.dart' as trans;
 import 'package:my_manasa/constants.dart';
-import 'package:my_manasa/core/shimmer/course_shimmer.dart';
+import 'package:my_manasa/core/shimmer/subjects_shimmer.dart';
 import 'package:my_manasa/features/homeSubjects/presentation/views/all_subjects_view.dart';
 import 'package:my_manasa/features/homeSubjects/presentation/views/subject_view.dart';
 import 'package:my_manasa/features/homeSubjects/presentation/manager/subject_cubit.dart';
@@ -44,12 +44,12 @@ class _HomeSubjectsWidgetState extends State<HomeSubjectsWidget> {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: EdgeInsets.only(bottom: 12.h), // Adapted padding
+      padding: EdgeInsets.only(bottom: 12.h),
       child: Column(
         children: [
           SizedBox(height: 20.h), // Adapted height
           Padding(
-            padding: EdgeInsets.symmetric(horizontal: 40.w), // Adapted padding
+            padding: EdgeInsets.symmetric(horizontal: 40.w),
             child: AllWidget(
               onTap: () {
                 trans.Get.to(const AllSubjectView(),
@@ -61,15 +61,15 @@ class _HomeSubjectsWidgetState extends State<HomeSubjectsWidget> {
           SizedBox(height: 10.h), // Adapted height
           Padding(
             padding:
-            EdgeInsets.only(right: AppPadding.padding.w), // Adapted padding
+            EdgeInsets.only(right: AppPadding.padding.w),
             child: SizedBox(
-              height: MediaQuery.of(context).size.height / 4.3, // Kept dynamic height
+              height: MediaQuery.of(context).size.height / 4.3,
               child: BlocBuilder<SubjectCubit, SubjectState>(
                 builder: (context, state) {
                   final provider = BlocProvider.of<SubjectCubit>(context);
 
                   if (state is SubjectsLoading && provider.subjectsList.isEmpty) {
-                    return const CourseShimmer();
+                    return const SubjectsShimmer();
                   } else if (state is SubjectsFail) {
                     return Center(child: Text(state.errMessage));
                   } else if (provider.subjectsList.isNotEmpty) {

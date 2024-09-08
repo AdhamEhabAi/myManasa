@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:shimmer/shimmer.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart'; // Import ScreenUtil for responsive design
 
-class TeacherShimmer extends StatelessWidget {
-  const TeacherShimmer({super.key});
+class CoursesShimmer extends StatelessWidget {
+  const CoursesShimmer({super.key});
 
   @override
   Widget build(BuildContext context) {

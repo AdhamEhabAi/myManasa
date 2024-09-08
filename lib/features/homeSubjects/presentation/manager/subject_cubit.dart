@@ -7,6 +7,7 @@ part 'subject_state.dart';
 
 class SubjectCubit extends Cubit<SubjectState> {
   SubjectCubit(this.subjectRepo) : super(HomeInitial());
+
   bool isVideo = false;
   final SubjectRepo subjectRepo;
   List<SubjectModel> subjectsList = [];
@@ -19,12 +20,11 @@ class SubjectCubit extends Cubit<SubjectState> {
         emit(SubjectsFail(failure.message));
       },
           (subjects) {
-            subjectsList = subjects;
+        subjectsList = subjects;
         emit(SubjectsSuccess());
       },
     );
   }
-
 
   void switchComplete() {
     isVideo = !isVideo;
@@ -34,5 +34,10 @@ class SubjectCubit extends Cubit<SubjectState> {
   void onPageChanged(int index) {
     isVideo = index != 1;
     emit(CourseVideoPdfChanged(isVideo));
+  }
+
+  void resetState() {
+    isVideo = false;
+    emit(HomeInitial());
   }
 }

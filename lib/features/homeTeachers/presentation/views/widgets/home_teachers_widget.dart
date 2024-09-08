@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:get/get.dart' as trans;
 import 'package:my_manasa/constants.dart';
-import 'package:my_manasa/core/shimmer/teacher_shimmer.dart';
+import 'package:my_manasa/core/shimmer/courses_shimmer.dart';
 import 'package:my_manasa/features/homeTeachers/presentation/manager/teacher_cubit.dart';
 import 'package:my_manasa/features/homeTeachers/presentation/views/all_teachers_view.dart';
 import 'package:my_manasa/features/homeTeachers/presentation/views/teacher_view.dart';
@@ -63,7 +63,7 @@ class _HomeTeachersWidgetState extends State<HomeTeachersWidget> {
                   TeacherCubit provider = BlocProvider.of<TeacherCubit>(context);
 
                   if (state is TeacherLoading && provider.teachersList.isEmpty) {
-                    return const TeacherShimmer(); // Use shimmer only if list is empty
+                    return const CoursesShimmer(); // Use shimmer only if list is empty
                   } else if (provider.teachersList.isNotEmpty) { // Use teachersList directly
                     return ListView.builder(
                       scrollDirection: Axis.horizontal,

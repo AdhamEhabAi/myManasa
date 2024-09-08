@@ -2,8 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:my_manasa/core/utils/styles.dart';
 
 class MyCoursesVideoCourseWidget extends StatelessWidget {
-  const MyCoursesVideoCourseWidget({super.key, required this.onTap});
+  const MyCoursesVideoCourseWidget({super.key, required this.onTap, required this.title});
   final VoidCallback onTap;
+  final String title;
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
@@ -28,7 +29,7 @@ class MyCoursesVideoCourseWidget extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Text(
-                    'الدرس الاول',
+                    title,
                     style: Styles.bold16,
                   ),
                   Text(

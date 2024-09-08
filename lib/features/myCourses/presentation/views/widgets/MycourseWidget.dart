@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:my_manasa/constants.dart';
 import 'package:my_manasa/core/utils/styles.dart';
 import 'package:my_manasa/core/widgets/custom_percent_indicator.dart';
+import 'package:percent_indicator/linear_percent_indicator.dart';
 
 class MyCourseWidget extends StatelessWidget {
   const MyCourseWidget({super.key, required this.onTap});
@@ -9,8 +11,7 @@ class MyCourseWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding:
-      const EdgeInsets.symmetric(horizontal: AppPadding.padding),
+      padding: const EdgeInsets.symmetric(horizontal: AppPadding.padding),
       child: GestureDetector(
         onTap: onTap,
         child: Stack(
@@ -26,7 +27,7 @@ class MyCourseWidget extends StatelessWidget {
                     spreadRadius: 2,
                   ),
                 ],
-                borderRadius: BorderRadius.circular(20),
+                borderRadius: BorderRadius.circular(20.r),
               ),
               child: Row(
                 children: [
@@ -44,57 +45,40 @@ class MyCourseWidget extends StatelessWidget {
                       fit: BoxFit.fill,
                     ),
                   ),
-                  Expanded(
-                    child: Padding(
-                      padding: const EdgeInsets.all(8.0),
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Row(
-                            children: [
-                              Expanded(
-                                child: Text(
-                                  'مع مستر / نبيل وليم',
-                                  style: Styles.bold14,
-                                  overflow: TextOverflow.ellipsis,
-                                ),
-                              ),
-                              const SizedBox(width: 8),
-                              CircleAvatar(
-                                radius: 12,
-                                child: Image.asset(
-                                  'assets/images/smallTeacher.png',
-                                  fit: BoxFit.cover,
-                                ),
-                              ),
-                            ],
-                          ),
-                          const SizedBox(height: 8),
-                          const Row(
-                            children: [
-                              CustomPercentIndicator(doneVideos: 21,lineColor: Colors.blue,titleText: 'نصوص',totalVideos: 30,),
-                              CustomPercentIndicator(doneVideos: 21,lineColor: Colors.yellowAccent,titleText: 'القراءة',totalVideos: 30,),
-                              CustomPercentIndicator(doneVideos: 21,lineColor: Colors.greenAccent,titleText: 'القصة',totalVideos: 30,),
-                            ],
-                          ),
-                        ],
+                  Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Padding(
+                        padding:  EdgeInsets.only(right: 8.0.w),
+                        child: Text(
+                          'نصوص',
+                          style: Styles.bold16
+                              .copyWith(color: AppColors.primaryColor),
+                        ),
                       ),
-                    ),
+                      SizedBox(height: 20.h,),
+                      LinearPercentIndicator(
+                        width: 180.0.w,
+                        lineHeight: 8.0.h,
+                        trailing: Text(
+                          '20/30',
+                          style: TextStyle(color: Colors.grey.shade700),
+                        ),
+                        percent: 0.7,
+                        backgroundColor: Colors.grey,
+                        progressColor: AppColors.primaryColor,
+                        barRadius: Radius.circular(12.r),
+                        isRTL: true,
+
+                      ),
+                    ],
                   ),
                 ],
               ),
             ),
-            Positioned(
-                bottom: 10,
-                left: 10,
-                child: Text(
-                  'علوم',
-                  style: Styles.bold14,
-                ))
           ],
         ),
       ),
     );
   }
 }
-

@@ -12,17 +12,53 @@ import 'package:my_manasa/features/homeSubjects/presentation/views/widgets/video
 import 'package:my_manasa/features/homeSubjects/presentation/views/widgets/course_view_header.dart';
 import 'package:my_manasa/features/homeTeachers/data/models/course_model.dart';
 
-class CourseView extends StatelessWidget {
+class CourseView extends StatefulWidget {
   const CourseView({super.key, required this.course});
   final CourseModel course;
+
+  @override
+  State<CourseView> createState() => _CourseViewState();
+}
+
+class _CourseViewState extends State<CourseView> {
+  late final PageController pageController;
+  late final TextEditingController codeController;
+
+  @override
+  void initState() {
+    super.initState();
+    pageController = PageController(initialPage: 1);
+    codeController = TextEditingController();
+  }
+
+  @override
+  void dispose() {
+    // Dispose of controllers to free up resources
+    pageController.dispose();
+    codeController.dispose();
+    super.dispose();
+  }
+
+  void resetState() {
+    // Reset pageController to initial page
+    pageController.jumpToPage(1);
+    // Reset the text field controller
+    codeController.clear();
+    // Reset the SubjectCubit state
+    context.read<SubjectCubit>().resetState();
+  }
 
   @override
   Widget build(BuildContext context) {
     final screenWidth = MediaQuery.of(context).size.width;
     final containerWidth = screenWidth - 58.0;
     final halfWidth = containerWidth / 2;
-    final PageController pageController = PageController(initialPage: 1);
-    TextEditingController codeController = TextEditingController();
+
+    // Call resetState whenever this widget is rebuilt or comes into view
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      resetState();
+    });
+
     return SafeArea(
       child: Scaffold(
         body: SingleChildScrollView(
@@ -31,42 +67,32 @@ class CourseView extends StatelessWidget {
             height: MediaQuery.of(context).size.height * .96,
             child: Column(
               children: [
-                 CourseViewHeader(course: course,),
+                CourseViewHeader(course: widget.course),
                 Padding(
                   padding: EdgeInsets.all(12.w),
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Text(
-                        course.name,
+                        widget.course.name,
                         style: Styles.bold16,
                       ),
-                      SizedBox(
-                        height: 10.h,
-                      ),
+                      SizedBox(height: 10.h),
                       Text(
-                       course.title ?? 'يحتوي هذة الكورس علي تأسيس كامل للصفوف و شرح وحل نماذج في الفيديو',
+                        widget.course.title ?? 'يحتوي هذة الكورس علي تأسيس كامل للصفوف و شرح وحل نماذج في الفيديو',
                         style: Styles.semiBold14,
                         maxLines: 2,
                       ),
-                      SizedBox(
-                        height: 10.h,
-                      ),
+                      SizedBox(height: 10.h),
                       SizedBox(
                         width: MediaQuery.of(context).size.width / 2,
                         child: Row(
                           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                           children: [
-                            Image.asset('assets/images/smallplay.png',color: AppColors.primaryColor,),
-                             Text(
-                              '35 فيديو',
-                              style: Styles.semiBold16,
-                            ),
-                            Image.asset('assets/images/small timer.png',color: AppColors.secondaryColor,),
-                             Text(
-                              '3ساعات',
-                              style: Styles.semiBold16,
-                            ),
+                            Image.asset('assets/images/smallplay.png', color: AppColors.primaryColor),
+                            Text('35 فيديو', style: Styles.semiBold16),
+                            Image.asset('assets/images/small timer.png', color: AppColors.secondaryColor),
+                            Text('3ساعات', style: Styles.semiBold16),
                           ],
                         ),
                       ),
@@ -79,8 +105,7 @@ class CourseView extends StatelessWidget {
                         ? state.isVideo
                         : context.read<SubjectCubit>().isVideo;
                     return Padding(
-                      padding: const EdgeInsets.symmetric(
-                          horizontal: 29.0, vertical: 11.0),
+                      padding: const EdgeInsets.symmetric(horizontal: 29.0, vertical: 11.0),
                       child: VideoOrPdfWidget(
                         containerWidth: containerWidth,
                         isSelected: isSelected,
@@ -104,28 +129,26 @@ class CourseView extends StatelessWidget {
                       context.read<SubjectCubit>().onPageChanged(index);
                     },
                     scrollDirection: Axis.horizontal,
-                    children: const [
-                      VideoView(),
-                      PdfView(),
+                    children: [
+                      VideoView(courseModel: widget.course),
+                      PdfView(), // Similarly, pass course to PdfView if needed
                     ],
                   ),
                 ),
                 Padding(
-                  padding:
-                      const EdgeInsets.symmetric(horizontal: 40, vertical: 12),
+                  padding: const EdgeInsets.symmetric(horizontal: 40, vertical: 12),
                   child: CustomButton(
-                      text: Text('شراء',
-                          style:
-                              Styles.semiBold24.copyWith(color: Colors.white)),
-                      borderRadius: 26,
-                      onPressed: () {
-                        showDialog(
-                          context: context,
-                          builder: (context) {
-                            return  GetCodeDialog(textEditingController: codeController,);
-                          },
-                        );
-                      }),
+                    text: Text('شراء', style: Styles.semiBold24.copyWith(color: Colors.white)),
+                    borderRadius: 26,
+                    onPressed: () {
+                      showDialog(
+                        context: context,
+                        builder: (context) {
+                          return GetCodeDialog(textEditingController: codeController);
+                        },
+                      );
+                    },
+                  ),
                 ),
               ],
             ),
@@ -135,4 +158,5 @@ class CourseView extends StatelessWidget {
     );
   }
 }
+
 

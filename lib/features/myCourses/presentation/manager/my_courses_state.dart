@@ -11,4 +11,16 @@ final class CourseVideoPdfChanged extends MyCoursesState {
 
 }
 final class CourseVideoPdfSwitched extends MyCoursesState {}
+final class VideosLoading extends MyCoursesState {}
+final class VideosError extends MyCoursesState {
+  final String errMessage;
+
+  VideosError(this.errMessage);
+}
+final class VideoLoadingSuccess extends MyCoursesState {
+  final List<VideoModel> videos;
+
+  VideoLoadingSuccess(this.videos);
+}
+
 

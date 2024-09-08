@@ -12,7 +12,7 @@ class MyCoursesVideoView extends StatelessWidget {
         itemBuilder: (context, index) {
           return MyCoursesVideoCourseWidget(onTap: () {
             Get.to(const MyCoursesPlayVideoView(),transition: Transition.fade);
-          },);
+          }, title: 'Adham',);
         },
         separatorBuilder: (context, index) => const SizedBox(
           height: 20,
