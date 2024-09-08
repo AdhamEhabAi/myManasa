@@ -46,7 +46,7 @@ class AllTeachersTeacherWidget extends StatelessWidget {
                 ),
                 child: CachedNetworkImage(
                   imageUrl: APIEndpoints.imgPath + teacher.img,
-                  fit: BoxFit.cover,
+                  fit: BoxFit.fill,
                   placeholder: (context, url) => Image.asset(
                     'assets/images/logo.png',
                     fit: BoxFit.cover,

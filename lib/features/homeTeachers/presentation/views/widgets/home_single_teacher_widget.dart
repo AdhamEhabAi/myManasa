@@ -52,7 +52,7 @@ class HomeSingleTeacherWidget extends StatelessWidget {
                   ),
                   child: CachedNetworkImage(
                     imageUrl: APIEndpoints.imgPath + teacher.img,
-                    fit: BoxFit.cover,
+                    fit: BoxFit.fill,
                     width: double.infinity,
                     height: double.infinity,
                     placeholder: (context, url) => Image.asset(

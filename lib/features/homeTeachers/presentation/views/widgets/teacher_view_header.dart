@@ -38,7 +38,7 @@ class TeacherViewHeader extends StatelessWidget {
               clipBehavior: Clip.hardEdge, // Ensures the border radius applies to the image
               child: CachedNetworkImage(
                 imageUrl: APIEndpoints.imgPath + teacher.img,
-                fit: BoxFit.fill,
+                fit: BoxFit.cover,
                 width: double.infinity,
                 height: double.infinity,
                 placeholder: (context, url) => Image.asset(

@@ -1,6 +1,6 @@
 class APIEndpoints {
   static const baseUrl = 'https://api.west-online-academy.com';
-  static const imgPath = '$baseUrl/upload/';
+  static const imgPath = 'https://skyonline-plus.com/';
   static const signInApi = '$baseUrl/api-login.php';
   static const signUpApi = '$baseUrl/api-sing-up.php';
   static const getAllSubjects =
