@@ -71,7 +71,7 @@ class _HomeSubjectsWidgetState extends State<HomeSubjectsWidget> {
                   if (state is SubjectsLoading && provider.subjectsList.isEmpty) {
                     return const SubjectsShimmer();
                   } else if (state is SubjectsFail) {
-                    return Center(child: Text(state.errMessage));
+                    return Center(child: Text(state.message));
                   } else if (provider.subjectsList.isNotEmpty) {
                     return ListView.builder(
                       scrollDirection: Axis.horizontal,

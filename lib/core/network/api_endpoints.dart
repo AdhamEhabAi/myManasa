@@ -9,10 +9,10 @@ class APIEndpoints {
       '$baseUrl/api-selectData.php?tableName=videos&where=pub&equalWhat=';
   static const getAllVideosForOwnedCourse =
       '$baseUrl/api-selectData.php?tableName=videolink&where=idclassroom&equalWhat=';
+  static const getAllTeachersForSubject =
+      '$baseUrl/api-TeatcherProfile.php?where=sec&equalWhat=';
 
 
-  static const getAllLessonsApi =
-      '$baseUrl/api-selectData.php?tableName=videos&where=sub&equalWhat=';
   static const getAllTeachersApi =
       '$baseUrl/api-selectData.php?tableName=users&where=rank&equalWhat=2';
   static const getTeacherByCourseApi =

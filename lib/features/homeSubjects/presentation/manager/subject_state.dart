@@ -1,23 +1,35 @@
-part of '../../../homeSubjects/presentation/manager/subject_cubit.dart';
+part of 'subject_cubit.dart';
 
 @immutable
-sealed class SubjectState {}
+abstract class SubjectState {}
 
-final class HomeInitial extends SubjectState {}
+class HomeInitial extends SubjectState {}
+
+class SubjectsLoading extends SubjectState {}
+
+class SubjectsSuccess extends SubjectState {}
+
+class SubjectsFail extends SubjectState {
+  final String message;
+  SubjectsFail(this.message);
+}
+
 class CourseVideoPdfSwitched extends SubjectState {}
 
 class CourseVideoPdfChanged extends SubjectState {
   final bool isVideo;
-
   CourseVideoPdfChanged(this.isVideo);
 }
 
-class SubjectsLoading extends SubjectState {}
-class SubjectsSuccess extends SubjectState {
+// New States for Teachers
+class AllTeachersLoading extends SubjectState {}
 
+class AllTeachersLoaded extends SubjectState {
+  final List<Teacher> teachers;
+  AllTeachersLoaded(this.teachers);
 }
-class SubjectsFail extends SubjectState {
-  final String errMessage;
 
-  SubjectsFail(this.errMessage);
+class AllTeachersFail extends SubjectState {
+  final String message;
+  AllTeachersFail(this.message);
 }

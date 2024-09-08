@@ -33,7 +33,7 @@ class AllSubjectView extends StatelessWidget {
           if (state is SubjectsLoading && provider.subjectsList.isEmpty) {
             return const Center(child: CircularProgressIndicator()); // Show loading indicator
           } else if (state is SubjectsFail) {
-            return Center(child: Text(state.errMessage)); // Show error message
+            return Center(child: Text(state.message)); // Show error message
           } else if (provider.subjectsList.isNotEmpty) {
             return SizedBox(
               width: MediaQuery.of(context).size.width,
