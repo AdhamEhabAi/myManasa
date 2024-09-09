@@ -9,6 +9,7 @@ class VideoModel {
   final String firstUrl;
   final String? secondUrl;
   final String status;
+  final String? dis;
 
   VideoModel({
     required this.id,
@@ -19,6 +20,7 @@ class VideoModel {
     required this.videoType,
     required this.views,
     required this.firstUrl,
+    required this.dis,
     this.secondUrl,
     required this.status,
   });
@@ -36,6 +38,7 @@ class VideoModel {
       firstUrl: json['firstUrl'],
       secondUrl: json['sacandUrl'],
       status: json['status'],
+      dis: json['dis'] ?? '',
     );
   }
 

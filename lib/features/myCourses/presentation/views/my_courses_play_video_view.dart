@@ -132,7 +132,7 @@ class _MyCoursesPlayVideoViewState extends State<MyCoursesPlayVideoView> {
                             final video = _videos[index];
                             return MyCoursesVideoCourseWidget(
                               onTap: () => _onVideoTap(video),
-                              title: video.name,
+                              title: video.name, dis: video.dis!,
                             );
                           },
                           separatorBuilder: (context, index) => const SizedBox(height: 20),

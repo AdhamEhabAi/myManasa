@@ -52,7 +52,7 @@ class HomeSingleTeacherWidget extends StatelessWidget {
                   ),
                   child: CachedNetworkImage(
                     imageUrl: APIEndpoints.imgPath + teacher.img,
-                    fit: BoxFit.fill,
+                    fit: BoxFit.cover,
                     width: double.infinity,
                     height: double.infinity,
                     placeholder: (context, url) => Image.asset(
@@ -70,103 +70,101 @@ class HomeSingleTeacherWidget extends StatelessWidget {
                   ),
                 ),
               ),
-              Expanded(
-                child: Container(
-                  decoration: BoxDecoration(
-                    boxShadow: [
-                      BoxShadow(
-                        color: Colors.black.withOpacity(0.1),
-                        offset: const Offset(0, 4),
-                        blurRadius: 4.r, // Match blur radius
-                        spreadRadius: 0.r, // Match spread radius
+              Container(
+                decoration: BoxDecoration(
+                  boxShadow: [
+                    BoxShadow(
+                      color: Colors.black.withOpacity(0.1),
+                      offset: const Offset(0, 4),
+                      blurRadius: 4.r, // Match blur radius
+                      spreadRadius: 0.r, // Match spread radius
+                    ),
+                  ],
+                  color: Colors.white,
+                  borderRadius: BorderRadius.only(
+                    bottomRight: Radius.circular(17.r),
+                    bottomLeft: Radius.circular(17.r),
+                  ),
+                ),
+                child: Padding(
+                  padding: EdgeInsets.all(8.0.r),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          Row(
+                            children: [
+                              Text(
+                                'مستر /',
+                                style: Styles.semiBold14.copyWith(
+                                  color: AppColors.primaryColor,
+                                  fontSize: 14.sp,
+                                ),
+                              ),
+                              Text(
+                                '${teacher.fname} ${teacher.lname}',
+                                style: Styles.semiBold14.copyWith(
+                                  fontSize: 14.sp,
+                                ),
+                              ),
+                            ],
+                          ),
+                          SizedBox(height: 5.h),
+                          Text(
+                            'أستاذ ${teacher.sec}',
+                            style: Styles.semiBold10.copyWith(
+                              color: Colors.grey,
+                              fontSize: 10.sp,
+                            ),
+                          ),
+                        ],
+                      ),
+                      Column(
+                        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                        children: [
+                          Column(
+                            children: [
+                              Text(
+                                'تقييم',
+                                style: Styles.semiBold10.copyWith(
+                                  color: Colors.grey,
+                                  fontSize: 10.sp,
+                                ),
+                              ),
+                              SizedBox(height: 5.h),
+                              RatingBar(
+                                ignoreGestures: true,
+                                initialRating: double.parse(teacher.rank),
+                                minRating: 1,
+                                direction: Axis.horizontal,
+                                allowHalfRating: true,
+                                itemCount: 5,
+                                itemSize: 10.r,
+                                ratingWidget: RatingWidget(
+                                  full: const Icon(Icons.star,
+                                      color: Colors.amber),
+                                  half: const Icon(Icons.star_half,
+                                      color: Colors.amber),
+                                  empty: const Icon(Icons.star_border,
+                                      color: Colors.amber),
+                                ),
+                                onRatingUpdate: (rating) {},
+                              ),
+                            ],
+                          ),
+                          Text(
+                            'مادة ${teacher.sec}',
+                            style: Styles.semiBold10.copyWith(
+                              color: AppColors.secondaryColor,
+                              fontSize: 10.sp,
+                            ),
+                          ),
+                        ],
                       ),
                     ],
-                    color: Colors.white,
-                    borderRadius: BorderRadius.only(
-                      bottomRight: Radius.circular(17.r),
-                      bottomLeft: Radius.circular(17.r),
-                    ),
-                  ),
-                  child: Padding(
-                    padding: EdgeInsets.all(8.0.r),
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: [
-                            Row(
-                              children: [
-                                Text(
-                                  'مستر /',
-                                  style: Styles.semiBold14.copyWith(
-                                    color: AppColors.primaryColor,
-                                    fontSize: 14.sp,
-                                  ),
-                                ),
-                                Text(
-                                  '${teacher.fname} ${teacher.lname}',
-                                  style: Styles.semiBold14.copyWith(
-                                    fontSize: 14.sp,
-                                  ),
-                                ),
-                              ],
-                            ),
-                            SizedBox(height: 5.h),
-                            Text(
-                              'أستاذ ${teacher.sec}',
-                              style: Styles.semiBold10.copyWith(
-                                color: Colors.grey,
-                                fontSize: 10.sp,
-                              ),
-                            ),
-                          ],
-                        ),
-                        Column(
-                          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                          children: [
-                            Column(
-                              children: [
-                                Text(
-                                  'تقييم',
-                                  style: Styles.semiBold10.copyWith(
-                                    color: Colors.grey,
-                                    fontSize: 10.sp,
-                                  ),
-                                ),
-                                SizedBox(height: 5.h),
-                                RatingBar(
-                                  ignoreGestures: true,
-                                  initialRating: double.parse(teacher.rank),
-                                  minRating: 1,
-                                  direction: Axis.horizontal,
-                                  allowHalfRating: true,
-                                  itemCount: 5,
-                                  itemSize: 10.r,
-                                  ratingWidget: RatingWidget(
-                                    full: const Icon(Icons.star,
-                                        color: Colors.amber),
-                                    half: const Icon(Icons.star_half,
-                                        color: Colors.amber),
-                                    empty: const Icon(Icons.star_border,
-                                        color: Colors.amber),
-                                  ),
-                                  onRatingUpdate: (rating) {},
-                                ),
-                              ],
-                            ),
-                            Text(
-                              'مادة ${teacher.sec}',
-                              style: Styles.semiBold10.copyWith(
-                                color: AppColors.secondaryColor,
-                                fontSize: 10.sp,
-                              ),
-                            ),
-                          ],
-                        ),
-                      ],
-                    ),
                   ),
                 ),
               ),

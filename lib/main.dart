@@ -13,7 +13,6 @@ import 'package:my_manasa/features/authentication/presentation/views/splash_view
 import 'package:my_manasa/features/authentication/repo/auth_repo.dart';
 import 'package:my_manasa/features/homeSubjects/presentation/manager/subject_cubit.dart';
 import 'package:my_manasa/features/homeSubjects/repo/subject_repo.dart';
-import 'package:my_manasa/features/homeSubjects/repo/subject_video_repo.dart';
 import 'package:my_manasa/features/homeTeachers/presentation/manager/teacher_cubit.dart';
 import 'package:my_manasa/features/homeTeachers/presentation/repo/teacher_repo.dart';
 import 'package:my_manasa/features/myCourses/presentation/manager/my_courses_cubit.dart';

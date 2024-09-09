@@ -15,13 +15,6 @@ class SearchViewBody extends StatelessWidget {
     return Container(
       width: MediaQuery.of(context).size.width,
       height: MediaQuery.of(context).size.height,
-      decoration: BoxDecoration(
-        gradient: LinearGradient(
-          begin: Alignment.bottomCenter,
-          end: Alignment.topCenter,
-          colors: [AppColors.primaryColor.withOpacity(.9), Colors.white],
-        ),
-      ),
       child: Padding(
         padding: const EdgeInsets.all(AppPadding.padding),
         child: Column(

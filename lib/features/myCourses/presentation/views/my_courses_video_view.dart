@@ -31,7 +31,7 @@ class MyCoursesVideoView extends StatelessWidget {
                     transition: g.Transition.fade,
                   );
                 },
-                title: video.name,
+                title: video.name, dis: video.dis!,
               );
             },
             separatorBuilder: (context, index) => const SizedBox(height: 20),

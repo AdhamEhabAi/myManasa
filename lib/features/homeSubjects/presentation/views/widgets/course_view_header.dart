@@ -64,26 +64,6 @@ class CourseViewHeader extends StatelessWidget {
             ),
           ),
         ),
-        Positioned(
-          bottom: -30.h,
-          left: MediaQuery.of(context).size.width / 8,
-          child: Stack(
-            children: [
-              SvgPicture.asset('assets/images/playIcon.svg'),
-              Positioned(
-                top: 0,
-                left: 0,
-                right: 0,
-                bottom: 0,
-                child: Icon(
-                  Icons.play_arrow,
-                  color: Colors.white,
-                  size: 50.w,
-                ),
-              ),
-            ],
-          ),
-        ),
       ],
     );
   }

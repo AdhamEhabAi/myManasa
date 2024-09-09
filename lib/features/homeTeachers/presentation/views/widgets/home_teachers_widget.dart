@@ -57,7 +57,7 @@ class _HomeTeachersWidgetState extends State<HomeTeachersWidget> {
           Padding(
             padding: EdgeInsets.only(right: AppPadding.padding.w),
             child: SizedBox(
-              height: MediaQuery.of(context).size.height / 4.3,
+              height: MediaQuery.of(context).size.height / 3,
               child: BlocBuilder<TeacherCubit, TeacherState>(
                 builder: (context, state) {
                   TeacherCubit provider = BlocProvider.of<TeacherCubit>(context);

@@ -4,6 +4,7 @@ import 'package:get/get.dart' as t;
 import 'package:my_manasa/constants.dart';
 import 'package:my_manasa/core/shimmer/my_courses_shimmer.dart';
 import 'package:my_manasa/core/utils/styles.dart';
+import 'package:my_manasa/features/authentication/presentation/manager/auth_cubit.dart';
 import 'package:my_manasa/features/myCourses/presentation/manager/my_courses_cubit.dart';
 import 'package:my_manasa/features/myCourses/presentation/views/my_course_view.dart';
 import 'package:my_manasa/features/myCourses/presentation/views/widgets/MycourseWidget.dart';
@@ -15,8 +16,9 @@ class MyCoursesView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    String userId = BlocProvider.of<AuthCubit>(context).userModel!.id;
     return BlocProvider(
-      create: (context) => MyCoursesCubit(MyCoursesRepo(ApiService()))..fetchOwnedCourses(userId: '64145'),
+      create: (context) => MyCoursesCubit(MyCoursesRepo(ApiService()))..fetchOwnedCourses(userId: userId),
       child: SafeArea(
         child: Scaffold(
           appBar: AppBar(
@@ -35,7 +37,7 @@ class MyCoursesView extends StatelessWidget {
                   separatorBuilder: (context, index) => const SizedBox(height: 20),
                 );
               } else if (state is MyCoursesError) {
-                return Center(child: Text(state.message));
+                return Center(child: Text(state.message,style: Styles.bold16,));
               } else if (state is MyCoursesLoaded) {
                 return ListView.separated(
                   scrollDirection: Axis.vertical,

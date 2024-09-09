@@ -2,9 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:my_manasa/core/utils/styles.dart';
 
 class MyCoursesVideoCourseWidget extends StatelessWidget {
-  const MyCoursesVideoCourseWidget({super.key, required this.onTap, required this.title});
+  const MyCoursesVideoCourseWidget({super.key, required this.onTap, required this.title, required this.dis});
   final VoidCallback onTap;
   final String title;
+  final String dis;
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
@@ -33,7 +34,7 @@ class MyCoursesVideoCourseWidget extends StatelessWidget {
                     style: Styles.bold16,
                   ),
                   Text(
-                    'يحتوي هذة الكورس علي تأسيس كامل للصفوف و شرح وحل نماذج في الفيديو',
+                    dis == '' ?  'يحتوي هذة الكورس علي تأسيس كامل للصفوف و شرح وحل نماذج في الفيديو' : dis,
                     style: Styles.semiBold10,
                     overflow: TextOverflow.visible,
                   ),

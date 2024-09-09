@@ -16,7 +16,7 @@ class _HomeViewState extends State<HomeView> {
   Widget build(BuildContext context) {
     return const Scaffold(
       body: SingleChildScrollView(
-        physics: BouncingScrollPhysics(),
+        physics: AlwaysScrollableScrollPhysics(),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [

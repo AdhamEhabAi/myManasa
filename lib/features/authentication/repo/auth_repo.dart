@@ -29,7 +29,7 @@ class AuthRepo extends Repository {
         return right(UserModel.fromJson(responseBody));
       }
     } catch (e) {
-      return Left('An error occurred: ${e.toString()}');
+      return Left('هناك خطأ في الاتصال بالشبكة');
     }
   }
 
@@ -67,7 +67,7 @@ class AuthRepo extends Repository {
             responseBody['error'][0]?.toString() ?? 'Registration failed.');
       }
     } catch (e) {
-      return Left('An error occurred: ${e.toString()}');
+      return Left('هناك خطأ في الاتصال بالشبكة');
     }
   }
 }
