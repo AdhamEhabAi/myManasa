@@ -9,7 +9,7 @@ part 'subject_state.dart';
 class SubjectCubit extends Cubit<SubjectState> {
   SubjectCubit(this.subjectRepo) : super(HomeInitial());
 
-  bool isVideo = false;
+  bool isVideo = true;
   final SubjectRepo subjectRepo;
   List<SubjectModel> subjectsList = [];
 

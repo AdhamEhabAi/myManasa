@@ -10,7 +10,7 @@ class MyCoursesCubit extends Cubit<MyCoursesState> {
 
   MyCoursesCubit(this.myCoursesRepo) : super(MyCoursesInitial());
 
-  bool isVideo = false;
+  bool isVideo = true;
 
   void switchComplete() {
     isVideo = !isVideo;

@@ -27,7 +27,7 @@ class _CourseViewState extends State<CourseView> {
   @override
   void initState() {
     super.initState();
-    pageController = PageController(initialPage: 1);
+    pageController = PageController(initialPage: 0);
     codeController = TextEditingController();
   }
 
@@ -40,7 +40,7 @@ class _CourseViewState extends State<CourseView> {
 
   void resetState() {
     // Reset pageController to initial page
-    pageController.jumpToPage(1);
+    pageController.jumpToPage(0);
     // Reset the text field controller
     codeController.clear();
     // Reset the SubjectCubit state

@@ -19,7 +19,7 @@ class MyCourseView extends StatelessWidget {
     final screenWidth = MediaQuery.of(context).size.width;
     final containerWidth = screenWidth - 58.0;
     final halfWidth = containerWidth / 2;
-    final PageController pageController = PageController(initialPage: 1);
+    final PageController pageController = PageController(initialPage: 0);
 
     return SafeArea(
       child: Scaffold(
