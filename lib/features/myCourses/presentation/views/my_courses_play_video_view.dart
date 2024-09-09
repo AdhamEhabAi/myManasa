@@ -11,7 +11,12 @@ import 'package:youtube_player_flutter/youtube_player_flutter.dart';
 import '../../data/models/video_model.dart';
 
 class MyCoursesPlayVideoView extends StatefulWidget {
-  const MyCoursesPlayVideoView({super.key, required this.video, required this.courseId});
+  const MyCoursesPlayVideoView({
+    super.key,
+    required this.video,
+    required this.courseId,
+  });
+
   final VideoModel video;
   final String courseId;
 
@@ -27,6 +32,8 @@ class _MyCoursesPlayVideoViewState extends State<MyCoursesPlayVideoView> {
   @override
   void initState() {
     super.initState();
+    _currentVideo = widget.video;  // Initialize with the selected video
+    _initializePlayer(_currentVideo!.firstUrl);  // Initialize player with the selected video URL
     BlocProvider.of<VideoCubit>(context).fetchVideos(courseId: widget.courseId);
   }
 
@@ -41,10 +48,12 @@ class _MyCoursesPlayVideoViewState extends State<MyCoursesPlayVideoView> {
   }
 
   void _onVideoTap(VideoModel video) {
-    setState(() {
-      _currentVideo = video;
-      _controller.load(YoutubePlayer.convertUrlToId(video.firstUrl)!);
-    });
+    if (_currentVideo?.firstUrl != video.firstUrl) {
+      setState(() {
+        _currentVideo = video;
+        _controller.load(YoutubePlayer.convertUrlToId(video.firstUrl)!);
+      });
+    }
   }
 
   @override
@@ -60,9 +69,9 @@ class _MyCoursesPlayVideoViewState extends State<MyCoursesPlayVideoView> {
         appBar: MediaQuery.of(context).orientation == Orientation.landscape
             ? null
             : const CustomAppBar(
-                title: '',
-                backGroundColor: Colors.transparent,
-              ),
+          title: '',
+          backGroundColor: Colors.transparent,
+        ),
         body: BlocBuilder<VideoCubit, VideoState>(
           builder: (context, state) {
             if (state is VideosLoading) {
@@ -74,10 +83,6 @@ class _MyCoursesPlayVideoViewState extends State<MyCoursesPlayVideoView> {
               if (_videos.isEmpty) {
                 return const Center(child: Text('No videos available.'));
               }
-
-              _currentVideo ??= _videos.first;
-              _initializePlayer(
-                  'https://www.youtube.com/watch?v=${_currentVideo!.firstUrl}');
 
               return YoutubePlayerBuilder(
                 player: YoutubePlayer(
@@ -115,8 +120,7 @@ class _MyCoursesPlayVideoViewState extends State<MyCoursesPlayVideoView> {
                             ),
                             Text(
                               'يحتوي هذا الكورس علي تأسيس كامل للصفوف و شرح و\nحل نماذج في الفيديو',
-                              style: Styles.semiBold10
-                                  .copyWith(color: Colors.grey),
+                              style: Styles.semiBold10.copyWith(color: Colors.grey),
                             ),
                           ],
                         ),
@@ -131,8 +135,7 @@ class _MyCoursesPlayVideoViewState extends State<MyCoursesPlayVideoView> {
                               title: video.name,
                             );
                           },
-                          separatorBuilder: (context, index) =>
-                              const SizedBox(height: 20),
+                          separatorBuilder: (context, index) => const SizedBox(height: 20),
                           itemCount: _videos.length,
                         ),
                       ),
