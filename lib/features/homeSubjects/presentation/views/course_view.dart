@@ -53,11 +53,6 @@ class _CourseViewState extends State<CourseView> {
     final containerWidth = screenWidth - 58.0;
     final halfWidth = containerWidth / 2;
 
-    // Call resetState whenever this widget is rebuilt or comes into view
-    WidgetsBinding.instance.addPostFrameCallback((_) {
-      resetState();
-    });
-
     return SafeArea(
       child: Scaffold(
         body: SingleChildScrollView(
@@ -157,5 +152,3 @@ class _CourseViewState extends State<CourseView> {
     );
   }
 }
-
-

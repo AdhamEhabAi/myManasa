@@ -3,6 +3,8 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
+import 'package:my_manasa/core/app_repository/code_repo.dart';
+import 'package:my_manasa/core/managers/code_cubit/code_cubit.dart';
 import 'package:my_manasa/core/managers/pdf_cubit/pdf_cubit.dart';
 import 'package:my_manasa/core/managers/video_cubit/video_cubit.dart';
 import 'package:my_manasa/core/utils/api_service.dart';
@@ -38,6 +40,8 @@ class MyApp extends StatelessWidget {
             BlocProvider(
                 create: (context) => SubjectCubit(SubjectRepo(ApiService()))),
             BlocProvider(create: (context) => MyCoursesCubit()),
+            BlocProvider(create: (context) => CodeCubit(CodeRepo())),
+
             BlocProvider(
                 create: (context) => TeacherCubit(TeacherRepo(ApiService()))),
             BlocProvider(

@@ -18,4 +18,6 @@ class APIEndpoints {
   static const getAllTeachersApi =
       '$baseUrl/api-selectData.php?tableName=users&where=rank&equalWhat=2';
 
+  static const getCourseByCode =
+      '$baseUrl/api-code.php';
 }
