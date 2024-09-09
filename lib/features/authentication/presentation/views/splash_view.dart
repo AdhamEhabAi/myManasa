@@ -35,11 +35,11 @@ class _SplashViewState extends State<SplashView> {
 
     if (authCubit.userModel != null) {
       // If a user is found, navigate directly to the main view
-      trans.Get.to(const MainView(), transition: trans.Transition.fadeIn, duration: const Duration(seconds: 1));
+      trans.Get.off(const MainView(), transition: trans.Transition.fadeIn, duration: const Duration(seconds: 1));
     } else {
       // If no user is found, navigate to the onboarding screen
       Future.delayed(const Duration(seconds: 3), () {
-        trans.Get.to(const OnBoardingView(), transition:trans.Transition.fadeIn, duration: const Duration(seconds: 1));
+        trans.Get.off(const OnBoardingView(), transition:trans.Transition.fadeIn, duration: const Duration(seconds: 1));
       });
     }
   }

@@ -11,7 +11,9 @@ import 'package:youtube_player_flutter/youtube_player_flutter.dart';
 import '../../data/models/video_model.dart';
 
 class MyCoursesPlayVideoView extends StatefulWidget {
-  const MyCoursesPlayVideoView({super.key});
+  const MyCoursesPlayVideoView({super.key, required this.video, required this.courseId});
+  final VideoModel video;
+  final String courseId;
 
   @override
   State<MyCoursesPlayVideoView> createState() => _MyCoursesPlayVideoViewState();
@@ -25,7 +27,7 @@ class _MyCoursesPlayVideoViewState extends State<MyCoursesPlayVideoView> {
   @override
   void initState() {
     super.initState();
-    BlocProvider.of<VideoCubit>(context).fetchVideos(courseId: '1118');
+    BlocProvider.of<VideoCubit>(context).fetchVideos(courseId: widget.courseId);
   }
 
   void _initializePlayer(String videoUrl) {
