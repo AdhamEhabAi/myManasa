@@ -35,7 +35,8 @@ class TeacherViewHeader extends StatelessWidget {
               decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(17.r),
               ),
-              clipBehavior: Clip.hardEdge, // Ensures the border radius applies to the image
+              clipBehavior: Clip
+                  .hardEdge, // Ensures the border radius applies to the image
               child: CachedNetworkImage(
                 imageUrl: APIEndpoints.imgPath + teacher.img,
                 fit: BoxFit.cover,
@@ -64,11 +65,11 @@ class TeacherViewHeader extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Text(
-                    'مستر/${teacher.fname} ${teacher.lname}',  // Use dynamic data
+                    'مستر/${teacher.fname} ${teacher.lname}', // Use dynamic data
                     style: Styles.semiBold20,
                   ),
                   Text(
-                    'أستاذ في ${teacher.sec}',  // Use dynamic data
+                    'أستاذ في ${teacher.sec}', // Use dynamic data
                     style: Styles.semiBold14,
                   ),
                   Row(
@@ -87,8 +88,10 @@ class TeacherViewHeader extends StatelessWidget {
                         itemSize: 10,
                         ratingWidget: RatingWidget(
                           full: const Icon(Icons.star, color: Colors.amber),
-                          half: const Icon(Icons.star_half, color: Colors.amber),
-                          empty: const Icon(Icons.star_border, color: Colors.amber),
+                          half:
+                              const Icon(Icons.star_half, color: Colors.amber),
+                          empty: const Icon(Icons.star_border,
+                              color: Colors.amber),
                         ),
                         onRatingUpdate: (rating) {},
                       ),
@@ -106,7 +109,9 @@ class TeacherViewHeader extends StatelessWidget {
                           onPressed: () {
                             openWhatsApp(teacher.fnum);
                           },
-                          icon: const ImageIcon(AssetImage('assets/images/whatsapp.png'), color: AppColors.primaryColor),
+                          icon: const ImageIcon(
+                              AssetImage('assets/images/whatsapp.png'),
+                              color: AppColors.primaryColor),
                         ),
                       ),
                       Container(
@@ -118,7 +123,8 @@ class TeacherViewHeader extends StatelessWidget {
                           onPressed: () {
                             makePhoneCall(teacher.fnum);
                           },
-                          icon: const Icon(Icons.call, color: AppColors.primaryColor),
+                          icon: const Icon(Icons.call,
+                              color: AppColors.primaryColor),
                         ),
                       ),
                     ],

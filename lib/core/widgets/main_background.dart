@@ -16,7 +16,6 @@ class MainBackGround extends StatelessWidget {
         children: [
           AnimatedContainer(
             duration: const Duration(seconds: 1),
-
             child: Image.asset(
               'assets/images/MainBackGroundUpper.png',
               fit: BoxFit.fill,
@@ -25,10 +24,15 @@ class MainBackGround extends StatelessWidget {
           Row(
             mainAxisAlignment: MainAxisAlignment.end,
             children: [
-              AnimatedContainer(
+              Expanded( // Added Expanded to avoid overflow
+                child: AnimatedContainer(
                   duration: const Duration(seconds: 1),
-
-                  child: Image.asset('assets/images/MainBackgorundLower.png',)),
+                  child: Image.asset(
+                    'assets/images/MainBackgorundLower.png',
+                    fit: BoxFit.contain, // Use BoxFit.contain to ensure it fits
+                  ),
+                ),
+              ),
             ],
           ),
         ],

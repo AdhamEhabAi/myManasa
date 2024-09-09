@@ -1,5 +1,5 @@
+import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:my_manasa/core/widgets/toast_m.dart';
 import 'package:my_manasa/features/authentication/presentation/views/on_boarding_view.dart';
 import 'package:permission_handler/permission_handler.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -40,12 +40,30 @@ Future<void> openWhatsApp(String phoneNumber) async {
         throw 'Could not launch $url';
       }
     } catch (e) {
-      ToastM.show('Error: ${e.toString()}');
+      Get.snackbar(
+        'Error',
+        e.toString(),
+        snackPosition: SnackPosition.BOTTOM,
+      );
     }
   } else if (status.isPermanentlyDenied) {
-    ToastM.show('Please grant phone permission from settings to open WhatsApp.');
+    Get.snackbar(
+      'Permission Denied',
+      'Please grant phone permission from settings to open WhatsApp',
+      snackPosition: SnackPosition.BOTTOM,
+      mainButton: TextButton(
+        onPressed: () {
+          openAppSettings();
+        },
+        child: const Text('Open Settings'),
+      ),
+    );
   } else {
-    ToastM.show('Please grant phone permission to open WhatsApp.');
+    Get.snackbar(
+      'Permission Denied',
+      'Please grant phone permission to open WhatsApp',
+      snackPosition: SnackPosition.BOTTOM,
+    );
   }
 }
 
@@ -64,12 +82,29 @@ Future<void> makePhoneCall(String phoneNumber) async {
         throw 'Could not launch $launchUri';
       }
     } catch (e) {
-      ToastM.show(e.toString());
+      Get.snackbar(
+        'Error',
+        e.toString(),
+        snackPosition: SnackPosition.BOTTOM,
+      );
     }
   } else if (status.isPermanentlyDenied) {
-    ToastM.show('Please grant phone permission from settings to make calls.');
-    // Provide an option to open settings in another way, e.g., dialog or prompt.
+    Get.snackbar(
+      'Permission Denied',
+      'Please grant phone permission from settings to make calls',
+      snackPosition: SnackPosition.BOTTOM,
+      mainButton: TextButton(
+        onPressed: () {
+          openAppSettings();
+        },
+        child: const Text('Open Settings'),
+      ),
+    );
   } else {
-    ToastM.show('Please grant phone permission to make calls.');
+    Get.snackbar(
+      'Permission Denied',
+      'Please grant phone permission to make calls',
+      snackPosition: SnackPosition.BOTTOM,
+    );
   }
 }
