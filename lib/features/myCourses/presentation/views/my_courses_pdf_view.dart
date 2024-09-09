@@ -4,12 +4,12 @@ import 'package:my_manasa/core/managers/pdf_cubit/pdf_cubit.dart';
 import 'package:my_manasa/features/myCourses/presentation/views/widgets/my_courses_pdf_course_widget.dart';
 
 class MyCoursesPdfView extends StatelessWidget {
-  const MyCoursesPdfView({super.key});
-
+  const MyCoursesPdfView({super.key, required this.courseId});
+  final String courseId;
   @override
   Widget build(BuildContext context) {
     // Fetch PDFs using PdfCubit for a specific courseId (1538)
-    BlocProvider.of<PdfCubit>(context).fetchPDFS(courseId: '1538');
+    BlocProvider.of<PdfCubit>(context).fetchPDFS(courseId: courseId);
 
     return BlocBuilder<PdfCubit, PdfState>(
       builder: (context, state) {

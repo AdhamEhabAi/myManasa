@@ -17,6 +17,7 @@ import 'package:my_manasa/features/homeSubjects/repo/subject_video_repo.dart';
 import 'package:my_manasa/features/homeTeachers/presentation/manager/teacher_cubit.dart';
 import 'package:my_manasa/features/homeTeachers/presentation/repo/teacher_repo.dart';
 import 'package:my_manasa/features/myCourses/presentation/manager/my_courses_cubit.dart';
+import 'package:my_manasa/features/myCourses/repo/my_courses_repo.dart';
 import 'package:my_manasa/features/myCourses/repo/pdf_repo.dart';
 import 'package:my_manasa/features/myCourses/repo/video_repo.dart';
 import 'package:my_manasa/generated/l10n.dart';
@@ -39,7 +40,7 @@ class MyApp extends StatelessWidget {
           providers: [
             BlocProvider(
                 create: (context) => SubjectCubit(SubjectRepo(ApiService()))),
-            BlocProvider(create: (context) => MyCoursesCubit()),
+            BlocProvider(create: (context) => MyCoursesCubit(MyCoursesRepo(ApiService()))),
             BlocProvider(create: (context) => CodeCubit(CodeRepo())),
 
             BlocProvider(

@@ -2,12 +2,13 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:my_manasa/constants.dart';
 import 'package:my_manasa/core/utils/styles.dart';
-import 'package:my_manasa/core/widgets/custom_percent_indicator.dart';
+import 'package:my_manasa/features/homeTeachers/data/models/course_model.dart';
 import 'package:percent_indicator/linear_percent_indicator.dart';
 
 class MyCourseWidget extends StatelessWidget {
-  const MyCourseWidget({super.key, required this.onTap});
+  const MyCourseWidget({super.key, required this.onTap, required this.course});
   final VoidCallback onTap;
+  final CourseModel course;
   @override
   Widget build(BuildContext context) {
     return Padding(
@@ -47,16 +48,25 @@ class MyCourseWidget extends StatelessWidget {
                   ),
                   Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
+                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                     children: [
                       Padding(
-                        padding:  EdgeInsets.only(right: 8.0.w),
+                        padding: EdgeInsets.only(right: 8.0.w),
                         child: Text(
-                          'نصوص',
+                          course.name,
                           style: Styles.bold16
                               .copyWith(color: AppColors.primaryColor),
                         ),
                       ),
-                      SizedBox(height: 20.h,),
+                      Padding(
+                        padding: EdgeInsets.only(
+                            right: 8.0.w, top: 8.0.h),
+                        child: Text(
+                          course.sub,
+                          style: Styles.semiBold12_95
+                              .copyWith(color: Colors.grey),
+                        ),
+                      ),
                       LinearPercentIndicator(
                         width: 180.0.w,
                         lineHeight: 8.0.h,
@@ -69,7 +79,6 @@ class MyCourseWidget extends StatelessWidget {
                         progressColor: AppColors.primaryColor,
                         barRadius: Radius.circular(12.r),
                         isRTL: true,
-
                       ),
                     ],
                   ),

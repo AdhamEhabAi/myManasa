@@ -1,5 +1,6 @@
 import 'dart:convert';
 import 'dart:math';
+import 'dart:developer' as l;
 import 'package:bloc/bloc.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart' as trans;
@@ -132,6 +133,7 @@ class AuthCubit extends Cubit<AuthState> {
           ToastM.show(failure);
         },
             (user) async {
+              l.log(user.toString());
           userModel = user;
           await saveUserToPreferences(userModel!);
           emit(LoginSuccess());

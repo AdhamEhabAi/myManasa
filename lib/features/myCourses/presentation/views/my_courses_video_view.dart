@@ -6,11 +6,12 @@ import 'package:my_manasa/features/myCourses/presentation/views/my_courses_play_
 import 'package:my_manasa/features/myCourses/presentation/views/widgets/my_courses_video_course_widget.dart';
 
 class MyCoursesVideoView extends StatelessWidget {
-  const MyCoursesVideoView({super.key});
+  const MyCoursesVideoView({super.key, required this.courseId});
+  final String courseId;
 
   @override
   Widget build(BuildContext context) {
-    BlocProvider.of<VideoCubit>(context).fetchVideos(courseId: '1538');
+    BlocProvider.of<VideoCubit>(context).fetchVideos(courseId: courseId);
 
     return BlocBuilder<VideoCubit, VideoState>(
       builder: (context, state) {
@@ -26,7 +27,7 @@ class MyCoursesVideoView extends StatelessWidget {
               return MyCoursesVideoCourseWidget(
                 onTap: () {
                   g.Get.to(
-                    MyCoursesPlayVideoView(video: video, courseId: '1538',),
+                    MyCoursesPlayVideoView(video: video, courseId: courseId,),
                     transition: g.Transition.fade,
                   );
                 },

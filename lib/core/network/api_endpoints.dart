@@ -20,4 +20,7 @@ class APIEndpoints {
 
   static const getCourseByCode =
       '$baseUrl/api-code.php';
+
+  static const getAllCoursesOwned =
+      '$baseUrl/api-getOwnedCourse.php?id=';
 }

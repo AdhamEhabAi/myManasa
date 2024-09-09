@@ -1,15 +1,18 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:my_manasa/core/utils/styles.dart';
 
 import 'package:my_manasa/features/homeSubjects/presentation/views/widgets/video_or_pdf_widget.dart';
+import 'package:my_manasa/features/homeTeachers/data/models/course_model.dart';
 import 'package:my_manasa/features/myCourses/presentation/manager/my_courses_cubit.dart';
 import 'package:my_manasa/features/myCourses/presentation/views/my_courses_pdf_view.dart';
 import 'package:my_manasa/features/myCourses/presentation/views/my_courses_video_view.dart';
 import 'package:my_manasa/features/myCourses/presentation/views/widgets/my_course_view_header.dart';
 
 class MyCourseView extends StatelessWidget {
-  const MyCourseView({super.key});
+  const MyCourseView({super.key, required this.course});
+  final CourseModel course;
 
   @override
   Widget build(BuildContext context) {
@@ -22,15 +25,14 @@ class MyCourseView extends StatelessWidget {
       child: Scaffold(
         body: Column(
           children: [
-            const MyCourseViewHeader(
-            ),
+            const MyCourseViewHeader(),
             Padding(
               padding: const EdgeInsets.all(12),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Text(
-                    'كورس كامل عن القراءة',
+                    course.name,
                     style: Styles.bold16,
                   ),
                   const SizedBox(
@@ -70,8 +72,8 @@ class MyCourseView extends StatelessWidget {
                     ? state.isVideo
                     : context.read<MyCoursesCubit>().isVideo;
                 return Padding(
-                  padding: const EdgeInsets.symmetric(
-                      horizontal: 29.0, vertical: 11.0),
+                  padding: EdgeInsets.symmetric(
+                      horizontal: 29.0.w, vertical: 11.0.h),
                   child: VideoOrPdfWidget(
                     containerWidth: containerWidth,
                     isSelected: isSelected,
@@ -95,9 +97,9 @@ class MyCourseView extends StatelessWidget {
                   context.read<MyCoursesCubit>().onPageChanged(index);
                 },
                 scrollDirection: Axis.horizontal,
-                children: const [
-                  MyCoursesVideoView(),
-                  MyCoursesPdfView(),
+                children: [
+                  MyCoursesVideoView(courseId: course.id,),
+                  MyCoursesPdfView(courseId: course.id,),
                 ],
               ),
             ),
