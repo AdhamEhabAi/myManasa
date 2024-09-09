@@ -2,9 +2,9 @@ import 'dart:developer';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:my_manasa/core/managers/video_cubit/video_cubit.dart';
 import 'package:my_manasa/core/utils/styles.dart';
 import 'package:my_manasa/core/widgets/custom_appbar.dart';
-import 'package:my_manasa/features/myCourses/presentation/manager/my_courses_cubit.dart';
 import 'package:my_manasa/features/myCourses/presentation/views/widgets/my_courses_video_course_widget.dart';
 import 'package:youtube_player_flutter/youtube_player_flutter.dart';
 
@@ -25,7 +25,7 @@ class _MyCoursesPlayVideoViewState extends State<MyCoursesPlayVideoView> {
   @override
   void initState() {
     super.initState();
-    BlocProvider.of<MyCoursesCubit>(context).fetchVideos(courseId: '1118');
+    BlocProvider.of<VideoCubit>(context).fetchVideos(courseId: '1118');
   }
 
   void _initializePlayer(String videoUrl) {
@@ -61,7 +61,7 @@ class _MyCoursesPlayVideoViewState extends State<MyCoursesPlayVideoView> {
                 title: '',
                 backGroundColor: Colors.transparent,
               ),
-        body: BlocBuilder<MyCoursesCubit, MyCoursesState>(
+        body: BlocBuilder<VideoCubit, VideoState>(
           builder: (context, state) {
             if (state is VideosLoading) {
               return const Center(child: CircularProgressIndicator());

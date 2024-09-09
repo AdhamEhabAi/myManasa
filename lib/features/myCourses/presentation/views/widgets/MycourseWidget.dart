@@ -41,7 +41,7 @@ class MyCourseWidget extends StatelessWidget {
                       ),
                     ),
                     child: Image.asset(
-                      'assets/images/courseImage (2).png',
+                      'assets/images/logo.png',
                       fit: BoxFit.fill,
                     ),
                   ),

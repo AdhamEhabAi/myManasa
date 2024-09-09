@@ -1,11 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:my_manasa/constants.dart';
 import 'package:my_manasa/core/utils/styles.dart';
+import 'package:my_manasa/features/myCourses/data/models/pdf_model.dart';
 
 class PdfCourseWidget extends StatelessWidget {
   const PdfCourseWidget({
-    super.key,
+    super.key, required this.pdfModel,
   });
+  final PdfModel pdfModel;
 
   @override
   Widget build(BuildContext context) {
@@ -46,7 +48,7 @@ class PdfCourseWidget extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Text(
-                  'الدرس الاول',
+                  pdfModel.name,
                   style: Styles.bold16,
                 ),
                 Text(

@@ -33,7 +33,6 @@ class _CourseViewState extends State<CourseView> {
 
   @override
   void dispose() {
-    // Dispose of controllers to free up resources
     pageController.dispose();
     codeController.dispose();
     super.dispose();
@@ -131,7 +130,7 @@ class _CourseViewState extends State<CourseView> {
                     scrollDirection: Axis.horizontal,
                     children: [
                       VideoView(courseModel: widget.course),
-                      PdfView(), // Similarly, pass course to PdfView if needed
+                      PdfView(courseModel: widget.course,),
                     ],
                   ),
                 ),

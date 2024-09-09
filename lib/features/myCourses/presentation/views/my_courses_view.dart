@@ -2,8 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:my_manasa/constants.dart';
 import 'package:my_manasa/core/utils/styles.dart';
-import 'package:my_manasa/features/myCourses/presentation/views/my_courses_play_video_view.dart';
-import 'package:my_manasa/features/myCourses/presentation/views/my_courses_teacher_view.dart';
+import 'package:my_manasa/features/myCourses/presentation/views/my_course_view.dart';
 import 'package:my_manasa/features/myCourses/presentation/views/widgets/MycourseWidget.dart';
 
 class MyCoursesView extends StatelessWidget {
@@ -26,7 +25,7 @@ class MyCoursesView extends StatelessWidget {
             scrollDirection: Axis.vertical,
             itemBuilder: (context, index) {
               return MyCourseWidget(onTap: () {
-                Get.to( const MyCoursesPlayVideoView(),transition: Transition.fade);
+                Get.to(  const MyCourseView(),transition: Transition.fade);
               },);
             },
             separatorBuilder: (context, index) => const SizedBox(

@@ -11,7 +11,8 @@ class APIEndpoints {
       '$baseUrl/api-selectData.php?tableName=videolink&where=idclassroom&equalWhat=';
   static const getAllTeachersForSubject =
       '$baseUrl/api-TeatcherProfile.php?where=sec&equalWhat=';
-
+  static const getPDFSbyCourseID =
+      '$baseUrl/api-selectData.php?tableName=filepdf&where=idclassroom&equalWhat=';
 
   static const getAllTeachersApi =
       '$baseUrl/api-selectData.php?tableName=users&where=rank&equalWhat=2';

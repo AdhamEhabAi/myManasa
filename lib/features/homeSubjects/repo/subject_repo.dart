@@ -37,23 +37,34 @@ class SubjectRepo extends Repository {
 
   Future<Either<Failure, List<Teacher>>> getAllTeachersForSubject({required String subjectName}) async {
     try {
-      final response = await apiService.get(url: APIEndpoints.getAllTeachersForSubject +subjectName);
+      final response = await apiService.get(url: APIEndpoints.getAllTeachersForSubject + subjectName);
 
       if (response.statusCode == 200) {
-        final List<dynamic> responseData = jsonDecode(response.body);
+        final responseBody = jsonDecode(response.body);
 
-        List<Teacher> teachers = responseData.map((subjectJson) {
-          return Teacher.fromJson(subjectJson as Map<String, dynamic>);
-        }).toList();
+        // Handle success response (List)
+        if (responseBody is List) {
+          List<Teacher> teachers = responseBody.map((subjectJson) {
+            return Teacher.fromJson(subjectJson as Map<String, dynamic>);
+          }).toList();
 
-        return Right(teachers);
+          return Right(teachers);
+        }
+
+        // Handle failure response (Map with 'status': 'null')
+        if (responseBody is Map<String, dynamic> && responseBody['status'] == 'null') {
+          return Left(ServerFailure('لا يوجد مدرسون متاحون لهذا الموضوع.'));
+        }
+
+        // Handle unexpected response format
+        return Left(ServerFailure('شكل استجابة غير متوقع من الخادم.'));
       } else {
-        return Left(ServerFailure('Failed to fetch teachers. Status Code: ${response.statusCode}'));
+        return Left(ServerFailure('فشل في جلب المدرسين. كود الحالة: ${response.statusCode}'));
       }
     } on FormatException catch (e) {
-      return Left(ServerFailure('Data format error: ${e.toString()}'));
+      return Left(ServerFailure('خطأ في تنسيق البيانات: ${e.toString()}'));
     } on Exception catch (e) {
-      return Left(ServerFailure('An unexpected error occurred: ${e.toString()}'));
+      return Left(ServerFailure('حدث خطأ غير متوقع: ${e.toString()}'));
     }
   }
 
