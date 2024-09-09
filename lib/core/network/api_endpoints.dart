@@ -23,4 +23,6 @@ class APIEndpoints {
 
   static const getAllCoursesOwned =
       '$baseUrl/api-getOwnedCourse.php?id=';
+  static const search =
+      '$baseUrl/api-search.php?search=';
 }

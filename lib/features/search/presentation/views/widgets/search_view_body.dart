@@ -1,60 +1,56 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:my_manasa/constants.dart';
-import 'package:my_manasa/core/widgets/custom_text_form_field.dart';
+import 'package:my_manasa/core/utils/styles.dart';
+import 'package:my_manasa/features/homeSubjects/presentation/views/course_view.dart';
 import 'package:my_manasa/features/search/presentation/views/widgets/search_widget.dart';
+import 'package:my_manasa/features/search/presentation/manager/search_cubit.dart';
+import 'package:get/get.dart' as trans;
 
 class SearchViewBody extends StatelessWidget {
-  const SearchViewBody({
-    super.key,
-  });
+  const SearchViewBody({super.key});
 
   @override
   Widget build(BuildContext context) {
-    TextEditingController textEditingController = TextEditingController();
     return Container(
       width: MediaQuery.of(context).size.width,
       height: MediaQuery.of(context).size.height,
       decoration: BoxDecoration(
-        gradient:
-            LinearGradient(begin: Alignment.bottomCenter,
-                end: Alignment.topCenter,
-                colors: [AppColors.primaryColor.withOpacity(.9), Colors.white]),
+        gradient: LinearGradient(
+          begin: Alignment.bottomCenter,
+          end: Alignment.topCenter,
+          colors: [AppColors.primaryColor.withOpacity(.9), Colors.white],
+        ),
       ),
       child: Padding(
         padding: const EdgeInsets.all(AppPadding.padding),
         child: Column(
           children: [
-            CustomTextFormField(
-              controller: textEditingController,
-              labelText: 'بحث',
-              prefixIcon: const Icon(Icons.search, size: 30),
-              suffixIcon: Image.asset('assets/images/search.png', width: 20),
-            ),
-            const SizedBox(
-              height: 20,
-            ),
-            Container(
-              width: MediaQuery.of(context).size.width,
-              height: MediaQuery.of(context).size.height / 4,
-              decoration: BoxDecoration(
-                  border: Border.all(color: AppColors.primaryColor),
-                  borderRadius: BorderRadius.circular(12)),
-              child: ListView.separated(
-                separatorBuilder: (context, index) {
-                  return Padding(
-                    padding: const EdgeInsets.symmetric(horizontal: 8.0),
-                    child: Container(
-                      width: double.infinity,
-                      color: Colors.white,
-                      height: 1,
+            BlocBuilder<SearchCubit, SearchState>(
+              builder: (context, state) {
+                if (state is SearchLoading) {
+                  return const CircularProgressIndicator();
+                } else if (state is SearchError) {
+                  return Center(child: Text(state.message, style: Styles.bold20));
+                } else if (state is SearchLoaded) {
+                  return Expanded(
+                    child: ListView.separated(
+                      itemCount: state.courses.length,
+                      itemBuilder: (context, index) {
+                        final course = state.courses[index];
+                        return SearchWidget(title: course.name, onTap: () {
+                          trans.Get.to(() => CourseView(course: course),
+                            transition: trans.Transition.fade,
+                          );
+                        },);
+                      },
+                      separatorBuilder: (context, index) => const Divider(),
                     ),
                   );
-                },
-                itemCount: 5,
-                itemBuilder: (context, index) {
-                  return const SearchWidget();
-                },
-              ),
+                } else {
+                  return const SizedBox.shrink();
+                }
+              },
             ),
           ],
         ),

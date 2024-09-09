@@ -6,11 +6,10 @@ import 'package:my_manasa/constants.dart';
 import 'package:my_manasa/core/utils/styles.dart';
 import 'package:my_manasa/features/authentication/presentation/manager/auth_cubit.dart';
 import 'package:my_manasa/features/search/presentation/views/search_view.dart';
+import 'package:my_manasa/features/search/presentation/manager/search_cubit.dart';
 
 class HomeHeader extends StatefulWidget {
-  const HomeHeader({
-    super.key,
-  });
+  const HomeHeader({super.key});
 
   @override
   State<HomeHeader> createState() => _HomeHeaderState();
@@ -102,10 +101,9 @@ class _HomeHeaderState extends State<HomeHeader> {
                               border: InputBorder.none,
                             ),
                             onSubmitted: (String value) {
-                              trans.Get.to(
-                                const SearchView(),
-                                transition: trans.Transition.fadeIn,
-                              );
+                              final searchCubit = BlocProvider.of<SearchCubit>(context);
+                              searchCubit.searchCourses(courseName: value);
+                              trans.Get.to(() => const SearchView(), transition: trans.Transition.fadeIn);
                               searchController.clear();
                               searchFocusNode.unfocus();
                             },
@@ -118,7 +116,7 @@ class _HomeHeaderState extends State<HomeHeader> {
                                 _isExpanded = false;
                                 _logoWidth = 120; // Toggle logo size
                                 searchController.clear();
-                                searchFocusNode.unfocus(); // Unfocus when closing
+                                searchFocusNode.unfocus();
                               });
                             }
                           },
