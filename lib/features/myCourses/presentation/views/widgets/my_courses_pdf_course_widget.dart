@@ -1,43 +1,52 @@
 import 'package:flutter/material.dart';
-import 'package:dio/dio.dart';
-import 'package:my_manasa/core/widgets/toast_m.dart';
+import 'package:flutter_downloader/flutter_downloader.dart';
+import 'package:permission_handler/permission_handler.dart';
 import 'package:path_provider/path_provider.dart';
+import 'package:my_manasa/core/widgets/toast_m.dart';
 import 'package:my_manasa/constants.dart';
 import 'package:my_manasa/core/utils/styles.dart';
 import 'package:my_manasa/features/myCourses/data/models/pdf_model.dart';
-import 'package:my_manasa/core/network/api_endpoints.dart';
-import 'package:intl/intl.dart';  // Import to format the date
+import 'package:intl/intl.dart';
 
 class MyCoursesPdfCourseWidget extends StatelessWidget {
   const MyCoursesPdfCourseWidget({super.key, required this.pdf});
   final PdfModel pdf;
 
   Future<void> _downloadPdf(BuildContext context) async {
-    try {
-      final directory = await getApplicationDocumentsDirectory();
-      final filePath = '${directory.path}/${pdf.url}';
+    final status = await Permission.storage.request();
 
-      final pdfUrl = '${APIEndpoints.pdfPath}${pdf.url}';
+    if (status.isGranted) {
+      final directory = await getExternalStorageDirectory();
 
-      // Download the PDF using Dio
-      Dio dio = Dio();
-      await dio.download(pdfUrl, filePath);
+      if (directory != null) {
+        final taskId = await FlutterDownloader.enqueue(
+          url: 'https://beta.aminyoussef.com/upload/pdf/${pdf.url}',
+          savedDir: directory.path,
+          fileName: pdf.url,
+          showNotification: true,
+          openFileFromNotification: true,
+        );
 
-      // Show success toast
-      ToastM.show('تم تنزيل ${pdf.name} بنجاح!');
-    } catch (e) {
-      // Show error toast
-      ToastM.show('حدث خطأ أثناء تنزيل ${pdf.name}: $e');
+        if (taskId != null) {
+          // Show success toast
+          ToastM.show('تم تنزيل ${pdf.name} بنجاح!');
+        }
+      } else {
+        // Show error toast
+        ToastM.show('لم يتم العثور على الدليل للتخزين.');
+      }
+    } else {
+      // Show error toast for permission denied
+      ToastM.show('تم رفض إذن الوصول إلى التخزين.');
     }
   }
 
   String _formatDate(String date) {
-    // Convert string to DateTime and format it
     try {
       final dateTime = DateTime.parse(date);
-      return DateFormat('yyyy-MM-dd HH:mm').format(dateTime); // Change format as needed
+      return DateFormat('yyyy-MM-dd HH:mm').format(dateTime);
     } catch (e) {
-      return date; // Return the original string if parsing fails
+      return date;
     }
   }
 
@@ -84,14 +93,14 @@ class MyCoursesPdfCourseWidget extends StatelessWidget {
                   style: Styles.bold16,
                 ),
                 Text(
-                  _formatDate(pdf.date),  // Display formatted date
+                  _formatDate(pdf.date),
                   style: Styles.semiBold10,
                 ),
               ],
             ),
             IconButton(
-              icon: const Icon(Icons.download),  // Use download icon
-              onPressed: () => _downloadPdf(context),  // Trigger download on tap
+              icon: const Icon(Icons.download),
+              onPressed: () => _downloadPdf(context),
             ),
             const SizedBox(width: 10),
           ],
