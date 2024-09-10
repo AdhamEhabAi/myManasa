@@ -1,25 +1,67 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:my_manasa/core/utils/styles.dart';
 
-import 'package:my_manasa/features/homeSubjects/presentation/views/widgets/video_or_pdf_widget.dart';
+import 'package:my_manasa/features/homeSubjects/presentation/views/widgets/video_or_pdf_or_hm_or_quiz_widget.dart';
 import 'package:my_manasa/features/homeTeachers/data/models/course_model.dart';
 import 'package:my_manasa/features/myCourses/presentation/manager/my_courses_cubit.dart';
+import 'package:my_manasa/features/myCourses/presentation/views/my_courses_homeword_view.dart';
 import 'package:my_manasa/features/myCourses/presentation/views/my_courses_pdf_view.dart';
+import 'package:my_manasa/features/myCourses/presentation/views/my_courses_quiz_view.dart';
 import 'package:my_manasa/features/myCourses/presentation/views/my_courses_video_view.dart';
 import 'package:my_manasa/features/myCourses/presentation/views/widgets/my_course_view_header.dart';
 
-class MyCourseView extends StatelessWidget {
+class MyCourseView extends StatefulWidget {
   const MyCourseView({super.key, required this.course});
   final CourseModel course;
 
   @override
+  State<MyCourseView> createState() => _MyCourseViewState();
+}
+
+class _MyCourseViewState extends State<MyCourseView> {
+  late final PageController pageController;
+  late final TextEditingController codeController;
+  int selectedIndex = 0;
+
+  @override
+  void initState() {
+    super.initState();
+    pageController = PageController(initialPage: 0);
+    codeController = TextEditingController();
+  }
+
+  void resetState() {
+    pageController.jumpToPage(0);
+    codeController.clear();
+  }
+
+  void onCategorySelected(int index) {
+    setState(() {
+      selectedIndex = index;
+    });
+    pageController.animateToPage(
+      index,
+      duration: const Duration(milliseconds: 500),
+      curve: Curves.easeInOut,
+    );
+  }
+
+  @override
+  void dispose() {
+    pageController.dispose();
+    codeController.dispose();
+    super.dispose();
+  }
+
+  @override
   Widget build(BuildContext context) {
+    int selectedIndex = 0;
+
     final screenWidth = MediaQuery.of(context).size.width;
     final containerWidth = screenWidth - 58.0;
     final halfWidth = containerWidth / 2;
-    final PageController pageController = PageController(initialPage: 0);
+    final quarterWidth = containerWidth / 4;
 
     return SafeArea(
       child: Scaffold(
@@ -32,7 +74,7 @@ class MyCourseView extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Text(
-                    course.name,
+                    widget.course.name,
                     style: Styles.bold16,
                   ),
                   const SizedBox(
@@ -66,29 +108,16 @@ class MyCourseView extends StatelessWidget {
                 ],
               ),
             ),
-            BlocBuilder<MyCoursesCubit, MyCoursesState>(
-              builder: (context, state) {
-                bool isSelected = (state is CourseVideoPdfChanged)
-                    ? state.isVideo
-                    : context.read<MyCoursesCubit>().isVideo;
-                return Padding(
-                  padding: EdgeInsets.symmetric(
-                      horizontal: 29.0.w, vertical: 11.0.h),
-                  child: VideoOrPdfWidget(
-                    containerWidth: containerWidth,
-                    isSelected: isSelected,
-                    halfWidth: halfWidth,
-                    onSwitch: (bool isSelected) {
-                      pageController.animateToPage(
-                        isSelected ? 1 : 0,
-                        duration: const Duration(milliseconds: 500),
-                        curve: Curves.easeInOut,
-                      );
-                      context.read<MyCoursesCubit>().switchComplete();
-                    },
-                  ),
-                );
-              },
+            Padding(
+              padding:
+                  const EdgeInsets.symmetric(horizontal: 29.0, vertical: 11.0),
+              child: VideoOrPdfOrHmOrQuizWidget(
+                containerWidth: containerWidth,
+                halfWidth: halfWidth,
+                quarterWidth: quarterWidth,
+                selectedIndex: selectedIndex, // Pass selectedIndex
+                onCategorySelected: onCategorySelected, // Handle selection
+              ),
             ),
             Expanded(
               child: PageView(
@@ -98,8 +127,18 @@ class MyCourseView extends StatelessWidget {
                 },
                 scrollDirection: Axis.horizontal,
                 children: [
-                  MyCoursesVideoView(courseId: course.id,),
-                  MyCoursesPdfView(courseId: course.id,),
+                  MyCoursesVideoView(
+                    courseId: widget.course.id,
+                  ),
+                  MyCoursesPdfView(
+                    courseId: widget.course.id,
+                  ),
+                  MyCoursesHomewordView(
+                    course: widget.course,
+                  ),
+                  MyCoursesQuizView(
+                    course: widget.course,
+                  ),
                 ],
               ),
             ),

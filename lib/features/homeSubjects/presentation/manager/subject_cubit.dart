@@ -40,18 +40,9 @@ class SubjectCubit extends Cubit<SubjectState> {
     );
   }
 
-  void switchComplete() {
-    isVideo = !isVideo;
-    emit(CourseVideoPdfSwitched());
-  }
 
-  void onPageChanged(int index) {
-    isVideo = index != 1;
-    emit(CourseVideoPdfChanged(isVideo));
-  }
 
-  void resetState() {
-    isVideo = false;
-    emit(HomeInitial());
-  }
+
+
+
 }

@@ -1,5 +1,4 @@
 import 'dart:convert';
-
 import 'package:dartz/dartz.dart';
 import 'package:my_manasa/core/app_repository/repo.dart';
 import 'package:my_manasa/core/errors/failures.dart';
@@ -19,21 +18,29 @@ class VideoRepo extends Repository {
       );
 
       if (response.statusCode == 200) {
-        final List<dynamic> responseData = jsonDecode(response.body);
+        final responseBody = jsonDecode(response.body);
 
-        List<VideoModel> videos = responseData.map((videoJson) {
-          return VideoModel.fromJson(videoJson as Map<String, dynamic>);
-        }).toList();
+        if (responseBody is List) {
+          List<VideoModel> videos = responseBody.map((videoJson) {
+            return VideoModel.fromJson(videoJson as Map<String, dynamic>);
+          }).toList();
 
-        return Right(videos);
+          return Right(videos);
+        } else if (responseBody is Map<String, dynamic> && responseBody.containsKey('videos')) {
+          List<VideoModel> videos = (responseBody['videos'] as List).map((videoJson) {
+            return VideoModel.fromJson(videoJson as Map<String, dynamic>);
+          }).toList();
+          return Right(videos);
+        } else {
+          return Left(ServerFailure('لا يوجد فيديوهات'));
+        }
       } else {
-        return Left(ServerFailure(
-            'Failed to fetch videos. Status Code: ${response.statusCode}'));
+        return Left(ServerFailure('لا يوجد فيديوهات'));
       }
     } on FormatException catch (e) {
-      return Left(ServerFailure('Data format error: ${e.toString()}'));
+      return Left(ServerFailure('لا يوجد فيديوهات'));
     } on Exception catch (e) {
-      return Left(ServerFailure('An unexpected error occurred: ${e.toString()}'));
+      return Left(ServerFailure('لا يوجد فيديوهات'));
     }
   }
 }

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:my_manasa/core/managers/pdf_cubit/pdf_cubit.dart';
+import 'package:my_manasa/core/utils/styles.dart';
 import 'package:my_manasa/features/homeSubjects/presentation/views/widgets/pdf_course_widget.dart';
 import 'package:my_manasa/features/homeTeachers/data/models/course_model.dart';
 
@@ -17,7 +18,7 @@ class PdfView extends StatelessWidget {
         if (state is PdfLoading) {
           return const Center(child: CircularProgressIndicator());
         } else if (state is PdfFail) {
-          return Center(child: Text(state.errMessage));
+          return Center(child: Text(state.errMessage,style: Styles.semiBold20,));
         } else if (state is PdfSuccess) {
           final pdfs = state.pdfs;
           return ListView.separated(
@@ -31,7 +32,7 @@ class PdfView extends StatelessWidget {
             itemCount: pdfs.length,
           );
         } else if (state is PdfEmpty) {  // Handle the PdfEmpty state
-          return const Center(child: Text('لا توجد ملفات PDF متاحة.'));
+          return Center(child: Text('لا توجد ملفات PDF متاحة.', style: Styles.semiBold20,) );
         } else {
           return const Center(child: Text('حدث خطأ غير متوقع.'));
         }
