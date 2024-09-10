@@ -23,7 +23,7 @@ class InfoTextField extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       width: width.w,
-      height: 25.h,
+      height: 40.h,
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(10.r),
         color: const Color(0xFFEEEEEE),
@@ -31,7 +31,7 @@ class InfoTextField extends StatelessWidget {
       child: Center(
         child: TextField(
           controller: textEditingController,
-          style: textStyle ?? Styles.semiBold9_25, // Use the provided textStyle or default to Styles.semiBold9_25
+          style: textStyle ?? Styles.semiBold14, // Use the provided textStyle or default to Styles.semiBold9_25
           keyboardType: textInputType,
           textAlign: TextAlign.center,
           decoration: InputDecoration(

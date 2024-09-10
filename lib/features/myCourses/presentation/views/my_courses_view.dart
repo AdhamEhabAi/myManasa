@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart' as t;
 import 'package:my_manasa/constants.dart';
 import 'package:my_manasa/core/shimmer/my_courses_shimmer.dart';
@@ -39,22 +40,25 @@ class MyCoursesView extends StatelessWidget {
               } else if (state is MyCoursesError) {
                 return Center(child: Text(state.message,style: Styles.bold16,));
               } else if (state is MyCoursesLoaded) {
-                return ListView.separated(
-                  scrollDirection: Axis.vertical,
-                  itemBuilder: (context, index) {
-                    final course = state.courses[index];
-                    return MyCourseWidget(
-                      course: course,
-                      onTap: () {
-                        t.Get.to(
-                           MyCourseView(course: course,),
-                          transition: t.Transition.fade,
-                        );
-                      },
-                    );
-                  },
-                  separatorBuilder: (context, index) => const SizedBox(height: 20),
-                  itemCount: state.courses.length,
+                return Padding(
+                  padding:  EdgeInsets.symmetric(vertical: 8.0.h),
+                  child: ListView.separated(
+                    scrollDirection: Axis.vertical,
+                    itemBuilder: (context, index) {
+                      final course = state.courses[index];
+                      return MyCourseWidget(
+                        course: course,
+                        onTap: () {
+                          t.Get.to(
+                             MyCourseView(course: course,),
+                            transition: t.Transition.fade,
+                          );
+                        },
+                      );
+                    },
+                    separatorBuilder: (context, index) => const SizedBox(height: 20),
+                    itemCount: state.courses.length,
+                  ),
                 );
               } else {
                 return const Center(child: Text('حدث خطأ غير متوقع.'));
