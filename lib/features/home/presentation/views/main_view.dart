@@ -68,7 +68,7 @@ class _MainViewState extends State<MainView> {
               ),
               GButton(
                 leading: ImageIcon(
-                  const AssetImage('assets/images/quiz.png'),
+                  const AssetImage('assets/images/ideas.png'),
                   color: Colors.white,
                   size: 24.w,
                 ),
@@ -77,7 +77,7 @@ class _MainViewState extends State<MainView> {
               ),
               GButton(
                 leading: ImageIcon(
-                  const AssetImage('assets/images/course.png'),
+                  const AssetImage('assets/images/course (2).png'),
                   color: Colors.white,
                   size: 24.w,
                 ),
@@ -86,7 +86,7 @@ class _MainViewState extends State<MainView> {
               ),
               GButton(
                 leading: ImageIcon(
-                  const AssetImage('assets/images/profile.png'),
+                  const AssetImage('assets/images/account.png'),
                   color: Colors.white,
                   size: 24.w,
                 ),

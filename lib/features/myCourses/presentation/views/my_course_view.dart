@@ -5,7 +5,7 @@ import 'package:my_manasa/core/utils/styles.dart';
 import 'package:my_manasa/features/homeSubjects/presentation/views/widgets/video_or_pdf_or_hm_or_quiz_widget.dart';
 import 'package:my_manasa/features/homeTeachers/data/models/course_model.dart';
 import 'package:my_manasa/features/myCourses/presentation/manager/my_courses_cubit.dart';
-import 'package:my_manasa/features/myCourses/presentation/views/my_courses_homeword_view.dart';
+import 'package:my_manasa/features/myCourses/presentation/views/my_courses_homework_view.dart';
 import 'package:my_manasa/features/myCourses/presentation/views/my_courses_pdf_view.dart';
 import 'package:my_manasa/features/myCourses/presentation/views/my_courses_quiz_view.dart';
 import 'package:my_manasa/features/myCourses/presentation/views/my_courses_video_view.dart';
@@ -133,7 +133,7 @@ class _MyCourseViewState extends State<MyCourseView> {
                   MyCoursesPdfView(
                     courseId: widget.course.id,
                   ),
-                  MyCoursesHomewordView(
+                  MyCoursesHomeworkView(
                     course: widget.course,
                   ),
                   MyCoursesQuizView(
