@@ -4,8 +4,12 @@ import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:my_manasa/core/app_repository/code_repo.dart';
+import 'package:my_manasa/core/app_repository/homework_repo.dart';
+import 'package:my_manasa/core/app_repository/quiz_repo.dart';
 import 'package:my_manasa/core/managers/code_cubit/code_cubit.dart';
+import 'package:my_manasa/core/managers/homework_cubit/home_work_cubit.dart';
 import 'package:my_manasa/core/managers/pdf_cubit/pdf_cubit.dart';
+import 'package:my_manasa/core/managers/quiz_cubit/quiz_cubit.dart';
 import 'package:my_manasa/core/managers/video_cubit/video_cubit.dart';
 import 'package:my_manasa/core/utils/api_service.dart';
 import 'package:my_manasa/features/authentication/presentation/manager/auth_cubit.dart';
@@ -56,6 +60,10 @@ class MyApp extends StatelessWidget {
             BlocProvider(
                 create: (context) => VideoCubit(VideoRepo(ApiService()))),
             BlocProvider(create: (context) => PdfCubit(PdfRepo(ApiService()))),
+            BlocProvider(create: (context) => QuizCubit(QuizRepo(ApiService()))),
+            BlocProvider(create: (context) => HomeWorkCubit(HomeWorkRepo(ApiService()))),
+
+
           ],
           child: GetMaterialApp(
             locale: const Locale('ar', 'AE'),

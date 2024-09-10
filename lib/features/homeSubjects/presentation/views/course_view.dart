@@ -1,12 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:my_manasa/constants.dart';
 import 'package:my_manasa/core/dialogs/get_code_dialog.dart';
 import 'package:my_manasa/core/utils/styles.dart';
 import 'package:my_manasa/core/widgets/custom_button.dart';
-import 'package:my_manasa/features/homeSubjects/presentation/manager/subject_cubit.dart';
-import 'package:my_manasa/features/homeSubjects/presentation/views/homeword_view.dart';
+import 'package:my_manasa/features/homeSubjects/presentation/views/homework_view.dart';
 import 'package:my_manasa/features/homeSubjects/presentation/views/pdf_view.dart';
 import 'package:my_manasa/features/homeSubjects/presentation/views/quiz_view.dart';
 import 'package:my_manasa/features/homeSubjects/presentation/views/video_view.dart';

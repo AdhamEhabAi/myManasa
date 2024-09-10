@@ -66,22 +66,22 @@ class SubjectQuizView extends StatelessWidget {
                 const SizedBox(
                   height: 20,
                 ),
-                Expanded(
-                  child: ListView.separated(
-                      scrollDirection: Axis.vertical,
-                      itemBuilder: (context, index) {
-                        return SubjectQuizWidget(
-                          onTap: () {
-                            // Get.to(CourseView(),
-                            //     transition: Transition.fade);
-                          },
-                        );
-                      },
-                      separatorBuilder: (context, index) => const SizedBox(
-                        height: 20,
-                      ),
-                      itemCount: 4),
-                ),
+                // Expanded(
+                //   child: ListView.separated(
+                //       scrollDirection: Axis.vertical,
+                //       itemBuilder: (context, index) {
+                //         return SubjectQuizWidget(
+                //           onTap: () {
+                //             // Get.to(CourseView(),
+                //             //     transition: Transition.fade);
+                //           },
+                //         );
+                //       },
+                //       separatorBuilder: (context, index) => const SizedBox(
+                //         height: 20,
+                //       ),
+                //       itemCount: 4),
+                // ),
               ],
             ),
           ),
