@@ -18,3 +18,19 @@ class QuizError extends QuizState {
 
   QuizError({required this.message});
 }
+
+class ExamLoading extends QuizState {}
+
+class ExamLoaded extends QuizState {
+  final List<ExamQuestion> questions;
+
+  ExamLoaded(this.questions);
+}
+
+class ExamError extends QuizState {
+  final String message;
+
+  ExamError({required this.message});
+}
+
+class ExamEmpty extends QuizState {}

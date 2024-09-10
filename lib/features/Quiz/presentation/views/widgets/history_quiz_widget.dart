@@ -39,7 +39,7 @@ class HistoryQuizWidget extends StatelessWidget {
                       ),
                     ),
                     child: Image.asset(
-                      'assets/images/courseImage (2).png',
+                      'assets/images/course (2).png',
                       fit: BoxFit.fill,
                     ),
                   ),

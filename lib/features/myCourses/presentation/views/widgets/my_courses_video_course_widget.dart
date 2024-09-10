@@ -19,7 +19,7 @@ class MyCoursesVideoCourseWidget extends StatelessWidget {
               width: MediaQuery.of(context).size.width / 4,
               height: 65,
               child: Image.asset(
-                'assets/images/NewVideo.png',
+                'assets/images/video-marketing.png',
                 fit: BoxFit.fill,
               ),
             ),

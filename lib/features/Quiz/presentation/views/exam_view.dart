@@ -1,141 +1,150 @@
-// import 'package:flutter/material.dart';
-// import 'package:flutter_survey/flutter_survey.dart';
-// import 'package:my_manasa/core/utils/styles.dart';
-// import 'package:my_manasa/core/widgets/custom_appbar.dart';
-// import 'package:my_manasa/core/widgets/custom_button.dart';
-// import 'package:my_manasa/features/Quiz/presentation/views/widgets/exam_view_header.dart';
-//
-// class ExamView extends StatefulWidget {
-//   const ExamView({super.key});
-//
-//   @override
-//   State<ExamView> createState() => _ExamViewState();
-// }
-//
-// class _ExamViewState extends State<ExamView> {
-//   final _formKey = GlobalKey<FormState>();
-//
-//   List<QuestionResult> _questionResults = [];
-//
-//   final List<Question> _initialData = [
-//     Question(
-//       isMandatory: true,
-//       question: 'Do you like drinking coffee?',
-//       answerChoices: {
-//         "Yes": [
-//           Question(
-//               singleChoice: false,
-//               question: "What are the brands that you've tried?",
-//               answerChoices: {
-//                 "Nestle": null,
-//                 "Starbucks": null,
-//                 "Coffee Day": [
-//                   Question(
-//                     question: "Did you enjoy visiting Coffee Day?",
-//                     isMandatory: true,
-//                     answerChoices: {
-//                       "Yes": [
-//                         Question(
-//                           question: "Please tell us why you like it",
-//                         )
-//                       ],
-//                       "No": [
-//                         Question(
-//                           question: "Please tell us what went wrong",
-//                         )
-//                       ],
-//                     },
-//                   )
-//                 ],
-//               })
-//         ],
-//         "No": [
-//           Question(
-//             question: "Do you like drinking Tea then?",
-//             answerChoices: {
-//               "Yes": [
-//                 Question(
-//                     question: "What are the brands that you've tried?",
-//                     answerChoices: {
-//                       "Nestle": null,
-//                       "ChaiBucks": null,
-//                       "Indian Premium Tea": [
-//                         Question(
-//                           question: "Did you enjoy visiting IPT?",
-//                           answerChoices: {
-//                             "Yes": [
-//                               Question(
-//                                 question: "Please tell us why you like it",
-//                               )
-//                             ],
-//                             "No": [
-//                               Question(
-//                                 question: "Please tell us what went wrong",
-//                               )
-//                             ],
-//                           },
-//                         )
-//                       ],
-//                     })
-//               ],
-//               "No": null,
-//             },
-//           )
-//         ],
-//       },
-//     ),
-//     Question(
-//         question: "What age group do you fall in?",
-//         isMandatory: true,
-//         answerChoices: const {
-//           "18-20": null,
-//           "20-30": null,
-//           "Greater than 30": null,
-//         })
-//   ];
-//
-//   @override
-//   Widget build(BuildContext context) {
-//     return SafeArea(
-//         child: Scaffold(
-//       appBar: const CustomAppBar(
-//         logoColor: Colors.white,
-//         title: '',
-//         iconColor: Colors.white,
-//       ),
-//       body: SizedBox(
-//         width: MediaQuery.of(context).size.width,
-//         height: MediaQuery.of(context).size.height,
-//         child: Column(
-//           children: [
-//             const ExamViewHeader(),
-//             Expanded(
-//               child: Form(
-//                 key: _formKey,
-//                 child: Survey(
-//                   defaultErrorText: 'ادخل اجابة',
-//                     onNext: (questionResults) {
-//                       _questionResults = questionResults;
-//                     },
-//                     initialData: _initialData),
-//               ),
-//             ),
-//             CustomButton(
-//               text: Text(
-//                 'ارسال',
-//                 style: Styles.semiBold18.copyWith(color: Colors.white),
-//               ),
-//               onPressed: () {
-//                 if(_formKey.currentState!.validate()){
-//                   return ;
-//                 }else{
-//                 }
-//               },
-//               borderRadius: 12,
-//             ),
-//           ],
-//         ),
-//       ),
-//     ));
-//   }
-// }
+import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:my_manasa/core/dialogs/show_marks_dialog.dart';
+import 'package:my_manasa/core/utils/styles.dart';
+import 'package:my_manasa/core/widgets/custom_appbar.dart';
+import 'package:my_manasa/core/widgets/custom_button.dart';
+import 'package:my_manasa/features/Quiz/data/model/exam_qusetion_model.dart';
+import 'package:my_manasa/features/Quiz/presentation/manager/quiz_cubit/quiz_cubit.dart';
+import 'package:my_manasa/features/Quiz/presentation/views/widgets/exam_view_header.dart';
+
+class ExamView extends StatefulWidget {
+  final String quizId;
+
+  const ExamView({super.key, required this.quizId});
+
+  @override
+  State<ExamView> createState() => _ExamViewState();
+}
+
+class _ExamViewState extends State<ExamView> {
+  final _formKey = GlobalKey<FormState>();
+  final Map<int, int?> _selectedAnswers = {};
+
+  @override
+  void initState() {
+    super.initState();
+    context.read<QuizCubit>().loadExamQuestions(quizId: widget.quizId);
+  }
+
+  void _handleSubmit(List<ExamQuestion> questions) {
+    if (!_formKey.currentState!.validate()) {
+      return; // If validation fails, exit the method
+    }
+
+    int score = 0;
+
+    for (int i = 0; i < questions.length; i++) {
+      final selectedAnswerIndex = _selectedAnswers[i];
+      final correctAnswerIndex = int.tryParse(questions[i].correctAnswer);
+
+      if (selectedAnswerIndex != null &&
+          selectedAnswerIndex + 1 == correctAnswerIndex) {
+        score++;
+      }
+    }
+
+    showDialog(
+      context: context,
+      builder: (context) => ShowMarksDialog(
+        score: score,
+        totalQuestions: questions.length,
+      ),
+    );
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return SafeArea(
+      child: Scaffold(
+        appBar: const CustomAppBar(
+          logoColor: Colors.white,
+          title: '',
+          iconColor: Colors.white,
+        ),
+        body: BlocBuilder<QuizCubit, QuizState>(
+          builder: (context, state) {
+            if (state is ExamLoading) {
+              return const Center(child: CircularProgressIndicator());
+            } else if (state is ExamLoaded) {
+              final questions = state.questions;
+              return Column(
+                children: [
+                  const ExamViewHeader(),
+                  Expanded(
+                    child: Form(
+                      key: _formKey,
+                      child: ListView.builder(
+                        itemCount: questions.length,
+                        itemBuilder: (context, index) {
+                          final question = questions[index];
+                          return Padding(
+                            padding: const EdgeInsets.all(8.0),
+                            child: Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                Text(
+                                  '${index + 1}) ${question.question}',
+                                  style: Styles.semiBold18.copyWith(
+                                    overflow: TextOverflow.visible,
+                                  ),
+                                ),
+                                ...question.answers.map((answer) {
+                                  return ListTile(
+                                    title: Text(answer),
+                                    leading: Radio<int>(
+                                      value: question.answers.indexOf(answer),
+                                      groupValue: _selectedAnswers[index],
+                                      onChanged: (value) {
+                                        setState(() {
+                                          _selectedAnswers[index] = value;
+                                        });
+                                      },
+                                    ),
+                                  );
+                                }).toList(),
+                                // Add a dummy validator for each question
+                                TextFormField(
+                                  // Use a hidden field to trigger validation
+                                  validator: (value) {
+                                    if (!_selectedAnswers.containsKey(index)) {
+                                      return 'Please select an answer';
+                                    }
+                                    return null;
+                                  },
+                                  initialValue: _selectedAnswers[index]?.toString(),
+                                  onChanged: (value) {
+                                    // Ensure the value is properly updated
+                                    setState(() {
+                                      _selectedAnswers[index] = int.tryParse(value) ?? -1;
+                                    });
+                                  },
+                                ),
+                              ],
+                            ),
+                          );
+                        },
+                      ),
+                    ),
+                  ),
+                  CustomButton(
+                    text: Text(
+                      'Submit',
+                      style: Styles.semiBold18.copyWith(color: Colors.white),
+                    ),
+                    onPressed: () => _handleSubmit(questions),
+                    borderRadius: 12,
+                  ),
+                ],
+              );
+            } else if (state is ExamError) {
+              return Center(child: Text(state.message));
+            } else {
+              return const Center(child: Text('No data available'));
+            }
+          },
+        ),
+      ),
+    );
+  }
+}

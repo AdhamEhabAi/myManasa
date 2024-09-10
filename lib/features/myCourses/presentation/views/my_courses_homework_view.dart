@@ -1,15 +1,16 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:get/get.dart';
 import 'package:my_manasa/core/managers/homework_cubit/home_work_cubit.dart';
 import 'package:my_manasa/core/utils/styles.dart';
+import 'package:my_manasa/features/Quiz/presentation/views/exam_view.dart';
 import 'package:my_manasa/features/homeSubjects/presentation/views/widgets/home_work_widget.dart';
 import 'package:my_manasa/features/homeTeachers/data/models/course_model.dart';
 
 class MyCoursesHomeworkView extends StatelessWidget {
   const MyCoursesHomeworkView({super.key, required this.course});
  final CourseModel course;
-
 
   @override
 
@@ -27,7 +28,9 @@ class MyCoursesHomeworkView extends StatelessWidget {
             ),
             itemBuilder: (context, index) {
               return HomeWorkWidget(
-                onTap: () {},
+                onTap: () {
+                  Get.to(ExamView(quizId: state.homeWorks[index].id));
+                },
                 quizHomeworkModel: state.homeWorks[index],
               );
             },

@@ -24,19 +24,19 @@ class CustomPercentIndicator extends StatelessWidget {
       child: CircularPercentIndicator(
         footer: Text(
           footerText,
-          style: Styles.semiBold10.copyWith(fontSize: 7),
+          style: Styles.semiBold12_95,
         ),
         center: Text(
           '$doneVideos/$totalVideos',
           textDirection: TextDirection.ltr,
-          style: Styles.semiBold10.copyWith(fontSize: 7),
+          style: Styles.semiBold12_95,
         ),
         radius: radius,
         lineWidth: lineRadius,
         percent: doneVideos / totalVideos,
         header: Text(
           titleText,
-          style: Styles.semiBold10,
+          style: Styles.semiBold12_95,
         ),
         backgroundColor: Colors.grey.shade300,
         progressColor: lineColor,
