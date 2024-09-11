@@ -21,6 +21,7 @@ class RegisterView extends StatefulWidget {
 
 class _RegisterViewState extends State<RegisterView> {
   bool _isPasswordVisible = false; // Local state for password visibility
+  final GlobalKey<FormState> _registerFormKey = GlobalKey<FormState>(); // Declare form key locally
 
   @override
   Widget build(BuildContext context) {
@@ -54,12 +55,12 @@ class _RegisterViewState extends State<RegisterView> {
                 child: Center(
                   child: SizedBox(
                     width: MediaQuery.of(context).size.width.w,
-                    height: MediaQuery.of(context).size.height * 0.70.h,
+                    height: MediaQuery.of(context).size.height * 0.80.h,
                     child: Padding(
                       padding: EdgeInsets.symmetric(
                           horizontal: AppPadding.padding.w),
                       child: Form(
-                        key: provider.registerFormKey,
+                        key: _registerFormKey,
                         child: Column(
                           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                           crossAxisAlignment: CrossAxisAlignment.center,
@@ -163,6 +164,8 @@ class _RegisterViewState extends State<RegisterView> {
                               validator: (value) {
                                 if (value == null || value.isEmpty) {
                                   return 'ادخل كلمة المرور';
+                                }else if (value.length < 8) {
+                                  return 'يجب أن تحتوي كلمة المرور على 8 أحرف على الأقل';
                                 }
                                 return null;
                               },
@@ -188,7 +191,7 @@ class _RegisterViewState extends State<RegisterView> {
                             BlocBuilder<AuthCubit, AuthState>(
                               builder: (context, state) {
                                 if (state is RegisterLoading) {
-                                  return const CircularProgressIndicator(); // Display a loading indicator while registering
+                                  return const CircularProgressIndicator();
                                 }
                                 return CustomButton(
                                   borderRadius: 14.r,
@@ -198,12 +201,21 @@ class _RegisterViewState extends State<RegisterView> {
                                         .copyWith(color: Colors.white, fontSize: 20.sp),
                                   ),
                                   onPressed: () {
-                                    if (provider.registerFormKey.currentState!.validate()) {
+                                    if (_registerFormKey.currentState!.validate()) {
                                       if (provider.selectedCountry == null) {
                                         ToastM.show('الرجاء اختيار الصف');
                                         return;
                                       }
                                       provider.userRegister();
+                                      provider.userRegister().then((_) {
+                                        provider.fName.clear();
+                                        provider.lName.clear();
+                                        provider.fPhone.clear();
+                                        provider.lPhone.clear();
+                                        provider.email.clear();
+                                        provider.password.clear();
+                                      });
+
                                     }
                                   },
                                 );

@@ -53,13 +53,13 @@ class GetCodeDialog extends StatelessWidget {
                   Get.back(); // Close the current dialog
                   showDialog(
                     context: context,
-                    builder: (context) => const BuyCompletedDialog(),  // Show success dialog
+                    builder: (context) => const BuyCompletedDialog(),
                   );
                 } else if (state is CodeError) {
                   Get.back(); // Close the current dialog
                   showDialog(
                     context: context,
-                    builder: (context) => const WrongCodeDialog(),  // Show failure dialog
+                    builder: (context) => const WrongCodeDialog(),
                   );
                 }
               },

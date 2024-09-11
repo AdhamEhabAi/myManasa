@@ -33,8 +33,6 @@ class AuthCubit extends Cubit<AuthState> {
 
   String generatedOTP = '';
   UserModel? userModel;
-  GlobalKey<FormState> registerFormKey = GlobalKey();
-  GlobalKey<FormState> loginFormKey = GlobalKey();
 
   TextEditingController fName = TextEditingController();
   TextEditingController lName = TextEditingController();
@@ -46,7 +44,7 @@ class AuthCubit extends Cubit<AuthState> {
   TextEditingController loginPassword = TextEditingController();
   String? selectedCountry;
 
-  String getValueOfSelectedCountry() {
+  String getValueOfSelectedGrade() {
     switch (selectedCountry) {
       case 'الصف الاول الثانوي':
         return '1';
@@ -99,7 +97,7 @@ class AuthCubit extends Cubit<AuthState> {
         lnum: lPhone.text,
         username: email.text,
         password: password.text,
-        userClass: getValueOfSelectedCountry(),
+        userClass: getValueOfSelectedGrade(),
         country: '1',
       );
 
@@ -115,7 +113,7 @@ class AuthCubit extends Cubit<AuthState> {
         },
       );
     } catch (e) {
-      emit(RegisterFailure(errMessage: 'error : ${e.toString()}'));
+      emit(RegisterFailure(errMessage: 'هناك خطأ في الاتصال بالشبكة'));
     }
   }
 
@@ -140,9 +138,35 @@ class AuthCubit extends Cubit<AuthState> {
         },
       );
     } catch (e) {
-      emit(LoginFailure(errMessage: 'error : ${e.toString()}'));
+      emit(LoginFailure(errMessage: 'هناك خطأ في الاتصال بالشبكة'));
     }
   }
+
+  Future<void> userLoginAsAGuest() async {
+    try {
+      emit(LoginLoading());
+      final result = await authRepo.userLogin(
+        username: 'guest@gmail.com',
+        password: '123456789',
+      );
+
+      result.fold(
+            (failure) {
+          emit(LoginFailure(errMessage: failure));
+          ToastM.show(failure);
+        },
+            (user) async {
+          l.log(user.toString());
+          userModel = user;
+          await saveUserToPreferences(userModel!);
+          emit(LoginSuccess());
+        },
+      );
+    } catch (e) {
+      emit(LoginFailure(errMessage: 'هناك خطأ في الاتصال بالشبكة'));
+    }
+  }
+
 
   Future<void> saveUserToPreferences(UserModel user) async {
     SharedPreferences prefs = await SharedPreferences.getInstance();
