@@ -27,7 +27,7 @@ class MyCoursesVideoView extends StatelessWidget {
               final video = videos[index];
               return MyCoursesVideoCourseWidget(
                 onTap: () {
-                  g.Get.to(
+                  g.Get.off(
                     MyCoursesPlayVideoView(video: video, course: course,),
                     transition: g.Transition.fade,
                   );
