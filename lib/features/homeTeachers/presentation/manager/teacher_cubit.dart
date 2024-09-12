@@ -10,6 +10,7 @@ class TeacherCubit extends Cubit<TeacherState> {
   final TeacherRepo teacherRepo;
   List<Teacher> teachersList = [];
   List<CourseModel> coursesList = [];
+  bool isCourseOwned = false; // New field to store ownership status
 
   TeacherCubit(this.teacherRepo) : super(TeacherInitial());
 
@@ -17,8 +18,8 @@ class TeacherCubit extends Cubit<TeacherState> {
     emit(TeacherLoading());
     final result = await teacherRepo.getAllTeachers();
     result.fold(
-      (failure) => emit(TeacherError(failure)),
-      (teachers) {
+          (failure) => emit(TeacherError(failure)),
+          (teachers) {
         teachersList = teachers;
         emit(TeacherLoaded());
       },
@@ -28,14 +29,32 @@ class TeacherCubit extends Cubit<TeacherState> {
   Future<void> getCoursesByTeacherID({required String teacherID}) async {
     emit(CoursesLoading());
 
-    final result =
-        await teacherRepo.getCoursesByTeacherID(teacherID: teacherID);
+    final result = await teacherRepo.getCoursesByTeacherID(teacherID: teacherID);
     result.fold(
-      (failure) => emit(CoursesError(failure)),
-      (courses) {
+          (failure) => emit(CoursesError(failure)),
+          (courses) {
         coursesList = courses;
         emit(CoursesLoaded());
       },
     );
+  }
+
+  // Method to check course ownership
+  Future<void> checkCourseOwnership({required String courseID, required String userID}) async {
+    emit(CheckOwnershipLoading());
+    final result = await teacherRepo.checkCourseOwnership(courseID: courseID, userID: userID);
+    result.fold(
+          (failure) => emit(CheckOwnershipError(failure)),
+          (isOwned) {
+        isCourseOwned = isOwned;
+        emit(CheckOwnershipLoaded(isOwned));
+      },
+    );
+  }
+
+  // Method to reset course ownership status
+  void resetCourseOwnership() {
+    isCourseOwned = false;
+    emit(CheckOwnershipLoaded(false)); // Emit state to notify listeners
   }
 }

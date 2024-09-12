@@ -13,10 +13,8 @@ class TeacherRepo extends Repository {
 
   Future<Either<String, List<Teacher>>> getAllTeachers() async {
     try {
-      final response = await apiService.get(url: APIEndpoints.getAllTeachersApi); // Replace with the actual API endpoint
-
+      final response = await apiService.get(url: APIEndpoints.getAllTeachersApi);
       final List<dynamic> responseData = jsonDecode(response.body);
-
 
       List<Teacher> teachers = responseData.map((teacherJson) {
         return Teacher.fromJson(teacherJson as Map<String, dynamic>);
@@ -28,16 +26,34 @@ class TeacherRepo extends Repository {
     }
   }
 
-  Future<Either<String,List<CourseModel>>> getCoursesByTeacherID({required String teacherID})async
-  {
+  Future<Either<String, List<CourseModel>>> getCoursesByTeacherID({required String teacherID}) async {
     try {
-      final response = await apiService.get(url: APIEndpoints.getCoursesByTeacherID+teacherID);
+      final response = await apiService.get(url: APIEndpoints.getCoursesByTeacherID + teacherID);
       final List<dynamic> responseData = jsonDecode(response.body);
 
       List<CourseModel> courses = responseData.map((e) {
-        return CourseModel.fromJson(e as Map<String,dynamic>);
-      },).toList();
+        return CourseModel.fromJson(e as Map<String, dynamic>);
+      }).toList();
       return Right(courses);
+    } on Exception catch (e) {
+      return Left('An error occurred: ${e.toString()}');
+    }
+  }
+
+  // New method to check if the student owns the course
+  Future<Either<String, bool>> checkCourseOwnership({required String courseID, required String userID}) async {
+    try {
+      final String url = '${APIEndpoints.baseUrl}/api-checkowned.php?idcourse=$courseID&iduser=$userID';
+      final response = await apiService.get(url: url);
+      final Map<String, dynamic> responseData = jsonDecode(response.body);
+
+      if (responseData['status'] == 'true') {
+        return Right(true);  // Student owns the course
+      } else if (responseData['status'] == 'false') {
+        return Right(false);  // Student does not own the course
+      } else {
+        return Left('Unexpected response format');
+      }
     } on Exception catch (e) {
       return Left('An error occurred: ${e.toString()}');
     }
