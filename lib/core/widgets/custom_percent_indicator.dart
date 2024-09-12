@@ -1,5 +1,6 @@
 
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:my_manasa/core/utils/styles.dart';
 import 'package:percent_indicator/circular_percent_indicator.dart';
 
@@ -20,7 +21,7 @@ class CustomPercentIndicator extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.only(left: 8.0),
+      padding:  EdgeInsets.only(left: 8.0.w),
       child: CircularPercentIndicator(
         footer: Text(
           footerText,

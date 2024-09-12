@@ -1,10 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:my_manasa/constants.dart';
 import 'package:my_manasa/core/utils/styles.dart';
+import 'package:my_manasa/features/Quiz/data/model/exam_history_model.dart';
 
 class HistoryQuizWidget extends StatelessWidget {
-  const HistoryQuizWidget({super.key, required this.onTap});
+  const HistoryQuizWidget({super.key, required this.onTap, required this.examData});
   final VoidCallback onTap;
+  final ExamHistory examData;
 
   @override
   Widget build(BuildContext context) {

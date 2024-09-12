@@ -34,3 +34,9 @@ class ExamError extends QuizState {
 }
 
 class ExamEmpty extends QuizState {}
+
+class QuizHistoryLoaded extends QuizState {
+  final List<ExamHistory> examsHistory;
+
+  QuizHistoryLoaded({required this.examsHistory});
+}

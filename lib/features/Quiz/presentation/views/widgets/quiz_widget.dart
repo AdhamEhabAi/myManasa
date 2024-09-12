@@ -1,17 +1,34 @@
 import 'package:flutter/material.dart';
+import 'package:intl/intl.dart';
 import 'package:my_manasa/constants.dart';
 import 'package:my_manasa/core/utils/styles.dart';
+import 'package:my_manasa/core/widgets/custom_percent_indicator.dart';
+import 'package:my_manasa/features/Quiz/data/model/exam_history_model.dart';
 
 class QuizWidget extends StatelessWidget {
   const QuizWidget({
-    super.key, required this.onTap,
+    super.key,
+    required this.onTap,
+    required this.examHistory,
   });
+
   final VoidCallback onTap;
+  final ExamHistory examHistory;
+
+  // Function to format the date
+  String formatDate(String date) {
+    try {
+      DateTime parsedDate = DateTime.parse(date);
+      return DateFormat('yyyy-MM-dd').format(parsedDate); // Customize the format as needed
+    } catch (e) {
+      return date; // Return the original date if parsing fails
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding:
-      const EdgeInsets.symmetric(horizontal: AppPadding.padding),
+      padding: const EdgeInsets.symmetric(horizontal: AppPadding.padding, vertical: AppPadding.padding),
       child: InkWell(
         onTap: onTap,
         child: Stack(
@@ -41,68 +58,51 @@ class QuizWidget extends StatelessWidget {
                       ),
                     ),
                     child: Image.asset(
-                      'assets/images/courseImage (2).png',
+                      'assets/images/QuizDone.png',
                       fit: BoxFit.fill,
                     ),
                   ),
                   Expanded(
-                    child: Padding(
-                      padding: const EdgeInsets.all(8.0),
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Row(
-                            children: [
-                               Expanded(
-                                child: Text(
-                                  'مع مستر / نبيل وليم',
-                                  style: Styles.semiBold12_95,
-                                  overflow: TextOverflow.ellipsis,
-                                ),
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Row(
+                          children: [
+                            Expanded(
+                              child: Column(
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: [
+                                  Text(
+                                    examHistory.name,
+                                    style: Styles.bold14,
+                                    overflow: TextOverflow.ellipsis,
+                                  ),
+                                  const SizedBox(height: 4), // Spacing between name and date
+                                  Text(
+                                    formatDate(examHistory.date), // Display formatted date
+                                    style: Styles.semiBold14, // Customize the text style as needed
+                                  ),
+                                ],
                               ),
-                              const SizedBox(width: 8),
-                              CircleAvatar(
-                                radius: 12,
-                                child: Image.asset(
-                                  'assets/images/smallTeacher.png',
-                                  fit: BoxFit.cover,
-                                ),
-                              ),
-                            ],
-                          ),
-                          const SizedBox(height: 8),
-                          Row(
-                            children: [
-                               Text(
-                                'يوجد اختبار الأن',
-                                style: Styles.semiBold12_95,
-                              ),
-                              const SizedBox(width: 10),
-                              Container(
-                                width: 10,
-                                height: 10,
-                                decoration: BoxDecoration(
-                                  borderRadius:
-                                  BorderRadius.circular(10),
-                                  color: Colors.greenAccent,
-                                ),
-                              ),
-                            ],
-                          ),
-                        ],
-                      ),
+                            ),
+                            const SizedBox(width: 8),
+                            CustomPercentIndicator(
+                              titleText: '',
+                              footerText: 'درجة',
+                              radius: 30,
+                              lineRadius: 5,
+                              doneVideos: int.parse(examHistory.userScore.score),
+                              totalVideos: int.parse(examHistory.userScore.correctAnswers),
+                              lineColor: Colors.greenAccent,
+                            ),
+                          ],
+                        ),
+                      ],
                     ),
                   ),
                 ],
               ),
             ),
-             Positioned(
-                bottom: 10,
-                left: 10,
-                child: Text(
-                  'علوم',
-                  style: Styles.bold14,
-                ))
           ],
         ),
       ),

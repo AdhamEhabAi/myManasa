@@ -1,5 +1,6 @@
 import 'package:bloc/bloc.dart';
 import 'package:meta/meta.dart';
+import 'package:my_manasa/features/Quiz/data/model/exam_history_model.dart';
 import 'package:my_manasa/features/Quiz/data/model/exam_qusetion_model.dart';
 import 'package:my_manasa/features/Quiz/repo/quiz_repo.dart';
 import 'package:my_manasa/features/myCourses/data/models/quiz_homework_model.dart';
@@ -28,6 +29,15 @@ class QuizCubit extends Cubit<QuizState> {
     result.fold(
       (failure) => emit(ExamError(message: failure.message)),
       (questions) => emit(ExamLoaded(questions)),
+    );
+  }
+  Future<void> fetchExamsHistory({required String userId}) async {
+    emit(QuizLoading());
+    final result = await quizRepo.getExamsHistory(userId: userId);
+
+    result.fold(
+          (failure) => emit(QuizError(message: failure.message)),
+          (examsHistory) => emit(QuizHistoryLoaded(examsHistory: examsHistory)),
     );
   }
 }
