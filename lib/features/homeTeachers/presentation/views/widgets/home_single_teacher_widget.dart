@@ -99,14 +99,14 @@ class HomeSingleTeacherWidget extends StatelessWidget {
                             children: [
                               Text(
                                 'مستر /',
-                                style: Styles.semiBold14.copyWith(
+                                style: Styles.semiBold16.copyWith(
                                   color: AppColors.primaryColor,
                                   fontSize: 14.sp,
                                 ),
                               ),
                               Text(
                                 '${teacher.fname} ${teacher.lname}',
-                                style: Styles.semiBold14.copyWith(
+                                style: Styles.semiBold16.copyWith(
                                   fontSize: 14.sp,
                                 ),
                               ),
@@ -115,50 +115,8 @@ class HomeSingleTeacherWidget extends StatelessWidget {
                           SizedBox(height: 5.h),
                           Text(
                             'أستاذ ${teacher.sec}',
-                            style: Styles.semiBold10.copyWith(
+                            style: Styles.semiBold12_95.copyWith(
                               color: Colors.grey,
-                              fontSize: 10.sp,
-                            ),
-                          ),
-                        ],
-                      ),
-                      Column(
-                        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                        children: [
-                          Column(
-                            children: [
-                              Text(
-                                'تقييم',
-                                style: Styles.semiBold10.copyWith(
-                                  color: Colors.grey,
-                                  fontSize: 10.sp,
-                                ),
-                              ),
-                              SizedBox(height: 5.h),
-                              RatingBar(
-                                ignoreGestures: true,
-                                initialRating: double.parse(teacher.rank),
-                                minRating: 1,
-                                direction: Axis.horizontal,
-                                allowHalfRating: true,
-                                itemCount: 5,
-                                itemSize: 10.r,
-                                ratingWidget: RatingWidget(
-                                  full: const Icon(Icons.star,
-                                      color: Colors.amber),
-                                  half: const Icon(Icons.star_half,
-                                      color: Colors.amber),
-                                  empty: const Icon(Icons.star_border,
-                                      color: Colors.amber),
-                                ),
-                                onRatingUpdate: (rating) {},
-                              ),
-                            ],
-                          ),
-                          Text(
-                            'مادة ${teacher.sec}',
-                            style: Styles.semiBold10.copyWith(
-                              color: AppColors.secondaryColor,
                               fontSize: 10.sp,
                             ),
                           ),

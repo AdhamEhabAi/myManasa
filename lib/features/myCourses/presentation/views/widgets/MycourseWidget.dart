@@ -63,23 +63,23 @@ class MyCourseWidget extends StatelessWidget {
                             right: 8.0.w, top: 8.0.h),
                         child: Text(
                           course.sub,
-                          style: Styles.semiBold12_95
+                          style: Styles.semiBold14
                               .copyWith(color: Colors.grey),
                         ),
                       ),
-                      LinearPercentIndicator(
-                        width: 180.0.w,
-                        lineHeight: 8.0.h,
-                        trailing: Text(
-                          '20/30',
-                          style: TextStyle(color: Colors.grey.shade700),
-                        ),
-                        percent: 0.7,
-                        backgroundColor: Colors.grey,
-                        progressColor: AppColors.primaryColor,
-                        barRadius: Radius.circular(12.r),
-                        isRTL: true,
-                      ),
+                      // LinearPercentIndicator(
+                      //   width: 180.0.w,
+                      //   lineHeight: 8.0.h,
+                      //   trailing: Text(
+                      //     '20/30',
+                      //     style: TextStyle(color: Colors.grey.shade700),
+                      //   ),
+                      //   percent: 0.7,
+                      //   backgroundColor: Colors.grey,
+                      //   progressColor: AppColors.primaryColor,
+                      //   barRadius: Radius.circular(12.r),
+                      //   isRTL: true,
+                      // ),
                     ],
                   ),
                 ],

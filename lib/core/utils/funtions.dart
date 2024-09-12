@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:my_manasa/features/authentication/presentation/views/on_boarding_view.dart';
+import 'package:my_manasa/features/authentication/presentation/views/login_view.dart';
 import 'package:permission_handler/permission_handler.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:url_launcher/url_launcher.dart';
@@ -10,7 +10,7 @@ Future<void> logout() async {
   await prefs.clear(); // or prefs.remove('isLoggedIn');
 
   // Navigate to the login or onboarding screen
-  Get.offAll(() => const OnBoardingView(), transition: Transition.fadeIn);
+  Get.offAll(() => const LoginView(), transition: Transition.fadeIn);
 }
 
 String? validateEmail(String? value) {

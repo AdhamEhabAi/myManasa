@@ -21,7 +21,7 @@ class SplashBody extends StatelessWidget {
               width: MediaQuery.of(context).size.width / 2,
               height: MediaQuery.of(context).size.width / 3,
               child:
-              Image.asset('assets/images/logo.png', fit: BoxFit.fill)),
+              Image.asset('assets/images/logo.png', fit: BoxFit.contain)),
         ),
         Image.asset('assets/images/lowerSplash.png',width: MediaQuery.of(context).size.width /1.5),
       ],

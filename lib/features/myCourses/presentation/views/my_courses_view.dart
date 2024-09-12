@@ -3,8 +3,10 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart' as t;
 import 'package:my_manasa/constants.dart';
+import 'package:my_manasa/core/dialogs/get_code_dialog.dart';
 import 'package:my_manasa/core/shimmer/my_courses_shimmer.dart';
 import 'package:my_manasa/core/utils/styles.dart';
+import 'package:my_manasa/core/widgets/custom_button.dart';
 import 'package:my_manasa/features/authentication/presentation/manager/auth_cubit.dart';
 import 'package:my_manasa/features/myCourses/presentation/manager/my_courses_cubit.dart';
 import 'package:my_manasa/features/myCourses/presentation/views/my_course_view.dart';
@@ -14,12 +16,14 @@ import 'package:my_manasa/core/utils/api_service.dart';
 
 class MyCoursesView extends StatelessWidget {
   const MyCoursesView({super.key});
-
   @override
   Widget build(BuildContext context) {
+    TextEditingController codeController = TextEditingController();
+
     String userId = BlocProvider.of<AuthCubit>(context).userModel!.id;
     return BlocProvider(
-      create: (context) => MyCoursesCubit(MyCoursesRepo(ApiService()))..fetchOwnedCourses(userId: userId),
+      create: (context) => MyCoursesCubit(MyCoursesRepo(ApiService()))
+        ..fetchOwnedCourses(userId: userId),
       child: SafeArea(
         child: Scaffold(
           appBar: AppBar(
@@ -35,13 +39,18 @@ class MyCoursesView extends StatelessWidget {
                 return ListView.separated(
                   itemCount: 5, // Display 5 shimmer items as a placeholder
                   itemBuilder: (context, index) => const ShimmerLoadingWidget(),
-                  separatorBuilder: (context, index) => const SizedBox(height: 20),
+                  separatorBuilder: (context, index) =>
+                      const SizedBox(height: 20),
                 );
               } else if (state is MyCoursesError) {
-                return Center(child: Text(state.message,style: Styles.bold16,));
+                return Center(
+                    child: Text(
+                  state.message,
+                  style: Styles.bold16,
+                ));
               } else if (state is MyCoursesLoaded) {
                 return Padding(
-                  padding:  EdgeInsets.symmetric(vertical: 8.0.h),
+                  padding: EdgeInsets.symmetric(vertical: 8.0.h),
                   child: ListView.separated(
                     scrollDirection: Axis.vertical,
                     itemBuilder: (context, index) {
@@ -50,13 +59,16 @@ class MyCoursesView extends StatelessWidget {
                         course: course,
                         onTap: () {
                           t.Get.to(
-                             MyCourseView(course: course,),
+                            MyCourseView(
+                              course: course,
+                            ),
                             transition: t.Transition.fade,
                           );
                         },
                       );
                     },
-                    separatorBuilder: (context, index) => const SizedBox(height: 20),
+                    separatorBuilder: (context, index) =>
+                        const SizedBox(height: 20),
                     itemCount: state.courses.length,
                   ),
                 );
@@ -65,9 +77,25 @@ class MyCoursesView extends StatelessWidget {
               }
             },
           ),
+          floatingActionButton: CustomButton(
+            borderRadius: 20.r,
+            text: Text(
+              'ادخل كود',
+              style: Styles.bold18.copyWith(color: Colors.white),
+            ),
+            onPressed: () {
+              showDialog(
+                context: context,
+                builder: (context) {
+                  return GetCodeDialog(
+                      textEditingController: codeController);
+                },
+              );
+            },
+            width: 120.w,
+          ),
         ),
       ),
     );
   }
 }
-

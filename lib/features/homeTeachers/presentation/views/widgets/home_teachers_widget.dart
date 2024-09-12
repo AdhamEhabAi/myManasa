@@ -19,17 +19,10 @@ class HomeTeachersWidget extends StatefulWidget {
 }
 
 class _HomeTeachersWidgetState extends State<HomeTeachersWidget> {
-  final PageController _pageController = PageController();
-  double _currentPage = 0;
 
   @override
   void initState() {
     super.initState();
-    _pageController.addListener(() {
-      setState(() {
-        _currentPage = _pageController.page!;
-      });
-    });
 
     final provider = BlocProvider.of<TeacherCubit>(context);
     if (provider.teachersList.isEmpty) {
@@ -68,8 +61,7 @@ class _HomeTeachersWidgetState extends State<HomeTeachersWidget> {
                     return ListView.builder(
                       scrollDirection: Axis.horizontal,
                       physics: const BouncingScrollPhysics(),
-                      controller: _pageController,
-                      itemCount: provider.teachersList.length.clamp(0, 3),
+                      itemCount: provider.teachersList.length,
                       itemBuilder: (context, index) => HomeSingleTeacherWidget(
                         teacher: provider.teachersList[index],
                         onTap: () {
@@ -87,8 +79,7 @@ class _HomeTeachersWidgetState extends State<HomeTeachersWidget> {
               ),
             ),
           ),
-          SizedBox(height: 20.h), // Adapted height
-          TeachersDotsIndicator(currentPage: _currentPage),
+
         ],
       ),
     );

@@ -27,7 +27,7 @@ class HomeSingleSubjectWidget extends StatelessWidget {
       child: InkWell(
         onTap: onTap,
         child: Container(
-          width: MediaQuery.of(context).size.width / 1.7,
+          width: MediaQuery.of(context).size.width / 1.5,
           decoration: BoxDecoration(
             boxShadow: [
               BoxShadow(
@@ -40,63 +40,38 @@ class HomeSingleSubjectWidget extends StatelessWidget {
             borderRadius: BorderRadius.circular(17.r),
             color: Colors.grey,
           ),
-          child: Column(
+          child: Stack(
             children: [
-              Expanded(
-                child: ClipRRect(
-                  borderRadius: BorderRadius.only(
-                    topLeft: Radius.circular(17.r),
-                    topRight: Radius.circular(17.r),
-                  ),
-                  child: CachedNetworkImage(
-                    imageUrl: APIEndpoints.imgPath + subject.logo,
+              ClipRRect(
+                borderRadius: BorderRadius.only(
+                  topLeft: Radius.circular(17.r),
+                  topRight: Radius.circular(17.r),
+                ),
+                child: CachedNetworkImage(
+                  imageUrl: APIEndpoints.imgPath + subject.logo,
+                  fit: BoxFit.cover,
+                  width: double.infinity,
+                  height: double.infinity,
+                  placeholder: (context, url) => Image.asset(
+                    'assets/images/logo.png', // Placeholder image
                     fit: BoxFit.cover,
                     width: double.infinity,
                     height: double.infinity,
-                    placeholder: (context, url) => Image.asset(
-                      'assets/images/logo.png', // Placeholder image
-                      fit: BoxFit.cover,
-                      width: double.infinity,
-                      height: double.infinity,
-                    ),
-                    errorWidget: (context, url, error) => Image.asset(
-                      'assets/images/logo.png', // Error image
-                      fit: BoxFit.cover,
-                      width: double.infinity,
-                      height: double.infinity,
-                    ),
+                  ),
+                  errorWidget: (context, url, error) => Image.asset(
+                    'assets/images/logo.png', // Error image
+                    fit: BoxFit.fill,
+                    width: double.infinity,
+                    height: double.infinity,
                   ),
                 ),
               ),
-              Expanded(
-                child: Stack(
-                  children: [
-                    Container(
-                      decoration: BoxDecoration(
-                        boxShadow: [
-                          BoxShadow(
-                            color: Colors.black.withOpacity(0.1),
-                            offset: const Offset(0, 4),
-                            blurRadius: 4,
-                            spreadRadius: 0, // Increased spreadRadius
-                          ),
-                        ],
-                        color: Colors.white,
-                        borderRadius: BorderRadius.only(
-                          bottomRight: Radius.circular(17.r),
-                          bottomLeft: Radius.circular(17.r),
-                        ),
-                      ),
-                    ),
-                    Positioned(
-                      bottom: 15.h,
-                      right: 15.w,
-                      child: Text(
-                        subject.name,
-                        style: Styles.bold20,
-                      ),
-                    ),
-                  ],
+              Positioned(
+                left: 10.w,
+                bottom: 10.h,
+                child: Text(
+                  subject.name,
+                  style: Styles.bold20.copyWith(color: Colors.white),
                 ),
               ),
             ],

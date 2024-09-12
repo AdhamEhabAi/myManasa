@@ -15,12 +15,13 @@ class NoQuizesBody extends StatelessWidget {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            Image.asset('assets/images/no_quizes_image.png', width: MediaQuery.of(context).size.width / 2,),
+            Image.asset('assets/images/no_quizes_image.png', width: MediaQuery.of(context).size.width / 2,color: AppColors.primaryColor,),
             const SizedBox(height: 20,),
             Text(
               'لا يوجد اختبارات لمواد اشتركت فيها,في الوقت الحالي',
               style: Styles.semiBold16.copyWith(color: Colors.grey),
               textAlign: TextAlign.center,
+              maxLines: 2,
             )
           ],
         ),

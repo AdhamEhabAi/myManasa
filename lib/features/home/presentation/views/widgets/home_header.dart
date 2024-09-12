@@ -16,7 +16,7 @@ class HomeHeader extends StatefulWidget {
 }
 
 class _HomeHeaderState extends State<HomeHeader> {
-  double _logoWidth = 120;
+  double _logoWidth = 120.w;
   bool _isExpanded = false;
   late TextEditingController searchController;
   late FocusNode searchFocusNode;
@@ -42,13 +42,28 @@ class _HomeHeaderState extends State<HomeHeader> {
     return Container(
       width: MediaQuery.of(context).size.width,
       height: MediaQuery.of(context).size.height / 4,
-      color: AppColors.primaryColor,
+      decoration: BoxDecoration(
+        gradient: LinearGradient(
+          colors: [AppColors.primaryColor, AppColors.secondaryColor],
+          begin: Alignment.topLeft,
+          end: Alignment.bottomRight,
+        ),
+        boxShadow: [
+          BoxShadow(
+            color: Colors.black.withOpacity(0.2),
+            spreadRadius: 2,
+            blurRadius: 8,
+            offset: Offset(0, 4), // Shadow position
+          ),
+        ],
+      ),
       child: Padding(
         padding: const EdgeInsets.all(AppPadding.padding),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
           children: [
+            SizedBox(height: 20.h),
             Text(
               'مرحبا, ${'${authCubit.userModel?.fname} ${authCubit.userModel?.lname}'}',
               style: Styles.regular24.copyWith(
@@ -70,7 +85,7 @@ class _HomeHeaderState extends State<HomeHeader> {
                 ),
                 Expanded(
                   child: Container(
-                    height: 40,
+                    height: 40.h,
                     decoration: BoxDecoration(
                       color: Colors.white,
                       borderRadius: BorderRadius.circular(8),

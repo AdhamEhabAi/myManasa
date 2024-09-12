@@ -114,7 +114,7 @@ class _MyCourseViewState extends State<MyCourseView> {
                     controller: pageController,
                     scrollDirection: Axis.horizontal,
                     children: [
-                      MyCoursesVideoView(courseId: widget.course.id),
+                      MyCoursesVideoView(course: widget.course),
                       MyCoursesPdfView(courseId: widget.course.id),
                       MyCoursesHomeworkView(course: widget.course),
                       MyCoursesQuizView(course: widget.course),

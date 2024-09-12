@@ -2,9 +2,12 @@ import 'dart:developer';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:get/get.dart';
+import 'package:my_manasa/constants.dart';
 import 'package:my_manasa/core/managers/video_cubit/video_cubit.dart';
 import 'package:my_manasa/core/utils/styles.dart';
-import 'package:my_manasa/core/widgets/custom_appbar.dart';
+import 'package:my_manasa/features/homeTeachers/data/models/course_model.dart';
+import 'package:my_manasa/features/myCourses/presentation/views/my_course_view.dart';
 import 'package:my_manasa/features/myCourses/presentation/views/widgets/my_courses_video_course_widget.dart';
 import 'package:youtube_player_flutter/youtube_player_flutter.dart';
 
@@ -14,11 +17,11 @@ class MyCoursesPlayVideoView extends StatefulWidget {
   const MyCoursesPlayVideoView({
     super.key,
     required this.video,
-    required this.courseId,
+    required this.course,
   });
 
   final VideoModel video;
-  final String courseId;
+  final CourseModel course;
 
   @override
   State<MyCoursesPlayVideoView> createState() => _MyCoursesPlayVideoViewState();
@@ -32,9 +35,10 @@ class _MyCoursesPlayVideoViewState extends State<MyCoursesPlayVideoView> {
   @override
   void initState() {
     super.initState();
-    _currentVideo = widget.video;  // Initialize with the selected video
-    _initializePlayer(_currentVideo!.firstUrl);  // Initialize player with the selected video URL
-    BlocProvider.of<VideoCubit>(context).fetchVideos(courseId: widget.courseId);
+    _currentVideo = widget.video;
+    _initializePlayer(_currentVideo!.firstUrl);
+    BlocProvider.of<VideoCubit>(context)
+        .fetchVideos(courseId: widget.course.id);
   }
 
   void _initializePlayer(String videoUrl) {
@@ -58,6 +62,7 @@ class _MyCoursesPlayVideoViewState extends State<MyCoursesPlayVideoView> {
 
   @override
   void dispose() {
+    _controller.pause();
     _controller.dispose();
     super.dispose();
   }
@@ -68,10 +73,28 @@ class _MyCoursesPlayVideoViewState extends State<MyCoursesPlayVideoView> {
       child: Scaffold(
         appBar: MediaQuery.of(context).orientation == Orientation.landscape
             ? null
-            : const CustomAppBar(
-          title: '',
-          backGroundColor: Colors.transparent,
-        ),
+            : AppBar(
+                elevation: 0.0,
+                leading: IconButton(
+                    onPressed: () {
+                      Get.off(MyCourseView(
+                        course: widget.course,
+                      ));
+                    },
+                    icon: ImageIcon(
+                      const AssetImage(
+                        'assets/images/back.png',
+                      ),
+                      size: 34,
+                      color: AppColors.primaryColor,
+                    )),
+                actions: [
+                  Image.asset(
+                    'assets/images/logo.png',
+                    color: AppColors.primaryColor,
+                  ),
+                ],
+              ),
         body: BlocBuilder<VideoCubit, VideoState>(
           builder: (context, state) {
             if (state is VideosLoading) {
@@ -120,7 +143,8 @@ class _MyCoursesPlayVideoViewState extends State<MyCoursesPlayVideoView> {
                             ),
                             Text(
                               'يحتوي هذا الكورس علي تأسيس كامل للصفوف و شرح و\nحل نماذج في الفيديو',
-                              style: Styles.semiBold10.copyWith(color: Colors.grey),
+                              style: Styles.semiBold10
+                                  .copyWith(color: Colors.grey),
                             ),
                           ],
                         ),
@@ -132,10 +156,12 @@ class _MyCoursesPlayVideoViewState extends State<MyCoursesPlayVideoView> {
                             final video = _videos[index];
                             return MyCoursesVideoCourseWidget(
                               onTap: () => _onVideoTap(video),
-                              title: video.name, dis: video.dis!,
+                              title: video.name,
+                              dis: video.dis!,
                             );
                           },
-                          separatorBuilder: (context, index) => const SizedBox(height: 20),
+                          separatorBuilder: (context, index) =>
+                              const SizedBox(height: 20),
                           itemCount: _videos.length,
                         ),
                       ),

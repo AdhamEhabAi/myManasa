@@ -1,6 +1,5 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:my_manasa/constants.dart';
 import 'package:my_manasa/core/network/api_endpoints.dart';
@@ -18,12 +17,7 @@ class TeacherViewHeader extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    double rating = 0.0;
-    try {
-      rating = double.parse(teacher.rank); // Safely parse rank
-    } catch (e) {
-      rating = 0.0; // Default to 0.0 if parsing fails
-    }
+
 
     return SizedBox(
       width: MediaQuery.of(context).size.width,
@@ -71,31 +65,6 @@ class TeacherViewHeader extends StatelessWidget {
                   Text(
                     'أستاذ في ${teacher.sec}', // Use dynamic data
                     style: Styles.semiBold14,
-                  ),
-                  Row(
-                    children: [
-                      Text(
-                        'تقييم:',
-                        style: Styles.semiBold14,
-                      ),
-                      const SizedBox(width: 5),
-                      RatingBar(
-                        initialRating: rating,
-                        minRating: 1,
-                        direction: Axis.horizontal,
-                        allowHalfRating: true,
-                        itemCount: 5,
-                        itemSize: 10,
-                        ratingWidget: RatingWidget(
-                          full: const Icon(Icons.star, color: Colors.amber),
-                          half:
-                              const Icon(Icons.star_half, color: Colors.amber),
-                          empty: const Icon(Icons.star_border,
-                              color: Colors.amber),
-                        ),
-                        onRatingUpdate: (rating) {},
-                      ),
-                    ],
                   ),
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceEvenly,

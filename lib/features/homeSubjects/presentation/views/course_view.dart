@@ -137,7 +137,7 @@ class _CourseViewState extends State<CourseView> {
                 ),
                 Padding(
                   padding:
-                      const EdgeInsets.symmetric(horizontal: 40, vertical: 12),
+                  EdgeInsets.symmetric(horizontal: 40.w, vertical: 12.h),
                   child: CustomButton(
                     text: Text('شراء',
                         style: Styles.semiBold24.copyWith(color: Colors.white)),

@@ -38,7 +38,21 @@ class _MainViewState extends State<MainView> {
         ],
       ),
       bottomNavigationBar: Container(
-        color: AppColors.primaryColor,
+        decoration: BoxDecoration(
+          gradient: LinearGradient(
+            colors: [AppColors.primaryColor, AppColors.secondaryColor],
+            begin: Alignment.topLeft,
+            end: Alignment.bottomRight,
+          ),
+          boxShadow: [
+            BoxShadow(
+              color: Colors.black.withOpacity(0.2),
+              spreadRadius: 2,
+              blurRadius: 8,
+              offset: Offset(0, -2), // Shadow position
+            ),
+          ],
+        ),
         child: Padding(
           padding: EdgeInsets.symmetric(horizontal: 15.w, vertical: 15.h),
           child: GNav(
@@ -52,7 +66,7 @@ class _MainViewState extends State<MainView> {
             },
             color: Colors.white,
             activeColor: Colors.white,
-            backgroundColor: AppColors.primaryColor,
+            backgroundColor: Colors.transparent, // Background color set to transparent for gradient effect
             tabBackgroundColor: const Color(0xFFde5e5f),
             padding: EdgeInsets.all(16.r),
             gap: 8,

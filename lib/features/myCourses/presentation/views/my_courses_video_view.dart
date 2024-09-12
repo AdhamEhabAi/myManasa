@@ -2,16 +2,17 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:get/get.dart' as g;
 import 'package:my_manasa/core/managers/video_cubit/video_cubit.dart';
+import 'package:my_manasa/features/homeTeachers/data/models/course_model.dart';
 import 'package:my_manasa/features/myCourses/presentation/views/my_courses_play_video_view.dart';
 import 'package:my_manasa/features/myCourses/presentation/views/widgets/my_courses_video_course_widget.dart';
 
 class MyCoursesVideoView extends StatelessWidget {
-  const MyCoursesVideoView({super.key, required this.courseId});
-  final String courseId;
+  const MyCoursesVideoView({super.key, required this.course});
+  final CourseModel course;
 
   @override
   Widget build(BuildContext context) {
-    BlocProvider.of<VideoCubit>(context).fetchVideos(courseId: courseId);
+    BlocProvider.of<VideoCubit>(context).fetchVideos(courseId: course.id);
 
     return BlocBuilder<VideoCubit, VideoState>(
       builder: (context, state) {
@@ -27,7 +28,7 @@ class MyCoursesVideoView extends StatelessWidget {
               return MyCoursesVideoCourseWidget(
                 onTap: () {
                   g.Get.to(
-                    MyCoursesPlayVideoView(video: video, courseId: courseId,),
+                    MyCoursesPlayVideoView(video: video, course: course,),
                     transition: g.Transition.fade,
                   );
                 },
