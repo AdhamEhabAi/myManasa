@@ -95,15 +95,21 @@ class _StudentProfileViewState extends State<StudentProfileView> {
                         crossAxisAlignment: CrossAxisAlignment.center,
                         children: [
                           CustomTextFormField(
+                            hintText: user.fname,
                             controller: _firstNameController,
                             labelText: 'الاسم الأول',
                           ),
                           CustomTextFormField(
+                            hintText: user.lname,
                             controller: _lastNameController,
                             labelText: 'الاسم الثاني',
                           ),
                           CustomDropdownField(
-                            hintText: 'اختار السنة الدراسية',
+                            hintText: user.yr == '3'
+                                ? 'الصف الثالث الثانوي'
+                                : user.yr == '2'
+                                    ? 'الصف الثاني الثانوي'
+                                    : 'الصف الاول الثانوي',
                             labelText: 'السنة الدراسية',
                             items: const [
                               'الصف الاول الثانوي',
@@ -170,26 +176,16 @@ class _StudentProfileViewState extends State<StudentProfileView> {
                                 ),
                                 onPressed: () {
                                   if (validateForm()) {
-                                    final yearValue =
-                                        getYearValue(); // Get the mapped value for the year
+                                    final yearValue = getYearValue();
                                     context.read<ProfileCubit>().updateProfile(
-                                          userId: user.id,
-                                          currentPassword:
-                                              _currentPasswordController.text,
-                                          year: yearValue ?? user.yr,
-                                          lastName:
-                                              _lastNameController.text.isEmpty
-                                                  ? user.lname
-                                                  : _lastNameController.text,
-                                          firstName:
-                                              _firstNameController.text.isEmpty
-                                                  ? user.fname
-                                                  : _firstNameController.text,
-                                          newPassword:
-                                              _newPasswordController.text,
-                                          confirmPassword:
-                                              _confirmPasswordController.text,
-                                        );
+                                      userId: user.id,
+                                      currentPassword: _currentPasswordController.text,
+                                      year: yearValue ?? user.yr,
+                                      lastName: _lastNameController.text.isEmpty ? user.lname : _lastNameController.text,
+                                      firstName: _firstNameController.text.isEmpty ? user.fname : _firstNameController.text,
+                                      newPassword: _newPasswordController.text.isNotEmpty ? _newPasswordController.text : null,
+                                      confirmPassword: _confirmPasswordController.text.isNotEmpty ? _confirmPasswordController.text : null,
+                                    );
                                   }
                                 },
                               );

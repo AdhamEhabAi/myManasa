@@ -2,6 +2,7 @@ import 'dart:convert';
 import 'package:dartz/dartz.dart';
 import 'package:my_manasa/core/app_repository/repo.dart';
 import 'package:my_manasa/core/errors/failures.dart';
+import 'package:my_manasa/core/network/api_endpoints.dart';
 import 'package:my_manasa/core/utils/api_service.dart';
 import 'package:my_manasa/features/myCourses/data/models/quiz_homework_model.dart';
 
@@ -13,7 +14,7 @@ class HomeWorkRepo extends Repository {
   Future<Either<Failure, List<QuizHomeworkModel>>> getHomeWorks({required String courseId}) async {
     try {
       final response = await apiService.get(
-        url: 'https://api.west-online-academy.com/api-get-quiz.php?id=$courseId&type=2',
+        url: '${APIEndpoints.baseUrl}/api-get-quiz.php?id=$courseId&type=2',
       );
 
       if (response.statusCode == 200) {

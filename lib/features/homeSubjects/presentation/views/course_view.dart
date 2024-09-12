@@ -147,7 +147,7 @@ class _CourseViewState extends State<CourseView> {
                         context: context,
                         builder: (context) {
                           return GetCodeDialog(
-                              textEditingController: codeController);
+                              textEditingController: codeController,idCourse: widget.course.id,);
                         },
                       );
                     },

@@ -15,8 +15,8 @@ class ProfileCubit extends Cubit<ProfileState> {
     required String year,
     required String lastName,
     required String firstName,
-    required String newPassword,
-    required String confirmPassword,
+    String? newPassword,  // Made nullable
+    String? confirmPassword,  // Made nullable
   }) async {
     emit(ProfileUpdating());
 

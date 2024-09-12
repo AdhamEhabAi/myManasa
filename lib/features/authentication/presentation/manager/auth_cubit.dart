@@ -171,12 +171,14 @@ class AuthCubit extends Cubit<AuthState> {
   Future<void> saveUserToPreferences(UserModel user) async {
     SharedPreferences prefs = await SharedPreferences.getInstance();
     String userJson = jsonEncode(user.toJson());
+    print("Saving user data: $userJson");  // Log the saved data
     await prefs.setString('user_model', userJson);
   }
 
   Future<UserModel?> getUserFromPreferences() async {
     SharedPreferences prefs = await SharedPreferences.getInstance();
     String? userJson = prefs.getString('user_model');
+    print("Loaded user data: $userJson");  // Log the loaded data
 
     if (userJson != null) {
       Map<String, dynamic> userMap = jsonDecode(userJson);
@@ -185,6 +187,7 @@ class AuthCubit extends Cubit<AuthState> {
 
     return null;
   }
+
 
   @override
   Future<void> close() {

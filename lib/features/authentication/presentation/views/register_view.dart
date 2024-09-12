@@ -145,9 +145,7 @@ class _RegisterViewState extends State<RegisterView> {
                               controller: provider.email,
                               validator: (value) {
                                 if (value == null || value.isEmpty) {
-                                  return 'ادخل البريد الاكتروني';
-                                } else {
-                                  return validateEmail(value);
+                                  return 'ادخل اسم المستخدم';
                                 }
                               },
                               prefixIcon: Icon(
@@ -155,7 +153,7 @@ class _RegisterViewState extends State<RegisterView> {
                                 color: AppColors.primaryColor,
                                 size: 24.h,
                               ),
-                              labelText: 'البريد الاكتروني',
+                              labelText: 'اسم المستخدم',
                             ),
                             // Password TextFormField with toggle visibility
                             CustomTextFormField(
@@ -207,14 +205,6 @@ class _RegisterViewState extends State<RegisterView> {
                                         return;
                                       }
                                       provider.userRegister();
-                                      provider.userRegister().then((_) {
-                                        provider.fName.clear();
-                                        provider.lName.clear();
-                                        provider.fPhone.clear();
-                                        provider.lPhone.clear();
-                                        provider.email.clear();
-                                        provider.password.clear();
-                                      });
 
                                     }
                                   },

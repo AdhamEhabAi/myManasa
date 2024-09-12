@@ -33,12 +33,12 @@ class HomeSingleSubjectWidget extends StatelessWidget {
               BoxShadow(
                 color: Colors.black.withOpacity(0.3),
                 offset: const Offset(0, 4),
-                blurRadius: 4.r, // Increased blurRadius
-                spreadRadius: 0, // Increased spreadRadius
+                blurRadius: 4.r,
+                spreadRadius: 0,
               ),
             ],
             borderRadius: BorderRadius.circular(17.r),
-            color: Colors.grey,
+            color: Colors.white,
           ),
           child: Stack(
             children: [
@@ -48,8 +48,8 @@ class HomeSingleSubjectWidget extends StatelessWidget {
                   topRight: Radius.circular(17.r),
                 ),
                 child: CachedNetworkImage(
-                  imageUrl: APIEndpoints.imgPath + subject.logo,
-                  fit: BoxFit.cover,
+                  imageUrl: APIEndpoints.imgPathForSubjects + subject.logo,
+                  fit: BoxFit.contain,
                   width: double.infinity,
                   height: double.infinity,
                   placeholder: (context, url) => Image.asset(
@@ -64,14 +64,6 @@ class HomeSingleSubjectWidget extends StatelessWidget {
                     width: double.infinity,
                     height: double.infinity,
                   ),
-                ),
-              ),
-              Positioned(
-                left: 10.w,
-                bottom: 10.h,
-                child: Text(
-                  subject.name,
-                  style: Styles.bold20.copyWith(color: Colors.white),
                 ),
               ),
             ],

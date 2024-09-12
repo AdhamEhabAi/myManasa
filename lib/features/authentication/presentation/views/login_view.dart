@@ -3,7 +3,6 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart' as trans;
 import 'package:my_manasa/constants.dart';
-import 'package:my_manasa/core/utils/funtions.dart';
 import 'package:my_manasa/core/utils/styles.dart';
 import 'package:my_manasa/core/widgets/custom_button.dart';
 import 'package:my_manasa/core/widgets/custom_text_form_field.dart';
@@ -75,12 +74,10 @@ class _LoginViewState extends State<LoginView> {
                                 Icons.email,
                                 color: AppColors.primaryColor,
                               ),
-                              labelText: 'البريد الالكتروني',
+                              labelText: 'اسم المستخدم',
                               validator: (value) {
                                 if (value == null || value.isEmpty) {
-                                  return 'ادخل البريد الالكتروني';
-                                } else {
-                                  return validateEmail(value);
+                                  return 'ادخل اسم المستخدم';
                                 }
                               },
                             ),

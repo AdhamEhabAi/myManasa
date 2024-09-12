@@ -7,14 +7,22 @@ import 'package:my_manasa/core/network/api_endpoints.dart';
 class CodeRepo extends Repository {
   final Dio _dio = Dio();
 
-  Future<Either<Failure, bool>> purchaseCourse({required String userId, required String code}) async {
-    const String apiUrl = APIEndpoints.getCourseByCode; // Adjust with the correct endpoint
+  Future<Either<Failure, bool>> purchaseCourse({
+    required String userId,
+    required String code,
+    String? idCourse, // Made nullable
+  }) async {
+    const String apiUrl = APIEndpoints.getCourseByCode;
 
     try {
-      final response = await _dio.get(apiUrl, queryParameters: {
+      // Prepare query parameters
+      final queryParameters = {
         'code': code,
         'id': userId,
-      });
+        if (idCourse != null) 'idcourse': idCourse,
+      };
+
+      final response = await _dio.get(apiUrl, queryParameters: queryParameters);
 
       if (response.statusCode == 200) {
         final responseData = response.data;

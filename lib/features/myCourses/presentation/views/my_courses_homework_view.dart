@@ -29,7 +29,7 @@ class MyCoursesHomeworkView extends StatelessWidget {
             itemBuilder: (context, index) {
               return HomeWorkWidget(
                 onTap: () {
-                  Get.to(ExamView(quizId: state.homeWorks[index].id));
+                  Get.to(ExamView(quizHomeworkModel: state.homeWorks[index]));
                 },
                 quizHomeworkModel: state.homeWorks[index],
               );

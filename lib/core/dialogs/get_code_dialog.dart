@@ -15,9 +15,11 @@ class GetCodeDialog extends StatelessWidget {
   const GetCodeDialog({
     super.key,
     required this.textEditingController,
+    this.idCourse, // Optional idCourse parameter
   });
 
   final TextEditingController textEditingController;
+  final String? idCourse; // Made idCourse nullable
 
   @override
   Widget build(BuildContext context) {
@@ -34,8 +36,7 @@ class GetCodeDialog extends StatelessWidget {
             Text(
               'أدخل الكود',
               style: Styles.semiBold20.copyWith(
-                  color: Colors.black,
-                  decoration: TextDecoration.none),
+                  color: Colors.black, decoration: TextDecoration.none),
             ),
             const SizedBox(height: 20),
             Padding(
@@ -65,7 +66,7 @@ class GetCodeDialog extends StatelessWidget {
               },
               builder: (context, state) {
                 if (state is CodeLoading) {
-                  return const CircularProgressIndicator();  // Show loading indicator
+                  return const CircularProgressIndicator(); // Show loading indicator
                 }
                 return Padding(
                   padding: EdgeInsets.symmetric(horizontal: 40.0.w),
@@ -79,7 +80,13 @@ class GetCodeDialog extends StatelessWidget {
                       final code = textEditingController.text.trim();
                       if (code.isNotEmpty) {
                         String userId = context.read<AuthCubit>().userModel!.id;
-                        context.read<CodeCubit>().purchaseCourse(userId: userId, code: code);
+
+                        // Call purchaseCourse with or without idCourse based on its availability
+                        context.read<CodeCubit>().purchaseCourse(
+                          userId: userId,
+                          code: code,
+                          idCourse: idCourse, // Pass idCourse to the function
+                        );
                       } else {
                         ToastM.show('يرجى إدخال كود صالح.');
                       }

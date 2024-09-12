@@ -30,7 +30,7 @@ class MyCoursesQuizView extends StatelessWidget {
               return SubjectQuizWidget(
                 quizHomeworkModel: quiz,
                 onTap: () {
-                  Get.to(ExamView(quizId: quiz.id));
+                  Get.to(ExamView(quizHomeworkModel: quiz));
                 },
               );
             },

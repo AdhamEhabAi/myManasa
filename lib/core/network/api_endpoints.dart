@@ -1,7 +1,9 @@
 class APIEndpoints {
-  static const baseUrl = 'https://api.west-online-academy.com';
+  static const baseUrl = 'https://skyonline-plus.com/api';
   static const imgPath = 'https://skyonline-plus.com/';
   static const pdfPath = 'https://skyonline-plus.com/pdf/';
+  static const imgPathForSubjects = 'https://skyonline-plus.com/assets/img/brand/';
+
 
   static const signInApi = '$baseUrl/api-login.php';
   static const signUpApi = '$baseUrl/api-sing-up.php';

@@ -108,3 +108,22 @@ Future<void> makePhoneCall(String phoneNumber) async {
     );
   }
 }
+
+Future<void> openUrl(String url) async {
+  try {
+    if (await canLaunchUrl(Uri.parse(url))) {
+      await launchUrl(
+        Uri.parse(url),
+        mode: LaunchMode.externalApplication, // Opens in an external browser
+      );
+    } else {
+      throw 'Could not launch $url';
+    }
+  } catch (e) {
+    Get.snackbar(
+      'Error',
+      e.toString(),
+      snackPosition: SnackPosition.BOTTOM,
+    );
+  }
+}

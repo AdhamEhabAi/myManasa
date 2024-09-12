@@ -13,11 +13,24 @@ class SplashView extends StatefulWidget {
   State<SplashView> createState() => _SplashViewState();
 }
 
-class _SplashViewState extends State<SplashView> {
+class _SplashViewState extends State<SplashView>  with WidgetsBindingObserver{
   @override
   void initState() {
     super.initState();
+    WidgetsBinding.instance.addObserver(this);
     executeNavigation();
+  }
+  @override
+  void dispose() {
+    WidgetsBinding.instance.removeObserver(this); // Remove observer
+    super.dispose();
+  }
+
+  @override
+  void didChangeAppLifecycleState(AppLifecycleState state) {
+    if (state == AppLifecycleState.resumed) {
+      executeNavigation();
+    }
   }
 
   @override
@@ -27,20 +40,25 @@ class _SplashViewState extends State<SplashView> {
     );
   }
 
+
+
+
+
   void executeNavigation() async {
     AuthCubit authCubit = BlocProvider.of<AuthCubit>(context);
 
-    // Try to load the saved user from SharedPreferences
-    authCubit.userModel = await authCubit.getUserFromPreferences();
+    await Future.delayed(const Duration(seconds: 1)); // Small delay before checking preferences
 
+    authCubit.userModel = await authCubit.getUserFromPreferences();
     if (authCubit.userModel != null) {
-      // If a user is found, navigate directly to the main view
       trans.Get.off(const MainView(), transition: trans.Transition.fadeIn, duration: const Duration(seconds: 1));
     } else {
-      // If no user is found, navigate to the onboarding screen
       Future.delayed(const Duration(seconds: 3), () {
-        trans.Get.off(const OnBoardingView(), transition:trans.Transition.fadeIn, duration: const Duration(seconds: 1));
+        trans.Get.off(const OnBoardingView(), transition: trans.Transition.fadeIn, duration: const Duration(seconds: 1));
       });
     }
   }
+
+
+
 }

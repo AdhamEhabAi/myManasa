@@ -29,7 +29,15 @@ import 'package:my_manasa/features/search/presentation/manager/search_cubit.dart
 import 'package:my_manasa/features/search/repo/search_repo.dart';
 import 'package:my_manasa/generated/l10n.dart';
 
-void main() {
+Future<void> initApp() async {
+  WidgetsFlutterBinding.ensureInitialized();
+}
+
+
+
+
+void main() async {
+  await initApp();
   runApp(const MyApp());
 }
 
@@ -54,7 +62,7 @@ class MyApp extends StatelessWidget {
             BlocProvider(
                 create: (context) => TeacherCubit(TeacherRepo(ApiService()))),
             BlocProvider(
-                create: (context) => AuthCubit(AuthRepo(ApiService()))),
+                create: (context) => AuthCubit(AuthRepo(ApiService()))..getUserFromPreferences()),
             BlocProvider(
                 create: (context) => ProfileCubit(ProfileRepo(ApiService()))),
             BlocProvider(

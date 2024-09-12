@@ -1,11 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:my_manasa/constants.dart';
-import 'package:my_manasa/core/dialogs/start_exam_dialog.dart';
 import 'package:my_manasa/core/utils/styles.dart';
 import 'package:my_manasa/features/Quiz/presentation/views/history_view.dart';
 import 'package:my_manasa/features/Quiz/presentation/views/widgets/no_quizes_body.dart';
-import 'package:my_manasa/features/Quiz/presentation/views/widgets/quiz_widget.dart';
 
 class QuizView extends StatelessWidget {
   const QuizView({super.key});

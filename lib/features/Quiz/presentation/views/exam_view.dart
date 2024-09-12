@@ -7,11 +7,12 @@ import 'package:my_manasa/core/widgets/custom_button.dart';
 import 'package:my_manasa/features/Quiz/data/model/exam_qusetion_model.dart';
 import 'package:my_manasa/features/Quiz/presentation/manager/quiz_cubit/quiz_cubit.dart';
 import 'package:my_manasa/features/Quiz/presentation/views/widgets/exam_view_header.dart';
+import 'package:my_manasa/features/myCourses/data/models/quiz_homework_model.dart';
 
 class ExamView extends StatefulWidget {
-  final String quizId;
+  final QuizHomeworkModel quizHomeworkModel;
 
-  const ExamView({super.key, required this.quizId});
+  const ExamView({super.key, required this.quizHomeworkModel});
 
   @override
   State<ExamView> createState() => _ExamViewState();
@@ -24,12 +25,12 @@ class _ExamViewState extends State<ExamView> {
   @override
   void initState() {
     super.initState();
-    context.read<QuizCubit>().loadExamQuestions(quizId: widget.quizId);
+    context.read<QuizCubit>().loadExamQuestions(quizId: widget.quizHomeworkModel.id);
   }
 
   void _handleSubmit(List<ExamQuestion> questions) {
     if (!_formKey.currentState!.validate()) {
-      return; // If validation fails, exit the method
+      return;
     }
 
     int score = 0;
@@ -70,7 +71,7 @@ class _ExamViewState extends State<ExamView> {
               final questions = state.questions;
               return Column(
                 children: [
-                  const ExamViewHeader(),
+                   ExamViewHeader(quizHomeworkModel: widget.quizHomeworkModel,),
                   Expanded(
                     child: Form(
                       key: _formKey,
