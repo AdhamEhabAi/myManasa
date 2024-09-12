@@ -29,12 +29,10 @@ class ProfileRepo extends Repository {
       url += '&repassword=${Uri.encodeComponent(confirmPassword ?? '')}';
 
       // Debugging: Print the final constructed URL
-      print("Constructed URL: $url");
 
       final response = await apiService.get(url: url);
 
       // Debugging: Print the raw response body
-      print("Response Body: ${response.body}");
 
       if (response.statusCode == 200) {
         final responseBody = jsonDecode(response.body);
@@ -65,15 +63,12 @@ class ProfileRepo extends Repository {
         }
       } else {
         // Debugging: Print the response code if not 200
-        print("Failed with status code: ${response.statusCode}");
-        print("Response Body on Failure: ${response.body}");
         return Left(ServerFailure(
-            'فشل في تحديث الملف الشخصي. كود الحالة: ${response.statusCode}'));
+            'هناك خطأ في الاتصال بالشبكة'));
       }
     } catch (e) {
       // Debugging: Print any exceptions that occur during the API call
-      print("Exception occurred: ${e.toString()}");
-      return Left(ServerFailure('حدث خطأ غير متوقع: ${e.toString()}'));
+      return Left(ServerFailure('هناك خطأ في الاتصال بالشبكة'));
     }
   }
 }

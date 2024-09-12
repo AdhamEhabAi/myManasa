@@ -28,12 +28,12 @@ class SubjectVideoRepo extends Repository {
         return Right(videos);
       } else {
         return Left(ServerFailure(
-            'Failed to fetch videos. Status Code: ${response.statusCode}'));
+            'هناك خطأ في الاتصال بالشبكة'));
       }
     } on FormatException catch (e) {
-      return Left(ServerFailure('Data format error: ${e.toString()}'));
+      return Left(ServerFailure('هناك خطأ في الاتصال بالشبكة'));
     } on Exception catch (e) {
-      return Left(ServerFailure('An unexpected error occurred: ${e.toString()}'));
+      return Left(ServerFailure('هناك خطأ في الاتصال بالشبكة'));
     }
   }
 }

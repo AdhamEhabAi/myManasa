@@ -13,7 +13,7 @@
 
 
     <application
-        android:label="Sky"
+        android:label="Sky Online Plus"
         android:name="${applicationName}"
         android:icon="@mipmap/ic_launcher">
         <activity

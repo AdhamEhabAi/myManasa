@@ -37,9 +37,9 @@ class QuizRepo extends Repository {
         return Left(ServerFailure('فشل في جلب الامتحانات'));
       }
     } on FormatException catch (e) {
-      return Left(ServerFailure('خطأ في تنسيق البيانات: ${e.toString()}'));
+      return Left(ServerFailure('هناك خطأ في الاتصال بالشبكة'));
     } on Exception catch (e) {
-      return Left(ServerFailure('حدث خطأ غير متوقع: ${e.toString()}'));
+      return Left(ServerFailure('هناك خطأ في الاتصال بالشبكة'));
     }
   }
 
@@ -67,9 +67,9 @@ class QuizRepo extends Repository {
         return Left(ServerFailure('فشل في جلب الأسئلة'));
       }
     } on FormatException catch (e) {
-      return Left(ServerFailure('خطأ في تنسيق البيانات: ${e.toString()}'));
+      return Left(ServerFailure('هناك خطأ في الاتصال بالشبكة'));
     } on Exception catch (e) {
-      return Left(ServerFailure('حدث خطأ غير متوقع: ${e.toString()}'));
+      return Left(ServerFailure('هناك خطأ في الاتصال بالشبكة'));
     }
   }
   Future<Either<Failure, List<ExamHistory>>> getExamsHistory({required String userId}) async {
@@ -90,12 +90,12 @@ class QuizRepo extends Repository {
           return Left(ServerFailure(responseBody['error'] ?? 'Failed to fetch exam history.'));
         }
       } else {
-        return Left(ServerFailure('Failed to fetch exam history. Status Code: ${response.statusCode}'));
+        return Left(ServerFailure('هناك خطأ في الاتصال بالشبكة'));
       }
     } on FormatException catch (e) {
-      return Left(ServerFailure('Data format error: ${e.toString()}'));
+      return Left(ServerFailure('هناك خطأ في الاتصال بالشبكة'));
     } on Exception catch (e) {
-      return Left(ServerFailure('Unexpected error: ${e.toString()}'));
+      return Left(ServerFailure('هناك خطأ في الاتصال بالشبكة'));
     }
   }
 }

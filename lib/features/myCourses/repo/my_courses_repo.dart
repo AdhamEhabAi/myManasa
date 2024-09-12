@@ -35,14 +35,14 @@ class MyCoursesRepo extends Repository {
           return Left(ServerFailure(responseBody['error'] ?? 'لا يوجد اي كورس تم شحنه'));
         }
 
-        return Left(ServerFailure('شكل استجابة غير متوقع من الخادم.'));
+        return Left(ServerFailure('هناك خطأ في الاتصال بالشبكة'));
       } else {
-        return Left(ServerFailure('فشل في جلب الكورسات. كود الحالة: ${response.statusCode}'));
+        return Left(ServerFailure('هناك خطأ في الاتصال بالشبكة'));
       }
     } on FormatException catch (e) {
-      return Left(ServerFailure('خطأ في تنسيق البيانات: ${e.toString()}'));
+      return Left(ServerFailure('هناك خطأ في الاتصال بالشبكة'));
     } on Exception catch (e) {
-      return Left(ServerFailure('حدث خطأ غير متوقع: ${e.toString()}'));
+      return Left(ServerFailure('هناك خطأ في الاتصال بالشبكة'));
     }
   }
 }

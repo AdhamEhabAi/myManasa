@@ -33,9 +33,9 @@ class HomeWorkRepo extends Repository {
         return Left(ServerFailure('فشل في جلب الواجبات'));
       }
     } on FormatException catch (e) {
-      return Left(ServerFailure('خطأ في تنسيق البيانات: ${e.toString()}'));
+      return Left(ServerFailure('هناك خطأ في الاتصال بالشبكة'));
     } on Exception catch (e) {
-      return Left(ServerFailure('حدث خطأ غير متوقع: ${e.toString()}'));
+      return Left(ServerFailure('هناك خطأ في الاتصال بالشبكة'));
     }
   }
 }

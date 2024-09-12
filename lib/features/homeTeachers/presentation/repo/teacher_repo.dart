@@ -22,7 +22,7 @@ class TeacherRepo extends Repository {
 
       return Right(teachers);
     } catch (e) {
-      return Left('An error occurred: ${e.toString()}');
+      return Left('هناك خطأ في الاتصال بالشبكة');
     }
   }
 
@@ -36,7 +36,7 @@ class TeacherRepo extends Repository {
       }).toList();
       return Right(courses);
     } on Exception catch (e) {
-      return Left('An error occurred: ${e.toString()}');
+      return Left('هناك خطأ في الاتصال بالشبكة');
     }
   }
 
@@ -52,10 +52,10 @@ class TeacherRepo extends Repository {
       } else if (responseData['status'] == 'false') {
         return Right(false);  // Student does not own the course
       } else {
-        return Left('Unexpected response format');
+        return Left('هناك خطأ في الاتصال بالشبكة');
       }
     } on Exception catch (e) {
-      return Left('An error occurred: ${e.toString()}');
+      return Left('هناك خطأ في الاتصال بالشبكة');
     }
   }
 }

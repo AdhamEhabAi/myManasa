@@ -34,10 +34,10 @@ class CodeRepo extends Repository {
           return Left(ServerFailure('الكود خطأ. يرجى المحاولة مرة أخرى.'));
         }
       } else {
-        return Left(ServerFailure('Failed to purchase course. Status Code: ${response.statusCode}'));
+        return Left(ServerFailure('هناك خطأ في الاتصال بالشبكة'));
       }
     } catch (e) {
-      return Left(ServerFailure('An unexpected error occurred: $e'));
+      return Left(ServerFailure('هناك خطأ في الاتصال بالشبكة'));
     }
   }
 }
