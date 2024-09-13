@@ -31,7 +31,7 @@ class CourseViewHeader extends StatelessWidget {
           ),
           child: CachedNetworkImage(
             imageUrl: APIEndpoints.imgPath + course.img!,
-            fit: BoxFit.cover,
+            fit: BoxFit.fill,
             width: double.infinity,
             height: double.infinity,
             placeholder: (context, url) => Image.asset(

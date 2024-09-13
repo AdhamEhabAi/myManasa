@@ -9,6 +9,7 @@ class MyCourseWidget extends StatelessWidget {
   const MyCourseWidget({super.key, required this.onTap, required this.course});
   final VoidCallback onTap;
   final CourseModel course;
+
   @override
   Widget build(BuildContext context) {
     return Padding(
@@ -46,41 +47,41 @@ class MyCourseWidget extends StatelessWidget {
                       fit: BoxFit.fill,
                     ),
                   ),
-                  Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                    children: [
-                      Padding(
-                        padding: EdgeInsets.only(right: 8.0.w),
-                        child: Text(
-                          course.name,
-                          style: Styles.bold16
-                              .copyWith(color: AppColors.primaryColor),
+                  Expanded(  // Wrap the Column with Expanded
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                      children: [
+                        Padding(
+                          padding: EdgeInsets.only(right: 8.0.w),
+                          child: Text(
+                            course.name,
+                            style: Styles.bold16.copyWith(color: AppColors.primaryColor),
+                          ),
                         ),
-                      ),
-                      Padding(
-                        padding: EdgeInsets.only(
-                            right: 8.0.w, top: 8.0.h),
-                        child: Text(
-                          course.sub,
-                          style: Styles.semiBold14
-                              .copyWith(color: Colors.grey),
+                        Padding(
+                          padding: EdgeInsets.only(right: 8.0.w, top: 8.0.h),
+                          child: Text(
+                            course.sub,
+                            style: Styles.semiBold14.copyWith(color: Colors.grey),
+                          ),
                         ),
-                      ),
-                      // LinearPercentIndicator(
-                      //   width: 180.0.w,
-                      //   lineHeight: 8.0.h,
-                      //   trailing: Text(
-                      //     '20/30',
-                      //     style: TextStyle(color: Colors.grey.shade700),
-                      //   ),
-                      //   percent: 0.7,
-                      //   backgroundColor: Colors.grey,
-                      //   progressColor: AppColors.primaryColor,
-                      //   barRadius: Radius.circular(12.r),
-                      //   isRTL: true,
-                      // ),
-                    ],
+                        // Uncomment the LinearPercentIndicator if needed
+                        // LinearPercentIndicator(
+                        //   width: 180.0.w,
+                        //   lineHeight: 8.0.h,
+                        //   trailing: Text(
+                        //     '20/30',
+                        //     style: TextStyle(color: Colors.grey.shade700),
+                        //   ),
+                        //   percent: 0.7,
+                        //   backgroundColor: Colors.grey,
+                        //   progressColor: AppColors.primaryColor,
+                        //   barRadius: Radius.circular(12.r),
+                        //   isRTL: true,
+                        // ),
+                      ],
+                    ),
                   ),
                 ],
               ),

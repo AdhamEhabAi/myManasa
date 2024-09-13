@@ -97,18 +97,6 @@ class _CourseViewState extends State<CourseView> {
                         maxLines: 2,
                       ),
                       SizedBox(height: 10.h),
-                      SizedBox(
-                        width: MediaQuery.of(context).size.width / 2,
-                        child: Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                          children: [
-                            Image.asset('assets/images/smallplay.png', color: AppColors.primaryColor),
-                            Text('35 فيديو', style: Styles.semiBold16),
-                            Image.asset('assets/images/small timer.png', color: AppColors.secondaryColor),
-                            Text('3ساعات', style: Styles.semiBold16),
-                          ],
-                        ),
-                      ),
                     ],
                   ),
                 ),

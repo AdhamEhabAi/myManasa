@@ -50,6 +50,8 @@ class AllTeachersTeacherWidget extends StatelessWidget {
                     topRight: Radius.circular(17.r),
                   ),
                   child: CachedNetworkImage(
+                    fadeInDuration: const Duration(milliseconds: 50),
+
                     imageUrl: APIEndpoints.imgPath + teacher.img,
                     fit: BoxFit.fill,
                     placeholder: (context, url) => Image.asset(

@@ -52,6 +52,8 @@ class HomeSingleSubjectWidget extends StatelessWidget {
                   fit: BoxFit.contain,
                   width: double.infinity,
                   height: double.infinity,
+                  fadeInDuration: const Duration(milliseconds: 50),
+
                   placeholder: (context, url) => Image.asset(
                     'assets/images/logo.png', // Placeholder image
                     fit: BoxFit.cover,
