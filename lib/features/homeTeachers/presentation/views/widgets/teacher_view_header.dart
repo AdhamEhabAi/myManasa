@@ -76,6 +76,7 @@ class TeacherViewHeader extends StatelessWidget {
                         ),
                         child: IconButton(
                           onPressed: () {
+
                             openWhatsApp(teacher.fnum);
                           },
                           icon: const ImageIcon(

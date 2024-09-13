@@ -28,12 +28,15 @@ String? validateEmail(String? value) {
       : null;
 }
 
-Future<void> openWhatsApp(String phoneNumber) async {
+Future<void> openWhatsApp(String? phoneNumber) async {
+  const defaultPhoneNumber = '201013037649';
+  String numberToUse = phoneNumber?.isNotEmpty == true ? phoneNumber! : defaultPhoneNumber;
+
   PermissionStatus status = await Permission.phone.request();
 
   if (status.isGranted) {
     try {
-      String url = 'https://wa.me/$phoneNumber';
+      String url = 'https://wa.me/$numberToUse';
       if (await canLaunchUrl(Uri.parse(url))) {
         await launchUrl(Uri.parse(url), mode: LaunchMode.externalApplication);
       } else {
@@ -67,14 +70,17 @@ Future<void> openWhatsApp(String phoneNumber) async {
   }
 }
 
-Future<void> makePhoneCall(String phoneNumber) async {
+Future<void> makePhoneCall(String? phoneNumber) async {
+  const defaultPhoneNumber = '201013037649'; // Replace with your default number
+  String numberToUse = phoneNumber?.isNotEmpty == true ? phoneNumber! : defaultPhoneNumber;
+
   PermissionStatus status = await Permission.phone.request();
 
   if (status.isGranted) {
     try {
       final Uri launchUri = Uri(
         scheme: 'tel',
-        path: phoneNumber,
+        path: numberToUse,
       );
       if (await canLaunchUrl(launchUri)) {
         await launchUrl(launchUri);
@@ -108,7 +114,6 @@ Future<void> makePhoneCall(String phoneNumber) async {
     );
   }
 }
-
 Future<void> openUrl(String url) async {
   try {
     if (await canLaunchUrl(Uri.parse(url))) {
