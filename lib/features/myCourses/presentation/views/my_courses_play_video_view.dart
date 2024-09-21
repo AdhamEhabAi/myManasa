@@ -37,7 +37,8 @@ class _MyCoursesPlayVideoViewState extends State<MyCoursesPlayVideoView> {
     super.initState();
     _currentVideo = widget.video;
     _initializePlayer(_currentVideo!.firstUrl);
-    BlocProvider.of<VideoCubit>(context).fetchVideos(courseId: widget.course.id);
+    BlocProvider.of<VideoCubit>(context)
+        .fetchVideos(courseId: widget.course.id);
   }
 
   void _initializePlayer(String videoUrl) {
@@ -79,26 +80,26 @@ class _MyCoursesPlayVideoViewState extends State<MyCoursesPlayVideoView> {
           appBar: MediaQuery.of(context).orientation == Orientation.landscape
               ? null
               : AppBar(
-            elevation: 0.0,
-            leading: IconButton(
-                onPressed: () {
-                  Get.off(MyCourseView(course: widget.course));
-                },
-                icon: ImageIcon(
-                  const AssetImage(
-                    'assets/images/back.png',
-                  ),
-                  size: 34.w,
-                  color: AppColors.primaryColor,
-                )),
-            actions: [
-              Image.asset(
-                'assets/images/logo.png',
-                color: AppColors.primaryColor,
-                width: 40.w,
-              ),
-            ],
-          ),
+                  elevation: 0.0,
+                  leading: IconButton(
+                      onPressed: () {
+                        Get.off(MyCourseView(course: widget.course));
+                      },
+                      icon: ImageIcon(
+                        const AssetImage(
+                          'assets/images/back.png',
+                        ),
+                        size: 34.w,
+                        color: AppColors.primaryColor,
+                      )),
+                  actions: [
+                    Image.asset(
+                      'assets/images/logo.png',
+                      color: AppColors.primaryColor,
+                      width: 40.w,
+                    ),
+                  ],
+                ),
           body: BlocBuilder<VideoCubit, VideoState>(
             builder: (context, state) {
               if (state is VideosLoading) {
@@ -137,17 +138,19 @@ class _MyCoursesPlayVideoViewState extends State<MyCoursesPlayVideoView> {
                                     child: Text(
                                       _currentVideo!.name,
                                       maxLines: 2,
-                                      style: Styles.semiBold24.copyWith(fontSize: 24.sp),
-                                      overflow: TextOverflow.ellipsis, // Prevent overflow
+                                      style: Styles.semiBold24
+                                          .copyWith(fontSize: 24.sp),
+                                      overflow: TextOverflow
+                                          .ellipsis, // Prevent overflow
                                     ),
                                   ),
-
                                 ],
                               ),
                               SizedBox(height: 8.h),
                               Text(
                                 'يحتوي هذا الكورس علي تأسيس كامل للصفوف و شرح و\nحل نماذج في الفيديو',
-                                style: Styles.semiBold10.copyWith(color: Colors.grey, fontSize: 12.sp),
+                                style: Styles.semiBold10.copyWith(
+                                    color: Colors.grey, fontSize: 12.sp),
                               ),
                             ],
                           ),
@@ -163,7 +166,8 @@ class _MyCoursesPlayVideoViewState extends State<MyCoursesPlayVideoView> {
                                 dis: video.dis!,
                               );
                             },
-                            separatorBuilder: (context, index) => SizedBox(height: 20.h),
+                            separatorBuilder: (context, index) =>
+                                SizedBox(height: 20.h),
                             itemCount: _videos.length,
                           ),
                         ),

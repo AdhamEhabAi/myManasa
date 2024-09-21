@@ -27,6 +27,7 @@ class _CourseViewState extends State<CourseView> {
   late final PageController pageController;
   late final TextEditingController codeController;
   int selectedIndex = 0;
+  bool isOwned = false; // Track ownership status
 
   @override
   void initState() {
@@ -110,19 +111,25 @@ class _CourseViewState extends State<CourseView> {
                     onCategorySelected: onCategorySelected, // Handle selection
                   ),
                 ),
-                Expanded(
-                  child: PageView(
-                    physics: NeverScrollableScrollPhysics(),
-                    controller: pageController,
-                    onPageChanged: (index) {},
-                    scrollDirection: Axis.horizontal,
-                    children: [
-                      VideoView(courseModel: widget.course),
-                      PdfView(courseModel: widget.course),
-                      HomeworkView(courseModel: widget.course),
-                      QuizView(courseModel: widget.course),
-                    ],
-                  ),
+                BlocBuilder<TeacherCubit, TeacherState>(
+                  builder: (context, state) {
+                    if (state is CheckOwnershipLoaded) {
+                      isOwned = state.isOwned;
+                      return Expanded(
+                        child: PageView(
+                          physics: NeverScrollableScrollPhysics(),
+                          controller: pageController,
+                          children: [
+                            VideoView(courseModel: widget.course, isOwned: isOwned),
+                            PdfView(courseModel: widget.course),
+                            HomeworkView(courseModel: widget.course),
+                            QuizView(courseModel: widget.course),
+                          ],
+                        ),
+                      );
+                    }
+                    return const Center(child: CircularProgressIndicator());
+                  },
                 ),
                 BlocBuilder<TeacherCubit, TeacherState>(
                   builder: (context, state) {
