@@ -30,7 +30,7 @@ if (keystorePropertiesFile.exists()) {
 }
 
 android {
-    namespace "com.example.my_manasa"
+    namespace "com.skyonlineplus.app"
     compileSdkVersion 34
     ndkVersion flutter.ndkVersion
 
@@ -69,7 +69,7 @@ android {
     }
 
     defaultConfig {
-        applicationId "com.example.my_manasa"
+        applicationId "com.skyonlineplus.app"
         multiDexEnabled true
         minSdkVersion 21
         targetSdkVersion 34

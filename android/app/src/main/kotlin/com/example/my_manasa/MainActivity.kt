@@ -1,4 +1,4 @@
-package com.example.my_manasa
+package com.skyonlineplus.app
 
 import android.os.Bundle
 import android.view.WindowManager.LayoutParams
