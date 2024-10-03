@@ -3,6 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
+import 'package:in_app_update/in_app_update.dart'; // <-- Add this import
 import 'package:my_manasa/core/app_repository/code_repo.dart';
 import 'package:my_manasa/core/app_repository/homework_repo.dart';
 import 'package:my_manasa/core/managers/code_cubit/code_cubit.dart';
@@ -31,10 +32,22 @@ import 'package:my_manasa/generated/l10n.dart';
 
 Future<void> initApp() async {
   WidgetsFlutterBinding.ensureInitialized();
+  await checkForInAppUpdate();
 }
 
+Future<void> checkForInAppUpdate() async {
+  try {
+    AppUpdateInfo updateInfo = await InAppUpdate.checkForUpdate();
 
-
+    if (updateInfo.updateAvailability == UpdateAvailability.updateAvailable &&
+        updateInfo.immediateUpdateAllowed) {
+      // Perform immediate update
+      await InAppUpdate.performImmediateUpdate();
+    }
+  } catch (e) {
+    print("Error checking for updates: $e");
+  }
+}
 
 void main() async {
   await initApp();
@@ -58,7 +71,6 @@ class MyApp extends StatelessWidget {
             BlocProvider(create: (context) => MyCoursesCubit(MyCoursesRepo(ApiService()))),
             BlocProvider(create: (context) => CodeCubit(CodeRepo())),
             BlocProvider(create: (context) => SearchCubit(SearchRepo(ApiService()))),
-
             BlocProvider(
                 create: (context) => TeacherCubit(TeacherRepo(ApiService()))),
             BlocProvider(
@@ -70,8 +82,6 @@ class MyApp extends StatelessWidget {
             BlocProvider(create: (context) => PdfCubit(PdfRepo(ApiService()))),
             BlocProvider(create: (context) => QuizCubit(QuizRepo(ApiService()))),
             BlocProvider(create: (context) => HomeWorkCubit(HomeWorkRepo(ApiService()))),
-
-
           ],
           child: GetMaterialApp(
             locale: const Locale('ar', 'AE'),
